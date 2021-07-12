@@ -1,0 +1,139 @@
+{ 
+		"neural_style_transfer": {
+				"path" : "models",
+
+				"style_models_file" : [
+						"candy.t7", 
+						"composition_vii.t7", 
+						"feathers.t7", 
+						"la_muse.t7", 
+						"mosaic.t7", 
+						"starry_night.t7", 
+						"the_scream.t7", 
+						"the_wave.t7", 
+						"udnie.t7"
+				],
+
+				"style_models_name" : [
+						"Candy", 
+						"Composition_vii", 
+						"Feathers", 
+						"La_muse", 
+						"Mosaic", 
+						"Starry_night", 
+						"The_scream", 
+						"The_wave", 
+						"Udnie"
+				],
+
+				"models": [
+						{"label":"Candy", "value": "candy.t7"},
+						{"label":"Composition_vii", "value": "composition_vii.t7"},
+						{"label":"Feathers", "value": "feathers.t7"},
+						{"label":"La_muse", "value": "la_muse.t7"},
+						{"label":"Mosaic", "value": "mosaic.t7"},
+						{"label":"Starry_night", "value": "starry_night.t7"},
+						{"label":"The_scream", "value": "the_scream.t7"},
+						{"label":"The_wave", "value": "the_wave.t7"},
+						{"label":"Udnie","value": "udnie.t7"}
+				]
+		},
+
+		"images": {
+				"path": "input/images",
+
+				"content_images_file": [
+						"Alan.jpg",
+						"blue-moon-lake.jpg", 
+						"campo_roxo.jpg", 
+						"cezanne-1897.jpg", 
+						"Dany.jpg",
+						"Debora.jpg",
+						"Dipping-Sun.jpg", 
+						"DRAGONGIRL.jpg",
+						"eduardo.jpg",
+						"Erika.jpg",
+						"fuji.jpg",
+						"golden_gate.jpg", 
+						"Japanese-cherry.jpg", 
+						"Joyce.jpg", 
+						"Karla.jpg",
+						"Kimberly.jpg", 
+						"Kinkaku-ji.jpg", 
+						"lady_devimon.png", 
+						"monet_impression.jpg",
+						"moon_blue_sky.jpg",
+						"neon_landscape.jpg",
+						"neon_sun.jpg",
+						"Rafael.jpg",
+						"sagano_bamboo_forest.jpg", 
+						"Sunlit Mountains.jpg", 
+						"tubingen.jpg", 
+						"winter-wolf.jpg"
+				],
+
+				"content_images_name": [
+						"Alan.jpg",
+						"Blue-moon-lake", 
+						"campo_roxo.jpg", 
+						"cezanne-1897.jpg", 
+						"Dany.jpg",
+						"Debora.jpg",
+						"Dipping-sun", 
+						"Dragon Girl Lol.jpg",
+						"Eduardo",
+						"Erika.jpg",
+						"Fuji.jpg",
+						"Golden_gate", 
+						"Japanese-cherry", 
+						"Joyce.jpg", 
+						"Karla.jpg",
+						"Kimberly.jpg", 
+						"Kinkaku-ji", 
+						"lady_devimon.png", 
+						"Monet Impression.jpg",
+						"moon_blue_sky.jpg",
+						"Neon Landscape.jpg",
+						"Neon Sun.jpg",
+						"Rafael.jpg",
+						"Sagano_bamboo_forest", 
+						"Sunlit mountains", 
+						"Tubingen", 
+						"Winter-wolf"
+				]
+		},
+
+		"operations": [
+				{ "label": "Neural Style Transfer", "value": "neural-style-transfer" },
+				{ "label": "Preprocessing", "value": "preprocessing" },
+				{ "label": "Thresholding", "value": "thresholding" },
+				{ "label": "Morphological Operations", "value": "morphologycal-operations" }
+		], 
+		"options": {
+				"Thresholding": [
+						{"label": "Threshold Binary", "value": "threshold-binary"},
+						{"label": "Threshold Binary Inverse", "value": "threshold-binary-inverse"},
+						{"label": "Threshold To-Zero", "value": "threshold-to_zero"},
+						{"label": "Threshold To-Zero Inverse", "value": "threshold-to_zero-inverse"},
+						{"label": "Threshold Adaptive Mean C", "value": "threshold-adaptive-mean-c"},
+						{"label": "Threshold Adaptive Gaussian C", "value": "threshold-adaptive-gaussian-c"}
+				],
+				"Preprocessing": [
+						{"label": "Filter", "value": "filter"},
+						{"label": "Blur", "value": "blur"},
+						{"label": "Gaussian_Blur", "value": "gaussian-blur"},
+						{"label": "Median Blur", "value": "median-blur"},
+						{"label": "Bilateral Filter", "value": "bilateral-filter"}
+				],
+				"Morphological Operations": [
+						{"label": "Erosion", "value": "erosion"},
+						{"label": "Dilatation", "value": "dilatation"},
+						{"label": "Opening", "value": "opening"},
+						{"label": "Closing", "value": "closing"},
+						{"label": "Gradient", "value": "gradient"},
+						{"label": "Top Hat", "value": "top-hat"},
+						{"label": "Black Hat", "value": "black-hat"}
+				]
+				
+		}
+}

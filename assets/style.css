@@ -1,0 +1,133 @@
+/* This creates a skinny side bar fixed to the left of the page */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  /*width: 5rem;*/
+  width: 24rem;
+  padding: 2rem 1rem;
+  background-color: #111111;
+  z-index: 1050;
+  transition: width 0.1s ease-in-out;
+  /*border: 3px solid blue;*/
+}
+
+/* when the user hovers on the sidebar, expand it */
+/*.sidebar:hover {
+  width: 24rem;
+}*/
+
+/* make sure the contents of the navlink don't wrap when navbar collapses */
+.sidebar .nav-link {
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+/* fix the width of the icons */
+.sidebar .nav-link i {
+  width: 1rem;
+}
+
+/* hide the navlink labels by default */
+.sidebar .nav-link span {
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.1s ease-in-out;
+}
+
+/* when the sidebar is hovered, reveal the labels */
+.sidebar:hover .nav-link span {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* container for the sidebar header. make sure the contents don't wrap when
+ * the sidebar is collapsed.
+ */
+.sidebar-header {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+/* position the header relative to the logo and hide by default */
+.sidebar-header h2 {
+  opacity: 0;
+  margin-left: 1rem;
+  margin-bottom: 0;
+  transition: opacity 0.1s ease-in-out;
+}
+
+/* reveal the header when the sidebar is toggled */
+.sidebar:hover .sidebar-header h2 {
+  opacity: 1;
+}
+
+/* position the content relative to the collapsed sidebar */
+.content {
+  margin-left: 7rem;
+  margin-right: 2rem;
+  padding: 2rem 1rem;
+}
+
+.paper {
+    background-color: #111111;
+}
+
+.col-graph {
+    margin-left: auto;
+		background-color: #0E0E0E;
+}
+
+.card {
+		background-color: #292929;
+}
+
+.card-header {
+		height: 30px;
+		color: white;
+		background-color: #1F1F1F;
+}
+
+.VirtualizedSelectOption {
+    background-color: #292929;
+    color: white;
+}
+
+.VirtualizedSelectFocusedOption {
+    background-color: #202020;
+    color: LightBlue;
+}
+
+/*
+.Select-control {
+		background-color: #C3C3C3 !important;
+		background-image: linear-gradient(#484e55, #3A3F44 60%, #313539);
+		border: 1px solid magenta;
+}
+
+.Select-value {
+		color: magenta;
+}
+
+.Select-value-label {
+		color: white;
+}
+
+.Select input {
+		color: LightBlue;
+}*/
+
+.inv {
+		display: none;
+		width: 100%;
+}
+
+.appear {
+		display: block;
+		width: 100%;
+}
