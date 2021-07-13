@@ -31,6 +31,7 @@ from .histogram import Histogram
 
 from .neural_style_transfer import style_transfer 
 from .preprocessing import preprocess#, update_preproc_items
+from .morphology import morphology
 
 class Operations():
     """
@@ -139,6 +140,8 @@ app.layout = operations.layout
             Input(component_id='preproc-value', component_property='value'),
             Input(component_id='median_sigma1', component_property='value'),
             Input(component_id='median_sigma2', component_property='value'),
+            Input(component_id='morpho-op', component_property='value'),
+            Input(component_id='morpho-value', component_property='value'),
             ],
         prevent_initial_call=True,
         supress_callback_exceptions=True)
@@ -146,7 +149,8 @@ def operate(
         img_path, operation, rev_col,
         nst_model, quality,       # Neural Style Transfer Variables
         preproc_op, preproc_value, sigma_1, sigma_2, # Preprocessing
-        ):
+        morpho_op, morpho_iter, # Morphological Operations
+         ):
 
     operations.read_img(img_path, width=quality)
 
@@ -160,6 +164,12 @@ def operate(
                     preproc_op, 
                     preproc_value,
                     sigma_1, sigma_2,)
+            operations.img_list.append(out)
+        elif op == 'morphologycal-operations':
+            out = morphology(
+                    operations.img_list[-1],
+                    morpho_op,
+                    morpho_iter,)
             operations.img_list.append(out)
         else:
             pass

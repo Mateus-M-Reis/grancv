@@ -7,22 +7,23 @@ import cv2
 import numpy as np
 import json
 
-from . import app
+#from . import app
 f = open('app/config.json')
 cfg = json.load(f)
 
 morpho_dropdown = dcc.Dropdown(
         id='morpho-op',
-        options=cfg['options']['Thresholding'],
+        options=cfg['options']['Morphological Operations'],
         style={'color': 'white'},
+        value='erosion',
         )
 
 morpho_value = dcc.Slider(
         id='morpho-value',
         min=0,
-        max=255,
+        max=10,
         step=1,
-        value=127)
+        value=3)
 
 morpho_wid = dbc.Card([
     dbc.CardHeader(
@@ -63,5 +64,7 @@ def morphology(img, op_type, number):
         return morpho
     elif op_type == 'top-hat':
         morpho = cv2.morphologyEx(img, cv2.MORPH_TOPHAT, kernel, iterations=number)
-    elif op_type == 'top-hat':
+        return morpho
+    elif op_type == 'black-hat':
         morpho = cv2.morphologyEx(img, cv2.MORPH_BLACKHAT, kernel, iterations=number)
+        return morpho

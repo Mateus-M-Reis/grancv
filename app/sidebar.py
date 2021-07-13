@@ -38,7 +38,7 @@ class Sidebar():
             self.img_selector.options.append({
                 'label': content,
                 'value': content })
-            self.img_selector.value = 'Alan.jpg'
+            self.img_selector.value = 'desmonte.jpg'
         
         # Upload button
         self.upload_btn = dbc.Button(

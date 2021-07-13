@@ -7,7 +7,7 @@ import dash_core_components as dcc
 import plotly.graph_objects as go
 import plotly.express as px
 
-img_path = 'input/images/Alan.jpg'
+img_path = 'input/images/desmonte.jpg'
 img = cv2.imread(img_path)
 img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 
