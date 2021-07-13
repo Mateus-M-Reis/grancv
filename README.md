@@ -1,27 +1,93 @@
 # grancv
 
-OpenCV interative explorer script with granulometry purpouses, built on top of [ipywidgets](https://github.com/jupyter-widgets/ipywidgets), [bqplot](https://github.com/bloomberg/bqplot), [opencv](https://opencv.org/) and [ipycanvas](https://github.com/martinRenou/ipycanvas).
+Computer vision web application with granulometry purpouses, built on top of [dash](https://github.com/plotly/dash), [plotly](https://github.com/plotly/plotly.py), [opencv](https://opencv.org/),  [dash-bootstrap-components](https://github.com/facultyai/dash-bootstrap-components) and [dash-extensions](https://github.com/thedirtyfew/dash-extensions).
 
-![](demo/gifs/grancv_gif.gif)
+![](demo/gifs/grancv_now.gif)
 
-# Installation
+## Install
 
 Create new conda environment:
 
-`conda create -n cv_env python=3`
+`conda env create -f environment.yml`
 
-activate env
+Activate environment:
 
-`source activate cv_env`
+`source activate dash`
 
-install packages:
+Install some more packages:
 
-`conda install -c conda-forge notebook jupyterlab ipywidgets bqplot opencv ipycanvas voila`
+`python -m pip install -r requirements.txt`
 
-enable JupyterLab extensions
+Run the app:
 
-`jupyter labextension install @jupyter-widgets/jupyterlab-manager bqplot ipycanvas`
+`python index.py`
 
-# To do
+## Operations Available
 
-This repo is in very initial stage, only a draft in given. The code will be saved in the code folder, with individual components for each defferent component/operation created.
+You can use and tune combinations of the following operations:
+
+- Neural Style Transfer
+
+- - Select one of the available torch .t7 models available in the 'models' folder.
+  
+  - You can adjust the quality of the final result by changing the image width.
+
+- Preprocessing
+  
+  - Filtering 
+    
+    - Simple
+    
+    - Bilateral Filtering
+  
+  - Blur
+    
+    - Simple
+    
+    - Median Blur 
+    
+    - Gaussian Blur
+
+- Morphologycal Operations
+  
+  - Erosion
+  
+  - Dilatation
+  
+  - Opening
+  
+  - Closing
+  
+  - Gradient
+  
+  - Top Hat
+  
+  - Black Hat
+
+- Thresholding
+  
+  - Simple
+    
+    - Binary
+    
+    - Binary Inverse
+    
+    - To-Zero
+    
+    - To-Zero Inverse
+  
+  - Adaptive
+    
+    - Adaptive mean c
+    
+    - Adaptive Gaussian c
+
+## To do
+
+This repo is is very initial stage. More operations will be added to the application gradually. Here are some I've thought about:
+
+- Possibility of creating your own operation, from the combinations of wherever you want.
+
+- Choose (and plot) the kernel. All kernel used in the operations are matrices of 1's of size 3 or 5. 
+
+- Scripts to build the application.
