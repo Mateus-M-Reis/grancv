@@ -43,7 +43,9 @@ threshold_wid = dbc.Card([
     ], className='inv')
 
 def threshold(img, op_type, k_size):
+
     k_size=np.intc(k_size)
+
     if op_type == 'filter':
         kernel = np.ones((k_size, k_size), np.float32)/25
         dst = cv2.filter2D(img,-1,kernel)

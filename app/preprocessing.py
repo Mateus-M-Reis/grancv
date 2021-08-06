@@ -71,7 +71,9 @@ preproc_wid = dbc.Card([
     ], className='appear')
 
 def preprocess(img, op_type, k_size, sigma1, sigma):
+
     k_size=np.intc(k_size)
+
     if op_type == 'filter':
         kernel = np.ones((k_size, k_size), np.float32)/25
         dst = cv2.filter2D(img,-1,kernel)
