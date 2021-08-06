@@ -20,9 +20,9 @@ preproc_dropdown = dcc.Dropdown(
 
 preproc_value = dcc.Slider(
         id='preproc-value',
-        min=3,
-        max=9,
-        step=1,
+        min=1,
+        max=19,
+        step=2,
         value=7)
 
 median_sigma1 = dcc.Slider(
@@ -98,13 +98,3 @@ def update_preproc_items(op):
         return 'inv'
     else:
         return 'appear'
-
-@app.callback(
-        Output(component_id='preproc-value', component_property='max'),
-        [Input(component_id='preproc-op', component_property='value')])
-def update_preproc_max(op):
-
-    if op != 'bilateral-filter':
-        return 9
-    else:
-        return 15

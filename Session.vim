@@ -13,7 +13,7 @@ badd +83 app/sidebar.py
 badd +3 app/__init__.py
 badd +1 app/config.json
 badd +1 app/neural_style_transfer.py
-badd +17 app/paper.py
+badd +1 app/paper.py
 badd +3 README.md
 badd +15 app/histogram.py
 badd +1 app/components/sidebar.py
@@ -80,16 +80,14 @@ setlocal fdn=20
 setlocal fen
 2
 normal! zo
-107
-normal! zo
-113
+109
 normal! zo
 let s:l = 111 - ((110 * winheight(0) + 27) / 55)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
 111
-normal! 02|
+normal! 0
 wincmd w
 argglobal
 if bufexists("README.md") | buffer README.md | else | edit README.md | endif
@@ -159,26 +157,16 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-15
-normal! zo
-21
-normal! zo
-21
-normal! zo
-28
-normal! zo
 29
 normal! zo
 32
-normal! zo
-37
 normal! zo
 let s:l = 40 - ((39 * winheight(0) + 27) / 55)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
 40
-normal! 011|
+normal! 01|
 wincmd w
 argglobal
 if bufexists("app/__init__.py") | buffer app/__init__.py | else | edit app/__init__.py | endif
@@ -190,12 +178,6 @@ setlocal fdl=99
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-18
-normal! zo
-18
-normal! zo
-31
-normal! zo
 let s:l = 135 - ((50 * winheight(0) + 27) / 55)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
@@ -215,9 +197,9 @@ setlocal fdn=20
 setlocal fen
 19
 normal! zo
-20
+21
 normal! zo
-56
+52
 normal! zo
 let s:l = 83 - ((51 * winheight(0) + 27) / 55)
 if s:l < 1 | let s:l = 1 | endif
@@ -258,7 +240,7 @@ if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
 1
-normal! 02|
+normal! 03|
 wincmd w
 argglobal
 if bufexists("app/histogram.py") | buffer app/histogram.py | else | edit app/histogram.py | endif
@@ -270,19 +252,11 @@ setlocal fdl=99
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-8
-normal! zo
-8
-normal! zo
-13
-normal! zo
 14
 normal! zo
-19
+16
 normal! zo
-21
-normal! zo
-21
+18
 normal! zo
 let s:l = 15 - ((14 * winheight(0) + 27) / 55)
 if s:l < 1 | let s:l = 1 | endif
@@ -323,11 +297,7 @@ setlocal fdn=20
 setlocal fen
 15
 normal! zo
-21
-normal! zo
-28
-normal! zo
-33
+29
 normal! zo
 let s:l = 20 - ((19 * winheight(0) + 27) / 55)
 if s:l < 1 | let s:l = 1 | endif
@@ -346,16 +316,14 @@ setlocal fdl=99
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-28
+29
 normal! zo
-32
-normal! zo
-let s:l = 35 - ((34 * winheight(0) + 27) / 55)
+let s:l = 37 - ((36 * winheight(0) + 27) / 55)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-35
-normal! 017|
+37
+normal! 010|
 wincmd w
 argglobal
 if bufexists("app/thresholding.py") | buffer app/thresholding.py | else | edit app/thresholding.py | endif
