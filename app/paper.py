@@ -1,50 +1,41 @@
-import cv2
-from PIL import Image
 import os
+import cv2
+import json
+from IPython.core.display import display
+from ipywidgets import Output, Layout
+from ipycanvas import Canvas, hold_canvas
 
-import dash_html_components as html
-import dash_core_components as dcc
-import plotly.graph_objects as go
-import plotly.express as px
+class Paper():
+    """
+    Base paper class.
+    """
+    def __init__(self, img):
 
-img_path = 'input/images/desmonte.jpg'
-img = cv2.imread(img_path)
-img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+        f = open('app/config.json')
+        cfg = json.load(f)
 
-fig = px.imshow(img, template='plotly_dark')
+        self.width = 1080
+        self.height = 770
+        self.canvas=Canvas(
+                width=self.width,
+                height=self.height,
+                )
+        self.output = Output(
+                layout = Layout(
+                    #border='1px solid cyan',
+                    width='1170px',
+                    height='770px',
+                    min_height='90vh',
+                    overflow='hidden hidden'
+                    ),
+                )
+        with self.output:
+            display(self.canvas)
 
-fig.update_layout(
-		margin={"l": 0, "r": 0, "t": 0, "b": 0},
-		showlegend=False,
-		xaxis_showgrid=False, 
-		yaxis_showgrid=False
-		)
-fig.update_xaxes(showticklabels=False)
-fig.update_yaxes(showticklabels=False)
+        def put_image():
+            #self.canvas.fill_style='#B03838'
+            #self.canvas.fill_rect(0,0, self.canvas.width, self.canvas.height)
+            resized = cv2.resize(img, (self.width, self.height), interpolation=cv2.INTER_AREA)
+            self.canvas.put_image_data(resized, 0, 0)
 
-paper = dcc.Graph(
-		id='paper',
-		figure = fig,
-		responsive='auto',
-		style={
-			'width': '100%',
-			'height': '100%',
-                        'position': 'absolute'
-			},
-		config={
-			'modeBarButtonsToRemove': [
-				'pan2d', 
-				#'lasso2d',
-				'zoomIn2d',
-				'zoomOut2d',
-				'autoScale2d',
-				'resetScale2d',
-				'hoverClosestCartesian',
-				'hoverCompareCartesian',
-				'toggleSpikelines',
-				],
-			'displaylogo': False
-			}
-		)
-
-
+        self.canvas.on_client_ready(put_image)

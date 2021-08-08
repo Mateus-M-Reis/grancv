@@ -1,4 +1,8 @@
-from app import app
+from app import App
+from IPython.core.display import display
+from ipywidgets import HTML
 
-if __name__ == "__main__":
-	app.run_server(debug=True)
+app = App()
+#display(app.sidebar.drawer)
+#display(app.layout)
+app.layout

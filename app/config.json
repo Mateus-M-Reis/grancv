@@ -99,37 +99,37 @@
 				]
 		},
 
-		"operations": [
-				{ "label": "Neural Style Transfer", "value": "neural-style-transfer" },
-				{ "label": "Preprocessing", "value": "preprocessing" },
-				{ "label": "Thresholding", "value": "thresholding" },
-				{ "label": "Morphological Operations", "value": "morphologycal-operations" }
-		], 
+		"operations": {
+				"Neural Style Transfer": "neural-style-transfer",
+				"Smoothing": "smoothing",
+				"Thresholding": "thresholding",
+				"Morphological Operations": "morphologycal-operations"
+		}, 
 		"options": {
-				"Thresholding": [
-						{"label": "Threshold Binary", "value": "threshold-binary"},
-						{"label": "Threshold Binary Inverse", "value": "threshold-binary-inverse"},
-						{"label": "Threshold To-Zero", "value": "threshold-to_zero"},
-						{"label": "Threshold To-Zero Inverse", "value": "threshold-to_zero-inverse"},
-						{"label": "Threshold Adaptive Mean C", "value": "threshold-adaptive-mean-c"},
-						{"label": "Threshold Adaptive Gaussian C", "value": "threshold-adaptive-gaussian-c"}
-				],
-				"Preprocessing": [
-						{"label": "Filter", "value": "filter"},
-						{"label": "Blur", "value": "blur"},
-						{"label": "Gaussian_Blur", "value": "gaussian-blur"},
-						{"label": "Median Blur", "value": "median-blur"},
-						{"label": "Bilateral Filter", "value": "bilateral-filter"}
-				],
-				"Morphological Operations": [
-						{"label": "Erosion", "value": "erosion"},
-						{"label": "Dilatation", "value": "dilatation"},
-						{"label": "Opening", "value": "opening"},
-						{"label": "Closing", "value": "closing"},
-						{"label": "Gradient", "value": "gradient"},
-						{"label": "Top Hat", "value": "top-hat"},
-						{"label": "Black Hat", "value": "black-hat"}
-				]
+				"Thresholding": {
+						"Threshold Binary": "threshold-binary",
+						"Threshold Binary Inverse": "threshold-binary-inverse",
+						"Threshold To-Zero": "threshold-to_zero",
+						"Threshold To-Zero Inverse": "threshold-to_zero-inverse",
+						"Threshold Adaptive Mean C": "threshold-adaptive-mean-c",
+						"Threshold Adaptive Gaussian C": "threshold-adaptive-gaussian-c"
+				},
+				"Smoothing": {
+						"Filter":" filter",
+						"Blur": "blur",
+						"Gaussian_Blur": "gaussian-blur",
+						"Median Blur": "median-blur",
+						"Bilateral Filter": "bilateral-filter"
+				},
+				"Morphological Operations": {
+						"Erosion": "erosion",
+						"Dilatation": "dilatation",
+						"Opening": "opening",
+						"Closing": "closing",
+						"Gradient": "gradient",
+						"Top Hat": "top-hat",
+						"Black Hat": "black-hat"
+				}
 				
 		}
 }

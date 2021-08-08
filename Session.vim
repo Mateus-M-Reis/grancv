@@ -9,19 +9,21 @@ endif
 set shortmess=aoO
 badd +1 index.py
 badd +1 app.py
-badd +83 app/sidebar.py
-badd +3 app/__init__.py
+badd +95 app/sidebar.py
+badd +92 app/__init__.py
 badd +1 app/config.json
-badd +1 app/neural_style_transfer.py
-badd +1 app/paper.py
+badd +42 app/neural_style_transfer.py
+badd +42 app/paper.py
 badd +3 README.md
-badd +15 app/histogram.py
+badd +61 app/histogram.py
 badd +1 app/components/sidebar.py
 badd +1 app/components/paper.py
 badd +1 assets/style.css
-badd +1 app/preprocessing.py
 badd +43 app/thresholding.py
 badd +35 app/morphology.py
+badd +1 app/vvapp/inputs.py
+badd +0 app/vvapp/outputs.py
+badd +1 ~/Códigos/grancv/app/smoothing.py
 argglobal
 %argdel
 $argadd app.py
@@ -61,12 +63,12 @@ setlocal fdl=99
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 5 - ((4 * winheight(0) + 27) / 55)
+let s:l = 124 - ((45 * winheight(0) + 27) / 55)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-5
-normal! 02|
+124
+normal! 0
 wincmd w
 argglobal
 if bufexists("app/config.json") | buffer app/config.json | else | edit app/config.json | endif
@@ -80,14 +82,18 @@ setlocal fdn=20
 setlocal fen
 2
 normal! zo
+103
+normal! zo
 109
 normal! zo
-let s:l = 111 - ((110 * winheight(0) + 27) / 55)
+109
+normal! zc
+let s:l = 119 - ((118 * winheight(0) + 27) / 55)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-111
-normal! 0
+119
+normal! 01|
 wincmd w
 argglobal
 if bufexists("README.md") | buffer README.md | else | edit README.md | endif
@@ -157,16 +163,12 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-29
-normal! zo
-32
-normal! zo
-let s:l = 40 - ((39 * winheight(0) + 27) / 55)
+let s:l = 41 - ((34 * winheight(0) + 27) / 55)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-40
-normal! 01|
+41
+normal! 02|
 wincmd w
 argglobal
 if bufexists("app/__init__.py") | buffer app/__init__.py | else | edit app/__init__.py | endif
@@ -174,16 +176,102 @@ setlocal fdm=indent
 setlocal fde=0
 setlocal fmr={{{,}}}
 setlocal fdi=#
-setlocal fdl=99
+setlocal fdl=3
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 135 - ((50 * winheight(0) + 27) / 55)
+23
+normal! zo
+28
+normal! zo
+35
+normal! zo
+35
+normal! zo
+36
+normal! zo
+37
+normal! zo
+38
+normal! zo
+37
+normal! zc
+36
+normal! zc
+35
+normal! zc
+54
+normal! zo
+55
+normal! zo
+58
+normal! zo
+59
+normal! zo
+60
+normal! zo
+68
+normal! zo
+55
+normal! zc
+59
+normal! zo
+59
+normal! zc
+68
+normal! zo
+68
+normal! zo
+54
+normal! zc
+77
+normal! zo
+81
+normal! zo
+81
+normal! zo
+81
+normal! zc
+81
+normal! zc
+77
+normal! zc
+90
+normal! zo
+91
+normal! zo
+92
+normal! zo
+92
+normal! zo
+92
+normal! zo
+92
+normal! zc
+92
+normal! zc
+92
+normal! zc
+91
+normal! zc
+99
+normal! zo
+100
+normal! zo
+100
+normal! zo
+100
+normal! zo
+99
+normal! zc
+90
+normal! zc
+let s:l = 64 - ((47 * winheight(0) + 27) / 55)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-135
-normal! 05|
+64
+normal! 0
 wincmd w
 argglobal
 if bufexists("app/sidebar.py") | buffer app/sidebar.py | else | edit app/sidebar.py | endif
@@ -191,21 +279,65 @@ setlocal fdm=indent
 setlocal fde=0
 setlocal fmr={{{,}}}
 setlocal fdi=#
-setlocal fdl=99
+setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-19
+24
 normal! zo
-21
+26
 normal! zo
-52
+66
 normal! zo
-let s:l = 83 - ((51 * winheight(0) + 27) / 55)
+77
+normal! zo
+96
+normal! zo
+96
+normal! zo
+101
+normal! zo
+101
+normal! zo
+110
+normal! zo
+112
+normal! zo
+128
+normal! zo
+128
+normal! zc
+143
+normal! zo
+143
+normal! zc
+158
+normal! zo
+169
+normal! zo
+169
+normal! zc
+158
+normal! zc
+173
+normal! zo
+177
+normal! zo
+177
+normal! zo
+173
+normal! zc
+112
+normal! zc
+110
+normal! zc
+101
+normal! zc
+let s:l = 31 - ((4 * winheight(0) + 27) / 55)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-83
+31
 normal! 0
 wincmd w
 exe 'vert 1resize ' . ((&columns * 75 + 113) / 227)
@@ -235,12 +367,26 @@ setlocal fdl=99
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 1 - ((0 * winheight(0) + 27) / 55)
+9
+normal! zo
+14
+normal! zo
+20
+normal! zo
+20
+normal! zc
+24
+normal! zo
+24
+normal! zo
+24
+normal! zc
+let s:l = 11 - ((10 * winheight(0) + 27) / 55)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-1
-normal! 03|
+11
+normal! 04|
 wincmd w
 argglobal
 if bufexists("app/histogram.py") | buffer app/histogram.py | else | edit app/histogram.py | endif
@@ -252,22 +398,42 @@ setlocal fdl=99
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-14
+9
 normal! zo
-16
+15
 normal! zo
-18
+21
 normal! zo
-let s:l = 15 - ((14 * winheight(0) + 27) / 55)
+21
+normal! zo
+38
+normal! zo
+38
+normal! zo
+46
+normal! zc
+57
+normal! zo
+59
+normal! zo
+71
+normal! zo
+71
+normal! zo
+71
+normal! zo
+75
+normal! zo
+let s:l = 76 - ((53 * winheight(0) + 27) / 55)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-15
+76
 normal! 0
 wincmd w
 exe 'vert 1resize ' . ((&columns * 113 + 113) / 227)
 exe 'vert 2resize ' . ((&columns * 113 + 113) / 227)
-tabedit app/preprocessing.py
+tabedit ~/Códigos/grancv/app/smoothing.py
 set splitbelow splitright
 wincmd _ | wincmd |
 vsplit
@@ -295,16 +461,12 @@ setlocal fdl=99
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-15
-normal! zo
-29
-normal! zo
-let s:l = 20 - ((19 * winheight(0) + 27) / 55)
+let s:l = 3 - ((2 * winheight(0) + 27) / 55)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-20
-normal! 0
+3
+normal! 02|
 wincmd w
 argglobal
 if bufexists("app/morphology.py") | buffer app/morphology.py | else | edit app/morphology.py | endif
@@ -318,11 +480,11 @@ setlocal fdn=20
 setlocal fen
 29
 normal! zo
-let s:l = 37 - ((36 * winheight(0) + 27) / 55)
+let s:l = 38 - ((37 * winheight(0) + 27) / 55)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-37
+38
 normal! 010|
 wincmd w
 argglobal
@@ -348,10 +510,61 @@ normal! zt
 19
 normal! 0
 wincmd w
-2wincmd w
 exe 'vert 1resize ' . ((&columns * 75 + 113) / 227)
 exe 'vert 2resize ' . ((&columns * 75 + 113) / 227)
 exe 'vert 3resize ' . ((&columns * 75 + 113) / 227)
+tabedit app/vvapp/outputs.py
+set splitbelow splitright
+wincmd _ | wincmd |
+vsplit
+1wincmd h
+wincmd w
+set nosplitbelow
+set nosplitright
+wincmd t
+set winminheight=0
+set winheight=1
+set winminwidth=0
+set winwidth=1
+exe 'vert 1resize ' . ((&columns * 113 + 113) / 227)
+exe 'vert 2resize ' . ((&columns * 113 + 113) / 227)
+argglobal
+setlocal fdm=indent
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+326
+normal! zo
+let s:l = 335 - ((320 * winheight(0) + 27) / 55)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+335
+normal! 01|
+wincmd w
+argglobal
+if bufexists("app/vvapp/inputs.py") | buffer app/vvapp/inputs.py | else | edit app/vvapp/inputs.py | endif
+setlocal fdm=indent
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=99
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+let s:l = 1 - ((0 * winheight(0) + 27) / 55)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+1
+normal! 0
+wincmd w
+exe 'vert 1resize ' . ((&columns * 113 + 113) / 227)
+exe 'vert 2resize ' . ((&columns * 113 + 113) / 227)
 tabnext 4
 set stal=1
 if exists('s:wipebuf') && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
