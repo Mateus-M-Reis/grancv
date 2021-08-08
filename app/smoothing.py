@@ -2,6 +2,7 @@ import cv2
 import numpy as np
 import json
 
+from ipywidgets import interact
 import ipyvuetify as v
 from .vvapp.inputs import slider, select
 from .vvapp.outputs import container, row, column
@@ -9,22 +10,22 @@ from .vvapp.outputs import container, row, column
 f = open('app/config.json')
 cfg = json.load(f)
 
-def update_sigma_items(item):
+def update_sigma_items(*args):
 
     if smooth_dropd.v_model != 'bilateral-filter':
-        sigma_container.style='\
+        sigma_container.style_='\
                 display: none; \
                 '
     else:
-        sigma_container.style='\
+        sigma_container.style_='\
                 display: block; \
                 '
 
 smooth_dropd = select(
-        v_model=['filter'],
         items=cfg['options']['Smoothing'],
-        #on_value_change=update_sigma_items
+        v_model=['filter'],
         )
+smooth_dropd.on_event('change', update_sigma_items)
 
 smooth_slider = slider(
         label='Iterations',
@@ -54,7 +55,6 @@ sigma_container = row(
                 children=[ sigma1_slider, sigma2_slider ],
                 style_='\
                         display: none; \
-                        border: 1px solid green; \
                         '
                 )
 
@@ -96,5 +96,3 @@ smooth_expp = v.ExpansionPanel(children=[
 #    elif op_type == 'bilateral-filter':
 #        blur = cv2.bilateralFilter(img,k_size,sigma1,sigma1)
 #        return blur
-
-

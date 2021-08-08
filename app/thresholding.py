@@ -9,28 +9,28 @@ from .vvapp.outputs import container, row, column
 f = open('app/config.json')
 cfg = json.load(f)
 
-threshold_dropdown = select(
+threshold_dropd = select(
         v_model='threshold-binary',
         items=cfg['options']['Thresholding'],
         )
 
-threshold_value = slider(
+threshold_slider = slider(
         label='Threshold Value',
         min=0,
         max=255,
         step=1,
-        value=127
+        v_model=127
         )
 
-threshold_wid = v.ExpansionPanel(children=[
+threshold_expp = v.ExpansionPanel(children=[
     v.ExpansionPanelHeader(
         children=['Thresholding']
         ),
     v.ExpansionPanelContent(children=[
 
-        threshold_dropdown,
+        threshold_dropd,
 
-        threshold_value
+        threshold_slider
 
         ],
         #style='\'

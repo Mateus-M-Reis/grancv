@@ -26,17 +26,17 @@
 						"Udnie"
 				],
 
-				"models": [
-						{"label":"Candy", "value": "candy.t7"},
-						{"label":"Composition_vii", "value": "composition_vii.t7"},
-						{"label":"Feathers", "value": "feathers.t7"},
-						{"label":"La_muse", "value": "la_muse.t7"},
-						{"label":"Mosaic", "value": "mosaic.t7"},
-						{"label":"Starry_night", "value": "starry_night.t7"},
-						{"label":"The_scream", "value": "the_scream.t7"},
-						{"label":"The_wave", "value": "the_wave.t7"},
-						{"label":"Udnie","value": "udnie.t7"}
-				]
+				"models": {
+						"Candy": "candy.t7",
+						"Composition_vii": "composition_vii.t7",
+						"Feathers": "feathers.t7",
+						"La_muse": "la_muse.t7",
+						"Mosaic": "mosaic.t7",
+						"Starry_night": "starry_night.t7",
+						"The_scream": "the_scream.t7",
+						"The_wave": "the_wave.t7",
+						"Udnie": "udnie.t7"
+				}
 		},
 
 		"images": {

@@ -14,9 +14,9 @@ from .vvapp.inputs import (
 from .vvapp.outputs import container, row, column
 
 #from . import app
-#from .neural_style_transfer import nst_wid, transfer_style
+from .neural_style_transfer import nst_expp
 from .smoothing import smooth_expp
-#from .thresholding import threshold_wid
+from .thresholding import threshold_expp
 from .morphology import morpho_expp
 
 class Sidebar():
@@ -95,7 +95,9 @@ class Sidebar():
         self.op_panel = v.ExpansionPanels(
                 children=[
                     smooth_expp,
-                    morpho_expp
+                    morpho_expp,
+                    threshold_expp,
+                    nst_expp,
                     ],
                 )
         

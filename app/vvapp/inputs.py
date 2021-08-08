@@ -8,8 +8,6 @@ import ipyvuetify
 ipyvuetify.theme.dark = True
 #from nbdev.imports import *
 
-# Cell
-
 def switch(v_model=False,
                   label=None,
                   hint=None,
@@ -68,8 +66,6 @@ def switch(v_model=False,
     return ret
 
 
-# Cell
-
 def checkbox(v_model=False,
                   label=None,
                   hint=None,
@@ -127,8 +123,6 @@ def checkbox(v_model=False,
     # Return widget
     return ret
 
-
-# Cell
 
 def text(v_model=None,
              label=None,
@@ -1063,8 +1057,6 @@ def radio_buttons(choices,
     return ret
 
 
-# Cell
-
 def select(items,
            v_model=None,
            multiple=False,
@@ -1148,9 +1140,6 @@ def select(items,
 
     # Return widget
     return ret
-
-
-# Cell
 
 
 def select_or_create(items,
