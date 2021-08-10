@@ -10,8 +10,8 @@ f = open('app/config.json')
 cfg = json.load(f)
 
 threshold_dropd = select(
-        v_model='threshold-binary',
         items=cfg['options']['Thresholding'],
+        v_model='threshold-binary',
         )
 threshold_slider = slider(
         label='Threshold Value',
@@ -59,29 +59,48 @@ threshold_expp = v.ExpansionPanel(children=[
     style_='display: none;'
     )
 
-#def threshold(img, op_type, k_size):
-#
-#    k_size=np.intc(k_size)
-#
-#    if op_type == 'filter':
-#        kernel = np.ones((k_size, k_size), np.float32)/25
-#        dst = cv2.filter2D(img,-1,kernel)
-#        return dst
-#    elif op_type == 'blur':
-#        blur = cv2.blur(img,(k_size,k_size))
-#        return blur
-#    elif op_type == 'gaussian-blur':
-#        blur = cv2.GaussianBlur(img,(k_size,k_size),0)
-#        return blur
-#    elif op_type == 'median-blur':
-#        median = cv2.medianBlur(img,k_size)
-#        return median
-#    elif op_type == 'bilateral-filter':
-#        #blur = cv2.bilateralFilter(img,d,sigma1,sigma1)
-#        return img
+def threshold(img, op_type, value, bs, Cbs):
+
+    if op_type == 'threshold-binary':
+        ret,thresh = cv2.threshold(img,value,255,cv2.THRESH_BINARY)
+        return thresh
+    elif op_type == 'threshold-binary-inverse':
+        ret,thresh = cv2.threshold(img,value,255,cv2.THRESH_BINARY_INV)
+        return thresh
+    elif op_type == 'threshold-truncated':
+        ret,thresh = cv2.threshold(img,value,255,cv2.THRESH_TRUNC)
+        return thresh
+    elif op_type == 'threshold-tozero':
+        ret,thresh = cv2.threshold(img,value,255,cv2.THRESH_TOZERO)
+        return thresh
+    elif op_type == 'threshold-tozero-inverse':
+        ret,thresh = cv2.threshold(img,value,255,cv2.THRESH_TOZERO_INV)
+        return thresh
+    elif op_type=='threshold-adaptive-mean-c':
+        thresh = cv2.adaptiveThreshold( 
+                img,
+                255,
+                cv2.ADAPTIVE_THRESH_MEAN_C, 
+                cv2.THRESH_BINARY,
+                bs,
+                Cbs
+                )
+        return thresh
+    elif op_type=='threshold-adaptive-gaussian-c':
+        thresh = cv2.adaptiveThreshold(
+                img,
+                255,
+                cv2.ADAPTIVE_THRESH_GAUSSIAN_C,
+                cv2.THRESH_BINARY,
+                bs,
+                Cbs
+                )
+        return thresh
+
 def update_adap_ts_items(*args):
+
     if threshold_dropd.v_model not in \
-            ['threshold-adaptive-gauss', 'threshold-adaptive-mean-c']:
+            ['threshold-adaptive-gaussian-c','threshold-adaptive-mean-c']:
         threshold_adapt_row.style_='\
                 display: none; \
                 '

@@ -40,15 +40,13 @@ class Paper():
 
         self.canvas.on_client_ready(put_image)
 
-    def update(self, img):
+    def update(self, img, out):
 
         resized = cv2.resize(
                        img, 
                        (self.width, self.height), 
                        interpolation=cv2.INTER_AREA
                        )
-        def put_image():
-            self.canvas.clear()
-            self.canvas.put_image_data(resized, 0, 0)
 
-        self.canvas.on_client_ready(put_img)
+        self.canvas.clear()
+        self.canvas.put_image_data(resized, 0, 0)

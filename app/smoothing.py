@@ -76,13 +76,7 @@ smooth_expp = v.ExpansionPanel(children=[
     style_='display: block;'
     )
 
-def smooth(
-        img, 
-        op_type,#=smooth_dropd.v_model, 
-        k_size,#=smooth_slider.v_model, 
-        sigma1,#=sigma1_slider.v_model, 
-        sigma2,#=sigma2_slider.v_model
-        ):
+def smooth(img, op_type, k_size, sigma1, sigma2): 
 
     k_size=np.intc(k_size)
 

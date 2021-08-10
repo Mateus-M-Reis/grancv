@@ -109,8 +109,9 @@
 				"Thresholding": {
 						"Threshold Binary": "threshold-binary",
 						"Threshold Binary Inverse": "threshold-binary-inverse",
-						"Threshold To-Zero": "threshold-to_zero",
-						"Threshold To-Zero Inverse": "threshold-to_zero-inverse",
+						"Threshold To-Zero": "threshold-truncated",
+						"Threshold To-Zero": "threshold-tozero",
+						"Threshold To-Zero Inverse": "threshold-tozero-inverse",
 						"Threshold Adaptive Mean C": "threshold-adaptive-mean-c",
 						"Threshold Adaptive Gaussian C": "threshold-adaptive-gaussian-c"
 				},

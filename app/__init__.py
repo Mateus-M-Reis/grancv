@@ -16,7 +16,6 @@ from .sidebar import Sidebar
 from .paper import Paper
 from .histogram import Histogram
 
-#from .smoothing import smooth
 from .smoothing import (
         smooth,
         smooth_dropd,
@@ -24,8 +23,18 @@ from .smoothing import (
         sigma1_slider,
         sigma2_slider,
         )
-#from .morphology import morphology
-#from .neural_style_transfer import style_transfer 
+from .morphology import (
+        morphology,
+        morpho_dropd,
+        morpho_slider,
+        )
+from .thresholding import (
+        threshold,
+        threshold_dropd,
+        threshold_slider,
+        threshold_bs_slider,
+        threshold_C_slider,
+        )
 
 class App():
     """
@@ -65,7 +74,7 @@ class App():
                 ),
             column(
                 children=[
-                    self.paper.output, 
+                    self.paper.canvas, 
                     ], 
                 cols=9
                 ),
@@ -114,9 +123,6 @@ class App():
         """
         Operate on current image.
         """
-        with self.sidebar.output:
-            print('Starting Function\t#########')
-
         op_opts = list(self.cfg['operations'].values())
         cur_ops = self.sidebar.op_selector.v_model
         self.img_list = [self.img_list[0]]
@@ -128,25 +134,31 @@ class App():
                     pass
 
                 elif op=='smoothing':
-                    with self.sidebar.output:
-                        smoothed = smooth(
-                                self.img_list[-1],
-                                smooth_dropd.v_model,
-                                smooth_slider.v_model,
-                                sigma1_slider.v_model,
-                                sigma2_slider.v_model,
-                                )
-                        self.img_list.append(smoothed)
-                        print( 
-                                'smoothed\t', 
-                                len(self.img_list),
-                                self.img_list[-1].shape
-                                )
+                    smoothed = smooth(
+                            self.img_list[-1],
+                            smooth_dropd.v_model,
+                            smooth_slider.v_model,
+                            sigma1_slider.v_model,
+                            sigma2_slider.v_model,
+                            )
+                    self.img_list.append(smoothed)
                 elif op=='thresholding':
-                    pass
+                    thresholded = threshold(
+                            self.img_list[-1],
+                            threshold_dropd.v_model,
+                            threshold_slider.v_model,
+                            threshold_bs_slider.v_model,
+                            threshold_C_slider.v_model,
+                            )
+                    self.img_list.append(thresholded)
 
                 elif op=='morphologycal-operations':
-                    pass
+                    morpho = morphology(
+                            self.img_list[-1],
+                            morpho_dropd.v_model,
+                            morpho_slider.v_model,
+                            )
+                    self.img_list.append(morpho)
 
             else:
                 if op=='neural-style-transfer':
@@ -158,12 +170,7 @@ class App():
                 elif op=='morphologycal-operations':
                     pass
         
-        with self.sidebar.output:
-            print(
-                    'displaying', 
-                    #self.img_list[-1].shape
-                    )
-        self.paper.update(self.img_list[-1])
+        self.paper.update(self.img_list[-1], self.sidebar.output)
 
 app = App()
 # Smoothing
@@ -171,5 +178,11 @@ smooth_dropd.on_event('input', app.operate)
 smooth_slider.on_event('input', app.operate)
 sigma1_slider.on_event('input', app.operate)
 sigma2_slider.on_event('input', app.operate)
-
-
+# Morphology
+morpho_dropd.on_event('input', app.operate)
+morpho_slider.on_event('input', app.operate)
+# Thresholding
+threshold_dropd.on_event('input', app.operate)
+threshold_slider.on_event('input', app.operate)
+threshold_bs_slider.on_event('input', app.operate)
+threshold_C_slider.on_event('input', app.operate)
