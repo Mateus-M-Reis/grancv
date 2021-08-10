@@ -23,8 +23,8 @@ threshold_slider = slider(
 
 threshold_bs_slider = slider(
         label='Block Size',
-        min=1,
-        max=19,
+        min=3,
+        max=21,
         step=2,
         v_model=9,
         )
@@ -78,7 +78,7 @@ def threshold(img, op_type, value, bs, Cbs):
         return thresh
     elif op_type=='threshold-adaptive-mean-c':
         thresh = cv2.adaptiveThreshold( 
-                img,
+                cv2.cvtColor(img, cv2.COLOR_RGB2GRAY),
                 255,
                 cv2.ADAPTIVE_THRESH_MEAN_C, 
                 cv2.THRESH_BINARY,
@@ -88,7 +88,7 @@ def threshold(img, op_type, value, bs, Cbs):
         return thresh
     elif op_type=='threshold-adaptive-gaussian-c':
         thresh = cv2.adaptiveThreshold(
-                img,
+                cv2.cvtColor(img, cv2.COLOR_RGB2GRAY),
                 255,
                 cv2.ADAPTIVE_THRESH_GAUSSIAN_C,
                 cv2.THRESH_BINARY,
@@ -109,5 +109,3 @@ def update_adap_ts_items(*args):
                 display: block; \
                 '
 threshold_dropd.on_event('change', update_adap_ts_items)
-
-

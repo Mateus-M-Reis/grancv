@@ -48,5 +48,6 @@ class Paper():
                        interpolation=cv2.INTER_AREA
                        )
 
-        self.canvas.clear()
-        self.canvas.put_image_data(resized, 0, 0)
+        with hold_canvas(self.canvas):
+            self.canvas.clear()
+            self.canvas.put_image_data(resized, 0, 0)
