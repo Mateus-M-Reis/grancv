@@ -4,5 +4,4 @@ from ipywidgets import HTML
 
 app = App()
 #display(app.sidebar.drawer)
-#display(app.layout)
-app.layout
+display(app.layout)

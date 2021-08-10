@@ -42,6 +42,9 @@ nst_expp = v.ExpansionPanel(children=[
         ],
         )
     ], 
+    style_='\
+            display: none; \
+            '
     )
 
 def get_model_from_path(style_model_path):

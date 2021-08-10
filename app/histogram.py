@@ -12,10 +12,10 @@ class Histogram():
     """
     def __init__(self, img):
 
-        self.colors = ['magenta', 'lightGreen', 'cyan']
+        self.colors = ['magenta', 'green', 'cyan']
 
         xs = bq.LinearScale(min=0, max=256)
-        ys = bq.LinearScale(min=10, max=256)
+        ys = bq.LinearScale(min=0, max=256)
 
         self.ax_options = {
                 'x': {
@@ -42,6 +42,7 @@ class Histogram():
                 background_style={'fill': '#FF000000'},
                 axes_options=self.ax_options,
                 animation_duration=1000, 
+                padding_y=0,
                 layout={
                     'height': '400px', 
                     'width': '700px'
@@ -57,9 +58,9 @@ class Histogram():
             histr = cv2.calcHist([img],[i],None,[256],[0,256])
             plt.plot(
                     x=np.arange(0, 257, 1), 
-                    y=histr, 
+                    y=histr.flatten(), 
                     colors=[color],
-                    stroke_width=1.5,
+                    stroke_width=1.2,
                     axes_options=self.ax_options,
                     fill='bottom',
                     fill_opacities=[0.2],
@@ -74,6 +75,6 @@ class Histogram():
                     style_='\
                             display: block; \
                             position: absolute; \
-                            background-color: #00000066; \
+                            background-color: #000000BF; \
                             '
                     )

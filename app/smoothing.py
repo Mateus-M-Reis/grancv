@@ -73,26 +73,32 @@ smooth_expp = v.ExpansionPanel(children=[
         ],
         ),
     ],
-    #style='\ border: 1px solid green; \ '
+    style_='display: block;'
     )
 
-#def preprocess(img, op_type, k_size, sigma1, sigma):
-#
-#    k_size=np.intc(k_size)
-#
-#    if op_type == 'filter':
-#        kernel = np.ones((k_size, k_size), np.float32)/25
-#        dst = cv2.filter2D(img,-1,kernel)
-#        return dst
-#    elif op_type == 'blur':
-#        blur = cv2.blur(img,(k_size,k_size))
-#        return blur
-#    elif op_type == 'gaussian-blur':
-#        blur = cv2.GaussianBlur(img,(k_size,k_size),0)
-#        return blur
-#    elif op_type == 'median-blur':
-#        median = cv2.medianBlur(img,k_size)
-#        return median
-#    elif op_type == 'bilateral-filter':
-#        blur = cv2.bilateralFilter(img,k_size,sigma1,sigma1)
-#        return blur
+def smooth(
+        img, 
+        op_type=smooth_dropd.v_model, 
+        k_size=smooth_dropd.v_model, 
+        sigma1=sigma1_slider.v_model, 
+        sigma2=sigma2_slider.v_model
+        ):
+
+    k_size=np.intc(k_size)
+
+    if op_type == 'filter':
+        kernel = np.ones((k_size, k_size), np.float32)/25
+        dst = cv2.filter2D(img,-1,kernel)
+        return dst
+    elif op_type == 'blur':
+        blur = cv2.blur(img,(k_size,k_size))
+        return blur
+    elif op_type == 'gaussian-blur':
+        blur = cv2.GaussianBlur(img,(k_size,k_size),0)
+        return blur
+    elif op_type == 'median-blur':
+        median = cv2.medianBlur(img,k_size)
+        return median
+    elif op_type == 'bilateral-filter':
+        blur = cv2.bilateralFilter(img,k_size,sigma1,sigma1)
+        return blur

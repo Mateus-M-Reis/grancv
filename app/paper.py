@@ -14,6 +14,8 @@ class Paper():
         f = open('app/config.json')
         cfg = json.load(f)
 
+        self.img = img
+
         self.width = 1080
         self.height = 770
         self.canvas=Canvas(
@@ -33,9 +35,21 @@ class Paper():
             display(self.canvas)
 
         def put_image():
-            #self.canvas.fill_style='#B03838'
-            #self.canvas.fill_rect(0,0, self.canvas.width, self.canvas.height)
             resized = cv2.resize(img, (self.width, self.height), interpolation=cv2.INTER_AREA)
             self.canvas.put_image_data(resized, 0, 0)
 
         self.canvas.on_client_ready(put_image)
+
+    def update(self, img):
+
+        resized = cv2.resize(
+                       img, 
+                       (self.width, self.height), 
+                       interpolation=cv2.INTER_AREA
+                       )
+        def put_image():
+            with hold_canvas(self.canvas):
+                self.canvas.put_image_data(resized, 0, 0)
+
+        self.canvas.clear()
+        self.canvas.on_client_ready(put_img)

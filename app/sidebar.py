@@ -26,21 +26,12 @@ class Sidebar():
         f = open('app/config.json')
         self.cfg = json.load(f)
 
+        self.output = Output()
+
         # Colorspace Seletor
-        self.colorspace_btn = button(
-                class_='ma-4',
-                size='small',
-                fab=True,
-                color='primary',
-                icon='mdi-rotate-orbit',
-                outlined=True,
-                style_='width:35px; height: 35px'
-                )
-        self.colorspace_btns = radio_buttons(
-                row=True,
-                choices=['RGB', 'HSV', 'LAB', 'GRAY'],
+        self.colorspace_sel = select(
+                items=['RGB', 'HSV', 'LAB', 'GRAY'],
                 v_model='RGB',
-                style_='font-size=12px',
                 )
 
         # Image Selector
@@ -86,9 +77,13 @@ class Sidebar():
 
         # Operations Selector
         self.op_selector = select_or_create(
-                items= self.cfg['operations'],
+                items= list(self.cfg['operations'].values()),
                 v_model='smoothing',
                 multiple=True,
+                )
+        self.op_selector.on_event(
+                'change',
+                self.update_expansion_panel
                 )
 
         # Operations Panel
@@ -132,26 +127,11 @@ class Sidebar():
                             ),
                         row(children=[
                             column(
-                                children=[self.colorspace_btn],
-                                cols=3,
-                                ),
-                            column(
-                                children=[self.colorspace_btns],
-                                cols=9,
-                                ),
-                            ],
-                            no_gutters=True,
-                            style_='\
-                                    height: 50px; \
-                                '
-                            ),
-                        row(children=[
-                            column(
                                 children=[self.flip_hist_btn],
                                 cols=3,
                                 ),
                             column(
-                                children=[],
+                                children=[self.colorspace_sel],
                                 cols=9,
                                 ),
                             ],
@@ -172,50 +152,77 @@ class Sidebar():
                             ],
                             no_gutters=True,
                             style_='\
-                                    height: 50px; \
+                                    height: 100%; \
                                 '
                             ),
                         row(children=[
-                            self.op_panel,
+                            column(
+                                children=[self.op_panel],
+                                cols=12,
+                                )
                             ],
                             no_gutters=True,
                             style_='\
                                     width: 100%; \
                                     height: 100%; \
-                                    border: 1px solid red; \
+                                '
+                            ),
+                        row(children=[
+                            column(
+                                children=[self.output],
+                                cols=12,
+                                )
+                            ],
+                            no_gutters=True,
+                            style_='\
+                                    width: 100%; \
+                                    height: 100%; \
                                 '
                             ),
 
-                        ])
+
+                        ],
+                        #style_=''
+                        )
                     ],
                 )
 
     def return_layout(self):
         return self.layout
 
-#@app.callback(
-#        Output(component_id='op-panel',component_property='children'),
-#        [Input(component_id='op_selector',component_property='value')],
-#        prevent_initial_call=True)
-#def update_content(operation):
-#
-#    print(operation, '\n')
-#    for i, op in enumerate(sidebar.ops.keys()):
-#
-#        if op not in operation:
-#            sidebar.op_panel.children.remove(sidebar.ops[op])
-#            sidebar.op_panel.children.append(sidebar.ops[op])
-#
-#            sidebar.op_panel.children[
-#                    len(sidebar.op_panel.children)-1
-#                    ].className='inv'
-#
-#        else:
-#            sidebar.op_panel.children.remove(sidebar.ops[op])
-#            sidebar.op_panel.children.append(sidebar.ops[op])
-#
-#            sidebar.op_panel.children[
-#                    len(sidebar.op_panel.children)-1
-#                    ].className='appear'
-#
-#    return sidebar.op_panel.children
+    def update_expansion_panel(self, *args):
+        """
+        Update expansion panel children.
+        """
+        op_opts = list(self.cfg['operations'].values())
+        cur_ops = self.op_selector.v_model
+
+        for op in op_opts:
+
+            if op in cur_ops:
+                if op=='neural-style-transfer':
+                    nst_expp.style_='display: block;'
+                    pass
+                elif op=='smoothing':
+                    smooth_expp.style_='display: block;'
+                    pass
+                elif op=='thresholding':
+                    threshold_expp.style_='display: block;'
+                    pass
+                elif op=='morphologycal-operations':
+                    morpho_expp.style_='display: block;'
+                    pass
+
+            else:
+                if op=='neural-style-transfer':
+                    nst_expp.style_='display: none;'
+                    pass
+                elif op=='smoothing':
+                    smooth_expp.style_='display: none;'
+                    pass
+                elif op=='thresholding':
+                    threshold_expp.style_='display: none;'
+                    pass
+                elif op=='morphologycal-operations':
+                    morpho_expp.style_='display: none;'
+                    pass

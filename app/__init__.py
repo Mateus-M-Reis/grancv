@@ -12,12 +12,20 @@ from .vvapp.inputs import button
 from .vvapp.outputs import container, row, column
 v.theme.dark = True
 
-from .paper import Paper
 from .sidebar import Sidebar
+from .paper import Paper
 from .histogram import Histogram
-#from .neural_style_transfer import style_transfer 
-#from .preprocessing import preprocess#, update_preproc_items
+
+#from .smoothing import smooth
+from .smoothing import (
+        smooth,
+        smooth_dropd,
+        smooth_slider,
+        sigma1_slider,
+        sigma2_slider,
+        )
 #from .morphology import morphology
+#from .neural_style_transfer import style_transfer 
 
 class App():
     """
@@ -70,9 +78,6 @@ class App():
                     '
                     )
 
-        #flip_btn = self.sidebar.flip_hist_btn
-        #flip_btn.on_click = self.flip_hist
-
     def read_img(self, path, width):
         self.cur_path = path
         self.img_list = []
@@ -99,57 +104,52 @@ class App():
             self.hist.wid.style_='\
                             display: block; \
                             position: absolute; \
-                            background-color: #00000066; \
+                            background-color: #000000BF; \
                             '
 
             self.is_hist_up=True
             self.sidebar.flip_hist_btn.color = 'blue'
 
-#@app.callback( 
-#        Output(component_id='paper', component_property='figure'),
-#        [
-#            Input(component_id='image', component_property='value'),
-#            Input(component_id='op_selector', component_property='value'),
-#            Input(component_id='reverse-colorspace', component_property='on'),
-#            Input(component_id='transfer-style', component_property='value'),
-#            Input(component_id='transfer-quality', component_property='value'),
-#            Input(component_id='preproc-op', component_property='value'),
-#            Input(component_id='preproc-value', component_property='value'),
-#            Input(component_id='median_sigma1', component_property='value'),
-#            Input(component_id='median_sigma2', component_property='value'),
-#            Input(component_id='morpho-op', component_property='value'),
-#            Input(component_id='morpho-value', component_property='value'),
-#            ],
-#        prevent_initial_call=True,
-#        supress_callback_exceptions=True)
-#def operate(
-#        img_path, operation, rev_col,
-#        nst_model, quality,       # Neural Style Transfer Variables
-#        preproc_op, preproc_value, sigma_1, sigma_2, # Preprocessing
-#        morpho_op, morpho_iter, # Morphological Operations
-#         ):
-#
-#    operations.read_img(img_path, width=quality)
-#
-#    for i, op in enumerate(operation):
-#        if op == 'neural-style-transfer':
-#            out = style_transfer(operations.img_list[-1], nst_model)
-#            operations.img_list.append(out)
-#        elif op == 'preprocessing':
-#            out = preprocess(
-#                    operations.img_list[-1],
-#                    preproc_op, 
-#                    preproc_value,
-#                    sigma_1, sigma_2,)
-#            operations.img_list.append(out)
-#        elif op == 'morphologycal-operations':
-#            out = morphology(
-#                    operations.img_list[-1],
-#                    morpho_op,
-#                    morpho_iter,)
-#            operations.img_list.append(out)
-#        else:
-#            pass
-#
-#    return operations.return_figure(operations.img_list[-1], rev_col)
-#
+    def operate(self, *args):
+        """
+        Operate on current image.
+        """
+        with self.sidebar.output:
+            print('\nStarting Function')
+
+        op_opts = list(self.cfg['operations'].values())
+        cur_ops = self.sidebar.op_selector.v_model
+        #self.img_list = self.img_list[0]
+
+        for op in op_opts:
+
+            if op in cur_ops:
+                if op=='neural-style-transfer':
+                    pass
+
+                elif op=='smoothing':
+                    with self.sidebar.output:
+                        print('smoothing', len(self.img_list))
+                    smoothed = smooth(self.img_list[-1])
+                    self.img_list.append(smoothed)
+                    with self.sidebar.output:
+                        print('smoothed!!!', len(self.img_list))
+                elif op=='thresholding':
+                    pass
+
+                elif op=='morphologycal-operations':
+                    pass
+
+            else:
+                if op=='neural-style-transfer':
+                    pass
+                elif op=='smoothing':
+                    pass
+                elif op=='thresholding':
+                    pass
+                elif op=='morphologycal-operations':
+                    pass
+        
+        with self.sidebar.output:
+            print('displaying', len(self.img_list))
+        self.paper.update(self.img_list[-1])

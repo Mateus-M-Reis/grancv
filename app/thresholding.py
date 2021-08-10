@@ -13,7 +13,6 @@ threshold_dropd = select(
         v_model='threshold-binary',
         items=cfg['options']['Thresholding'],
         )
-
 threshold_slider = slider(
         label='Threshold Value',
         min=0,
@@ -21,6 +20,25 @@ threshold_slider = slider(
         step=1,
         v_model=127
         )
+
+threshold_bs_slider = slider(
+        label='Block Size',
+        min=1,
+        max=19,
+        step=2,
+        v_model=9,
+        )
+threshold_C_slider = slider(
+        label='C',
+        min=-21,
+        max=21,
+        step=1,
+        v_model=7
+        )
+threshold_adapt_row = row(
+                children=[ threshold_bs_slider, threshold_C_slider ],
+                style_='display: none;'
+                )
 
 threshold_expp = v.ExpansionPanel(children=[
     v.ExpansionPanelHeader(
@@ -30,13 +48,15 @@ threshold_expp = v.ExpansionPanel(children=[
 
         threshold_dropd,
 
-        threshold_slider
+        threshold_slider,
+
+        threshold_adapt_row,
 
         ],
         #style='\'
         )
     ], 
-    #style='\'
+    style_='display: none;'
     )
 
 #def threshold(img, op_type, k_size):
@@ -59,3 +79,16 @@ threshold_expp = v.ExpansionPanel(children=[
 #    elif op_type == 'bilateral-filter':
 #        #blur = cv2.bilateralFilter(img,d,sigma1,sigma1)
 #        return img
+def update_adap_ts_items(*args):
+    if threshold_dropd.v_model not in \
+            ['threshold-adaptive-gauss', 'threshold-adaptive-mean-c']:
+        threshold_adapt_row.style_='\
+                display: none; \
+                '
+    else:
+        threshold_adapt_row.style_='\
+                display: block; \
+                '
+threshold_dropd.on_event('change', update_adap_ts_items)
+
+

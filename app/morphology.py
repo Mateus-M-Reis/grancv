@@ -35,7 +35,7 @@ morpho_expp = v.ExpansionPanel(children=[
         ],
         )
     ],
-    #style='\ border: 1px solid green; \ '
+    style_='display: none;'
     )
 
 #def morphology(img, op_type, number):
