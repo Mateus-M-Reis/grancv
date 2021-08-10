@@ -48,8 +48,7 @@ class Paper():
                        interpolation=cv2.INTER_AREA
                        )
         def put_image():
-            with hold_canvas(self.canvas):
-                self.canvas.put_image_data(resized, 0, 0)
+            self.canvas.clear()
+            self.canvas.put_image_data(resized, 0, 0)
 
-        self.canvas.clear()
         self.canvas.on_client_ready(put_img)

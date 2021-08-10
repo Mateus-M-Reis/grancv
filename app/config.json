@@ -115,7 +115,7 @@
 						"Threshold Adaptive Gaussian C": "threshold-adaptive-gaussian-c"
 				},
 				"Smoothing": {
-						"Filter":" filter",
+						"Filter": "filter",
 						"Blur": "blur",
 						"Gaussian_Blur": "gaussian-blur",
 						"Median Blur": "median-blur",

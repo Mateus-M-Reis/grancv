@@ -1,7 +1,3 @@
-from app import App
-from IPython.core.display import display
-from ipywidgets import HTML
+from app import app
 
-app = App()
-#display(app.sidebar.drawer)
-display(app.layout)
+app.layout

@@ -115,11 +115,11 @@ class App():
         Operate on current image.
         """
         with self.sidebar.output:
-            print('\nStarting Function')
+            print('Starting Function\t#########')
 
         op_opts = list(self.cfg['operations'].values())
         cur_ops = self.sidebar.op_selector.v_model
-        #self.img_list = self.img_list[0]
+        self.img_list = [self.img_list[0]]
 
         for op in op_opts:
 
@@ -129,11 +129,19 @@ class App():
 
                 elif op=='smoothing':
                     with self.sidebar.output:
-                        print('smoothing', len(self.img_list))
-                    smoothed = smooth(self.img_list[-1])
-                    self.img_list.append(smoothed)
-                    with self.sidebar.output:
-                        print('smoothed!!!', len(self.img_list))
+                        smoothed = smooth(
+                                self.img_list[-1],
+                                smooth_dropd.v_model,
+                                smooth_slider.v_model,
+                                sigma1_slider.v_model,
+                                sigma2_slider.v_model,
+                                )
+                        self.img_list.append(smoothed)
+                        print( 
+                                'smoothed\t', 
+                                len(self.img_list),
+                                self.img_list[-1].shape
+                                )
                 elif op=='thresholding':
                     pass
 
@@ -151,5 +159,17 @@ class App():
                     pass
         
         with self.sidebar.output:
-            print('displaying', len(self.img_list))
+            print(
+                    'displaying', 
+                    #self.img_list[-1].shape
+                    )
         self.paper.update(self.img_list[-1])
+
+app = App()
+# Smoothing
+smooth_dropd.on_event('input', app.operate)
+smooth_slider.on_event('input', app.operate)
+sigma1_slider.on_event('input', app.operate)
+sigma2_slider.on_event('input', app.operate)
+
+

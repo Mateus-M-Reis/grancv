@@ -78,10 +78,10 @@ smooth_expp = v.ExpansionPanel(children=[
 
 def smooth(
         img, 
-        op_type=smooth_dropd.v_model, 
-        k_size=smooth_dropd.v_model, 
-        sigma1=sigma1_slider.v_model, 
-        sigma2=sigma2_slider.v_model
+        op_type,#=smooth_dropd.v_model, 
+        k_size,#=smooth_slider.v_model, 
+        sigma1,#=sigma1_slider.v_model, 
+        sigma2,#=sigma2_slider.v_model
         ):
 
     k_size=np.intc(k_size)
