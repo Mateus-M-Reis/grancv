@@ -1,34 +1,50 @@
 # grancv
 
-Computer vision web application with granulometry purpouses, built on top of [dash](https://github.com/plotly/dash), [plotly](https://github.com/plotly/plotly.py), [opencv](https://opencv.org/),  [dash-bootstrap-components](https://github.com/facultyai/dash-bootstrap-components) and [dash-extensions](https://github.com/thedirtyfew/dash-extensions).
+Computer vision web application with granulometry purpouses, built on top of [ipyvuetify](https://github.com/mariobuikhuizen/ipyvuetify), [bqplot]([GitHub - bqplot/bqplot: Plotting library for IPython/Jupyter notebooks](https://github.com/bqplot/bqplot)), [opencv](https://github.com/opencv/opencv-python),  [ipycanvas](https://github.com/martinRenou/ipycanvas) and [lmfit](https://github.com/lmfit).
 
-![](demo/gifs/grancv_now.gif)
+![](/home/mop/Códigos/grancv/demo/gifs/grancv_gif.gif)
 
 ## Install
 
 Create new conda environment:
 
-`conda env create -f environment.yml`
+`conda create -n cv_env`
 
 Activate environment:
 
-`source activate dash`
+`source activate cv_env`
 
-Install some more packages:
+Install some packages:
 
 `python -m pip install -r requirements.txt`
 
 Run the app:
 
-`python index.py`
+`voila --VoilaConfiguration.extension_language_mapping='{".py": "python"}' $1 --debug`
+
+Or, if you prefer the dark theme:
+
+`voila --VoilaConfiguration.extension_language_mapping='{".py": "python"}' $1 --theme=dark --debug`
+
+You may want to paste this into your .bash_aliases file:
+
+```
+v() {
+  voila --VoilaConfiguration.extension_language_mapping='{".py": "python"}' $1 --theme=dark --debug
+}
+```
+
+Now, you can run the application with:
+
+`v index.py`
 
 ## Operations Available
 
 You can use and tune combinations of the following operations:
 
 - Neural Style Transfer
-
-- - Select one of the available torch .t7 models available in the 'models' folder.
+  
+  - Select one of the available torch .t7 models available in the 'models' folder.
   
   - You can adjust the quality of the final result by changing the image width.
 
@@ -84,10 +100,16 @@ You can use and tune combinations of the following operations:
 
 ## To do
 
-This repo is is very initial stage. More operations will be added to the application gradually. Here are some I've thought about:
+This application is is very initial stage. More operations will be added to the application gradually. Here are some I've thought about:
 
 - Possibility of creating your own operation, from the combinations of wherever you want.
 
-- Choose (and plot) the kernel. All kernel used in the operations are matrices of 1's of size 3 or 5. 
+- Choose (and plot) the kernel. All kernel used in the operations are matrices of kernels in the form:
+  
+  ```
+  [[1,1,1],
+  [1,1,1],
+  [1,1,1]]
+  ```
 
 - Scripts to build the application.
