@@ -104,8 +104,11 @@ def update_adap_ts_items(*args):
         threshold_adapt_row.style_='\
                 display: none; \
                 '
+        threshold_slider.style_='display: block'
     else:
         threshold_adapt_row.style_='\
                 display: block; \
                 '
+        threshold_slider.style_='display: none'
 threshold_dropd.on_event('change', update_adap_ts_items)
+
