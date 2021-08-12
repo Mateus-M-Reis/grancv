@@ -186,6 +186,9 @@ class App():
         self.hist.update(self.img_list[-1])
 
 app = App()
+
+# Hiding Showing Histogram
+app.sidebar.flip_hist_btn.on_event('click', app.flip_hist)
 # Smoothing
 smooth_dropd.on_event('input', app.operate)
 smooth_slider.on_event('input', app.operate)
