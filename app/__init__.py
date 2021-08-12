@@ -92,18 +92,19 @@ class App():
                     '
                     )
 
-    def read_img(self, path, width):
-        self.cur_path = path
-        self.img_list = []
+    def read_img(self, *args):
 
         img = cv2.imread(
                 os.path.join(
                     self.cfg['images']['path'],
-                    self.cur_img)
+                    self.sidebar.img_selector.v_model
+                    )
                 )
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 
-        img = imutils.resize(img, width=width)
-        self.img_list.append(img)
+        self.img_list = [img]
+        self.paper.update(self.img_list[-1], self.sidebar.output)
+        self.hist.update(self.img_list[-1])
 
     def flip_hist(self, *args):
         if self.is_hist_up==True:
@@ -187,6 +188,8 @@ class App():
 
 app = App()
 
+# Changing images
+app.sidebar.img_selector.on_event('input', app.read_img)
 # Hiding Showing Histogram
 app.sidebar.flip_hist_btn.on_event('click', app.flip_hist)
 # Smoothing

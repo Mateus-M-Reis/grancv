@@ -42,41 +42,23 @@
 		"images": {
 				"path": "input/images",
 
-				"content_images_file": [
-						"blue-moon-lake.jpg", 
-						"campo_roxo.jpg", 
-						"cezanne-1897.jpg", 
-						"desmonte.jpg",
-						"desmonte1.jpg",
-						"Dipping-Sun.jpg", 
-						"fuji.jpg",
-						"golden_gate.jpg", 
-						"Japanese-cherry.jpg", 
-						"Kinkaku-ji.jpg", 
-						"monet_impression.jpg",
-						"moon_blue_sky.jpg",
-						"sagano_bamboo_forest.jpg", 
-						"Sunlit Mountains.jpg", 
-						"tubingen.jpg", 
-				],
-
-				"content_images_name": [
-						"Blue-moon-lake", 
-						"campo_roxo.jpg", 
-						"cezanne-1897.jpg", 
-						"desmonte.jpg",
-						"desmonte1.jpg",
-						"Dipping-sun", 
-						"Fuji.jpg",
-						"Golden_gate", 
-						"Japanese-cherry", 
-						"Kinkaku-ji", 
-						"Monet Impression.jpg",
-						"moon_blue_sky.jpg",
-						"Sagano_bamboo_forest", 
-						"Sunlit mountains", 
-						"Tubingen", 
-				]
+				"content_images_file": {
+						"Blue Moon Lake": "blue-moon-lake.jpg", 
+						"Campo Roxo": "campo_roxo.jpg", 
+						"Cezanne 1897": "cezanne-1897.jpg", 
+						"Desmonte": "desmonte.jpg",
+						"Desmonte 1": "desmonte1.jpg",
+						"Dipping Sun": "Dipping-Sun.jpg", 
+						"Fuji": "fuji.jpg",
+						"Golden Gate": "golden_gate.jpg", 
+						"Japanese Cherry": "Japanese-cherry.jpg", 
+						"Kinkaku-ji": "Kinkaku-ji.jpg", 
+						"Monet Impression.jpg": "monet_impression.jpg",
+						"Moon Blue Sky": "moon_blue_sky.jpg",
+						"Sagano Bamboo Forest": "sagano_bamboo_forest.jpg", 
+						"Sunlit Mountains": "Sunlit Mountains.jpg", 
+						"Tubingen": "tubingen.jpg"
+				}
 		},
 
 		"operations": {
