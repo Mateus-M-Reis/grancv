@@ -2,6 +2,7 @@ import numpy as np
 import cv2
 import bqplot as bq
 import bqplot.pyplot as plt
+from IPython.core.display import HTML, display
 
 from .vvapp.outputs import container, row, column
 
@@ -13,9 +14,6 @@ class Histogram():
     def __init__(self, img):
 
         self.colors = ['magenta', 'green', 'cyan']
-
-        xs = bq.LinearScale(min=0, max=256)
-        ys = bq.LinearScale(min=0, max=256)
 
         self.ax_options = {
                 'x': {
@@ -78,3 +76,12 @@ class Histogram():
                             background-color: #000000BF; \
                             '
                     )
+
+    def update(self, img):
+        """
+        Check image shape and update histogram accordingly.
+        """
+        if len(img.shape) == 3:
+            for i, color in enumerate(self.colors):
+                histr = cv2.calcHist([img],[i],None,[256],[0,256])
+                self.fig.marks[i].y = histr 

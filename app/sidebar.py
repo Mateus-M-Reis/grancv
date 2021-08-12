@@ -195,25 +195,31 @@ class Sidebar():
         Update expansion panel children.
         """
         op_opts = list(self.cfg['operations'].values())
-        cur_ops = self.op_selector.v_model
+        cur_opts = self.op_selector.v_model
 
         for op in op_opts:
 
-            if op in cur_ops:
+            if op in cur_opts:
+
                 if op=='neural-style-transfer':
-                    nst_expp.style_='display: block;'
+                    nst_expp.style_=\
+                            f'display: block; order: {cur_opts.index(op)}'
                     pass
                 elif op=='smoothing':
-                    smooth_expp.style_='display: block;'
+                    smooth_expp.style_=\
+                            f'display: block; order: {cur_opts.index(op)}'
                     pass
                 elif op=='thresholding':
-                    threshold_expp.style_='display: block;'
+                    threshold_expp.style_=\
+                            f'display: block; order: {cur_opts.index(op)}'
                     pass
                 elif op=='morphologycal-operations':
-                    morpho_expp.style_='display: block;'
+                    morpho_expp.style_=\
+                            f'display: block; order: {cur_opts.index(op)}'
                     pass
 
             else:
+
                 if op=='neural-style-transfer':
                     nst_expp.style_='display: none;'
                     pass

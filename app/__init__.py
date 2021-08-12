@@ -171,6 +171,7 @@ class App():
                     pass
         
         self.paper.update(self.img_list[-1], self.sidebar.output)
+        self.hist.update(self.img_list[-1])
 
 app = App()
 # Smoothing
