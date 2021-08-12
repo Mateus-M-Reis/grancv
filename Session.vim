@@ -12,8 +12,8 @@ badd +1 app.py
 badd +95 app/sidebar.py
 badd +92 app/__init__.py
 badd +1 app/config.json
-badd +42 app/neural_style_transfer.py
-badd +42 app/paper.py
+badd +1 app/neural_style_transfer.py
+badd +1 app/paper.py
 badd +3 README.md
 badd +61 app/histogram.py
 badd +1 app/components/sidebar.py
@@ -22,7 +22,7 @@ badd +1 assets/style.css
 badd +43 app/thresholding.py
 badd +35 app/morphology.py
 badd +1 app/vvapp/inputs.py
-badd +0 app/vvapp/outputs.py
+badd +1 app/vvapp/outputs.py
 badd +1 ~/Códigos/grancv/app/smoothing.py
 argglobal
 %argdel
@@ -93,7 +93,7 @@ if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
 119
-normal! 01|
+normal! 0
 wincmd w
 argglobal
 if bufexists("README.md") | buffer README.md | else | edit README.md | endif
@@ -168,7 +168,7 @@ if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
 41
-normal! 02|
+normal! 0
 wincmd w
 argglobal
 if bufexists("app/__init__.py") | buffer app/__init__.py | else | edit app/__init__.py | endif
@@ -180,91 +180,53 @@ setlocal fdl=3
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-23
+20
 normal! zo
-28
+27
 normal! zo
-35
+32
 normal! zo
-35
-normal! zo
-36
-normal! zo
-37
-normal! zo
-38
-normal! zo
-37
+32
 normal! zc
-36
+32
 normal! zc
-35
-normal! zc
-54
+45
 normal! zo
-55
+50
+normal! zo
+57
+normal! zo
+57
 normal! zo
 58
 normal! zo
 59
 normal! zo
-60
-normal! zo
-68
-normal! zo
-55
-normal! zc
-59
-normal! zo
 59
 normal! zc
-68
-normal! zo
-68
-normal! zo
-54
-normal! zc
-77
+76
 normal! zo
 81
 normal! zo
 81
-normal! zo
-81
-normal! zc
-81
-normal! zc
-77
 normal! zc
 90
 normal! zo
-91
-normal! zo
-92
-normal! zo
-92
-normal! zo
-92
-normal! zo
-92
-normal! zc
-92
-normal! zc
-92
-normal! zc
-91
-normal! zc
-99
-normal! zo
-100
-normal! zo
-100
-normal! zo
-100
-normal! zo
-99
-normal! zc
 90
+normal! zc
+76
+normal! zc
+50
+normal! zc
+96
+normal! zo
+100
+normal! zo
+100
+normal! zo
+96
+normal! zc
+45
 normal! zc
 let s:l = 64 - ((47 * winheight(0) + 27) / 55)
 if s:l < 1 | let s:l = 1 | endif
@@ -287,49 +249,29 @@ setlocal fen
 normal! zo
 26
 normal! zo
-66
+91
 normal! zo
-77
-normal! zo
-96
-normal! zo
-96
+91
 normal! zo
 101
 normal! zo
 101
 normal! zo
-110
+111
 normal! zo
-112
+113
 normal! zo
-128
+159
 normal! zo
-128
+159
 normal! zc
-143
+171
 normal! zo
-143
+171
 normal! zc
-158
-normal! zo
-169
-normal! zo
-169
+111
 normal! zc
-158
-normal! zc
-173
-normal! zo
-177
-normal! zo
-177
-normal! zo
-173
-normal! zc
-112
-normal! zc
-110
+101
 normal! zc
 101
 normal! zc
@@ -371,15 +313,9 @@ setlocal fen
 normal! zo
 14
 normal! zo
-20
+22
 normal! zo
-20
-normal! zc
-24
-normal! zo
-24
-normal! zo
-24
+22
 normal! zc
 let s:l = 11 - ((10 * winheight(0) + 27) / 55)
 if s:l < 1 | let s:l = 1 | endif
@@ -398,31 +334,31 @@ setlocal fdl=99
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-9
+10
 normal! zo
-15
+16
 normal! zo
-21
+19
 normal! zo
-21
+19
 normal! zo
-38
+36
 normal! zo
-38
+36
 normal! zo
-46
+45
 normal! zc
-57
+56
 normal! zo
-59
+58
 normal! zo
-71
+70
 normal! zo
-71
+70
 normal! zo
-71
+70
 normal! zo
-75
+74
 normal! zo
 let s:l = 76 - ((53 * winheight(0) + 27) / 55)
 if s:l < 1 | let s:l = 1 | endif
@@ -461,12 +397,12 @@ setlocal fdl=99
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 3 - ((2 * winheight(0) + 27) / 55)
+let s:l = 4 - ((3 * winheight(0) + 27) / 55)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-3
-normal! 02|
+4
+normal! 0
 wincmd w
 argglobal
 if bufexists("app/morphology.py") | buffer app/morphology.py | else | edit app/morphology.py | endif
@@ -478,7 +414,7 @@ setlocal fdl=99
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-29
+26
 normal! zo
 let s:l = 38 - ((37 * winheight(0) + 27) / 55)
 if s:l < 1 | let s:l = 1 | endif
@@ -497,9 +433,9 @@ setlocal fdl=99
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-21
+17
 normal! zo
-28
+25
 normal! zo
 32
 normal! zo
@@ -544,7 +480,7 @@ if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
 335
-normal! 01|
+normal! 0
 wincmd w
 argglobal
 if bufexists("app/vvapp/inputs.py") | buffer app/vvapp/inputs.py | else | edit app/vvapp/inputs.py | endif

@@ -73,7 +73,7 @@ smooth_expp = v.ExpansionPanel(children=[
         ],
         ),
     ],
-    style_='display: block;'
+    style_='display: none;'
     )
 
 def smooth(img, op_type, k_size, sigma1, sigma2): 

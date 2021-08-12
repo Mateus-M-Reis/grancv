@@ -5,7 +5,7 @@ import numpy as np
 import json
 import os
 
-from IPython.core.display import HTML, display
+from IPython.core.display import HTML, display, Image
 from ipywidgets import AppLayout, Layout
 from ipycanvas import Canvas, hold_canvas
 import ipyvuetify as v
@@ -24,7 +24,7 @@ nst_style = select(
 nst_quality = slider(
         label='Transfer Quality',
         min=300,
-        max=1001,
+        max=1000,
         step=50,
         v_model=500,
         )
@@ -43,7 +43,7 @@ nst_expp = v.ExpansionPanel(children=[
         )
     ], 
     style_='\
-            display: none; \
+            display: block; \
             '
     )
 
@@ -51,14 +51,18 @@ def get_model_from_path(style_model_path):
     model = cv2.dnn.readNetFromTorch(style_model_path)
     return model
 
-def style_transfer(img, model):
+def style_transfer(img, model, quality, out):
+
+    img = cv2.cvtColor(img, cv2.COLOR_RGB2BGR)
+    img = imutils.resize(img, width=quality)
 
     (h, w) = img.shape[:2]
 
     model = get_model_from_path(
             os.path.join(
                 cfg['neural_style_transfer']['path'], 
-                model)
+                model
+                )
             )
             
     blob = cv2.dnn.blobFromImage(img, 1.0, (w, h), (103.939, 116.779, 123.680), swapRB=False, crop=False)
@@ -66,12 +70,22 @@ def style_transfer(img, model):
     output = model.forward()
 
     output = output.reshape((3, output.shape[2], output.shape[3]))
+
     output[0] += 103.939
     output[1] += 116.779
     output[2] += 123.680
-    output /= 255.0
+    #output /= 255.0
+
+    #output[1]=np.sum(output[1], 103.939)
+    #output[2]=np.sum(output[2], 103.939)
+    #output[3]=np.sum(output[3], 103.939)
+    #output=np.divide(output, 255.0)
+
     output = output.transpose(1, 2, 0)
-    output = np.clip(output, 0.0, 1.0)
-    output = imutils.resize(output, width=1900) 
+    output = np.clip(output, 0, 255) 
+
+    #output = imutils.resize(output, width=1900) 
+
+    output=cv2.cvtColor(output, cv2.COLOR_BGR2RGB)
 
     return output

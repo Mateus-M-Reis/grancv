@@ -78,7 +78,7 @@ class Sidebar():
         # Operations Selector
         self.op_selector = select_or_create(
                 items= list(self.cfg['operations'].values()),
-                v_model='smoothing',
+                v_model='neural-style-transfer',
                 multiple=True,
                 )
         self.op_selector.on_event(

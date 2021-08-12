@@ -35,6 +35,11 @@ from .thresholding import (
         threshold_bs_slider,
         threshold_C_slider,
         )
+from .neural_style_transfer import (
+        style_transfer,
+        nst_style,
+        nst_quality,
+        )
 
 class App():
     """
@@ -131,7 +136,13 @@ class App():
 
             if op in cur_ops:
                 if op=='neural-style-transfer':
-                    pass
+                    stylized = style_transfer(
+                            self.img_list[-1],
+                            nst_style.v_model,
+                            nst_quality.v_model,
+                            self.sidebar.output,
+                            )
+                    self.img_list.append(stylized)
 
                 elif op=='smoothing':
                     smoothed = smooth(
@@ -142,6 +153,7 @@ class App():
                             sigma2_slider.v_model,
                             )
                     self.img_list.append(smoothed)
+
                 elif op=='thresholding':
                     thresholded = threshold(
                             self.img_list[-1],
@@ -187,3 +199,6 @@ threshold_dropd.on_event('input', app.operate)
 threshold_slider.on_event('input', app.operate)
 threshold_bs_slider.on_event('input', app.operate)
 threshold_C_slider.on_event('input', app.operate)
+# Neural Style Transfer
+nst_style.on_event('input', app.operate)
+nst_quality.on_event('input', app.operate)
