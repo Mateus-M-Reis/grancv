@@ -57,7 +57,7 @@ class Sidebar():
         self.flip_hist_btn = button(
                 class_='ma-4',
                 style_='width:35px; height: 35px',
-                color='blue',
+                color='primary',
                 size='small',
                 fab=True,
                 icon='mdi-chart-histogram',
@@ -68,7 +68,7 @@ class Sidebar():
         self.save_op_btn = button(
                 class_='ma-4',
                 style_='width:35px; height: 35px',
-                color='blue',
+                color='primary',
                 size='small',
                 fab=True,
                 icon='mdi-content-save',
@@ -93,7 +93,7 @@ class Sidebar():
                 style_='width:35px; height: 35px',
                 size='small',
                 fab=True,
-                color='success',
+                color='secondary',
                 icon='mdi-chart-histogram',
                 #outlined=True,
                 )
@@ -103,7 +103,7 @@ class Sidebar():
                 style_='width:35px; height: 35px',
                 size='small',
                 fab=True,
-                color='success',
+                color='secondary',
                 icon='mdi-image-plus',
                 #outlined=True,
                 )
@@ -113,7 +113,7 @@ class Sidebar():
                 style_='width:35px; height: 35px',
                 size='small',
                 fab=True,
-                color='success',
+                color='secondary',
                 icon='mdi-console-line',
                 ##outlined=True,
                 )
