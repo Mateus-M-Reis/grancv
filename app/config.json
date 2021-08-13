@@ -1,0 +1,98 @@
+{ 
+		"neural_style_transfer": {
+				"path" : "models",
+
+				"style_models_file" : [
+						"candy.t7", 
+						"composition_vii.t7", 
+						"feathers.t7", 
+						"la_muse.t7", 
+						"mosaic.t7", 
+						"starry_night.t7", 
+						"the_scream.t7", 
+						"the_wave.t7", 
+						"udnie.t7"
+				],
+
+				"style_models_name" : [
+						"Candy", 
+						"Composition_vii", 
+						"Feathers", 
+						"La_muse", 
+						"Mosaic", 
+						"Starry_night", 
+						"The_scream", 
+						"The_wave", 
+						"Udnie"
+				],
+
+				"models": {
+						"Candy": "candy.t7",
+						"Composition_vii": "composition_vii.t7",
+						"Feathers": "feathers.t7",
+						"La_muse": "la_muse.t7",
+						"Mosaic": "mosaic.t7",
+						"Starry_night": "starry_night.t7",
+						"The_scream": "the_scream.t7",
+						"The_wave": "the_wave.t7",
+						"Udnie": "udnie.t7"
+				}
+		},
+
+		"images": {
+				"path": "input/images",
+
+				"content_images_file": {
+						"Blue Moon Lake": "blue-moon-lake.jpg", 
+						"Campo Roxo": "campo_roxo.jpg", 
+						"Cezanne 1897": "cezanne-1897.jpg", 
+						"Desmonte": "desmonte.jpg",
+						"Desmonte 1": "desmonte1.jpg",
+						"Dipping Sun": "Dipping-Sun.jpg", 
+						"Fuji": "fuji.jpg",
+						"Golden Gate": "golden_gate.jpg", 
+						"Japanese Cherry": "Japanese-cherry.jpg", 
+						"Kinkaku-ji": "Kinkaku-ji.jpg", 
+						"Monet Impression.jpg": "monet_impression.jpg",
+						"Moon Blue Sky": "moon_blue_sky.jpg",
+						"Sagano Bamboo Forest": "sagano_bamboo_forest.jpg", 
+						"Sunlit Mountains": "Sunlit Mountains.jpg", 
+						"Tubingen": "tubingen.jpg"
+				}
+		},
+
+		"operations": {
+				"Neural Style Transfer": "neural-style-transfer",
+				"Smoothing": "smoothing",
+				"Thresholding": "thresholding",
+				"Morphological Operations": "morphologycal-operations"
+		}, 
+		"options": {
+				"Thresholding": {
+						"Threshold Binary": "threshold-binary",
+						"Threshold Binary Inverse": "threshold-binary-inverse",
+						"Threshold To-Zero": "threshold-truncated",
+						"Threshold To-Zero": "threshold-tozero",
+						"Threshold To-Zero Inverse": "threshold-tozero-inverse",
+						"Threshold Adaptive Mean C": "threshold-adaptive-mean-c",
+						"Threshold Adaptive Gaussian C": "threshold-adaptive-gaussian-c"
+				},
+				"Smoothing": {
+						"Filter": "filter",
+						"Blur": "blur",
+						"Gaussian_Blur": "gaussian-blur",
+						"Median Blur": "median-blur",
+						"Bilateral Filter": "bilateral-filter"
+				},
+				"Morphological Operations": {
+						"Erosion": "erosion",
+						"Dilatation": "dilatation",
+						"Opening": "opening",
+						"Closing": "closing",
+						"Gradient": "gradient",
+						"Top Hat": "top-hat",
+						"Black Hat": "black-hat"
+				}
+				
+		}
+}
