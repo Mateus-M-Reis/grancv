@@ -10,7 +10,7 @@ from ipycanvas import Canvas, hold_canvas
 import ipyvuetify as v
 v.theme.dark = True
 v.theme.themes.dark.primary = 'colors.cyan.accent2'
-v.theme.themes.dark.secondary = 'colors.orange.darken2'
+v.theme.themes.dark.secondary = 'colors.red.accent3'
 v.theme.themes.dark.success = 'colors.green.accent3'
 from .vvapp.inputs import button
 from .vvapp.outputs import container, row, column
@@ -126,7 +126,7 @@ class App():
                             '
 
             self.is_hist_up=True
-            self.sidebar.flip_hist_btn.color = 'blue'
+            self.sidebar.flip_hist_btn.color = 'primary'
 
     def operate(self, *args):
         """

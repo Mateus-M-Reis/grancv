@@ -13,7 +13,7 @@ class Histogram():
     """
     def __init__(self, img):
 
-        self.colors = ['magenta', 'green', 'cyan']
+        self.colors = ['#ED2445', 'green', '#6EFDFF']
 
         self.ax_options = {
                 'x': {
