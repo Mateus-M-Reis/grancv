@@ -82,17 +82,11 @@ setlocal fdn=20
 setlocal fen
 2
 normal! zo
-103
-normal! zo
-109
-normal! zo
-109
-normal! zc
-let s:l = 119 - ((118 * winheight(0) + 27) / 55)
+let s:l = 98 - ((97 * winheight(0) + 27) / 55)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-119
+98
 normal! 0
 wincmd w
 argglobal
@@ -180,53 +174,31 @@ setlocal fdl=3
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-20
+23
 normal! zo
-27
+30
 normal! zo
-32
-normal! zo
-32
+30
 normal! zc
-32
+30
 normal! zc
-45
+42
 normal! zo
-50
-normal! zo
-57
-normal! zo
-57
-normal! zo
-58
-normal! zo
-59
-normal! zo
-59
+42
 normal! zc
-76
+48
 normal! zo
-81
+53
 normal! zo
-81
-normal! zc
-90
+79
 normal! zo
-90
+79
 normal! zc
-76
+53
 normal! zc
-50
-normal! zc
-96
-normal! zo
 100
 normal! zo
-100
-normal! zo
-96
-normal! zc
-45
+48
 normal! zc
 let s:l = 64 - ((47 * winheight(0) + 27) / 55)
 if s:l < 1 | let s:l = 1 | endif
@@ -249,33 +221,21 @@ setlocal fen
 normal! zo
 26
 normal! zo
-91
+112
 normal! zo
-91
+146
 normal! zo
-101
+146
 normal! zo
-101
-normal! zo
-111
-normal! zo
-113
-normal! zo
-159
-normal! zo
-159
+146
 normal! zc
-171
-normal! zo
-171
+146
 normal! zc
-111
+26
 normal! zc
-101
+24
 normal! zc
-101
-normal! zc
-let s:l = 31 - ((4 * winheight(0) + 27) / 55)
+let s:l = 31 - ((7 * winheight(0) + 27) / 55)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
@@ -397,11 +357,11 @@ setlocal fdl=99
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 4 - ((3 * winheight(0) + 27) / 55)
+let s:l = 5 - ((4 * winheight(0) + 27) / 55)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-4
+5
 normal! 0
 wincmd w
 argglobal
