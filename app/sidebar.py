@@ -51,6 +51,7 @@ class Sidebar():
                 icon='mdi-upload',
                 outlined=True,
                 )
+        self.f_input = v.FileInput(show_progress=True)
         
         # Turn Histogram Up Switch
         self.flip_hist_btn = button(
@@ -75,6 +76,49 @@ class Sidebar():
                 #on_click=flip_func,
                 )
 
+        self.github_btn = button(
+                class_='ma-4',
+                style_='width:35px; height: 35px',
+                size='small',
+                fab=True,
+                color='primary',
+                icon='mdi-source-repository',
+                outlined=True,
+                href='https://github.com/Mateus-M-Reis/grancv',
+                target='_blank',
+                )
+
+        self.save_chart_btn = button(
+                class_='ma-4',
+                style_='width:35px; height: 35px',
+                size='small',
+                fab=True,
+                color='success',
+                icon='mdi-chart-histogram',
+                #outlined=True,
+                )
+
+        self.save_img_btn = button(
+                class_='ma-4',
+                style_='width:35px; height: 35px',
+                size='small',
+                fab=True,
+                color='success',
+                icon='mdi-image-plus',
+                #outlined=True,
+                )
+
+        self.show_console_btn = button(
+                class_='ma-4',
+                style_='width:35px; height: 35px',
+                size='small',
+                fab=True,
+                color='success',
+                icon='mdi-console-line',
+                ##outlined=True,
+                )
+
+
         # Operations Selector
         self.op_selector = select_or_create(
                 items= list(self.cfg['operations'].values()),
@@ -95,6 +139,7 @@ class Sidebar():
                     nst_expp,
                     ],
                 )
+
         
         # Sidebar Layout
         self.drawer = v.NavigationDrawer(
@@ -112,7 +157,9 @@ class Sidebar():
 
                         row(children=[
                             column(
-                                children=[self.upload_btn],
+                                children=[
+                                    self.upload_btn
+                                    ],
                                 cols=3,
                                 ),
                             column(
@@ -143,6 +190,25 @@ class Sidebar():
                         row(children=[
                             column(
                                 children=[self.save_op_btn],
+                                cols=3,
+                                ),
+                            column(
+                                children=[
+                                    self.save_img_btn,
+                                    self.save_chart_btn,
+                                    self.show_console_btn,
+                                    ],
+                                cols=9,
+                                )
+                            ],
+                            no_gutters=True,
+                            style_='\
+                                    height: 50px; \
+                                '
+                            ),
+                        row(children=[
+                            column(
+                                children=[self.github_btn],
                                 cols=3,
                                 ),
                             column(
