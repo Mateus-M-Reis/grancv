@@ -1,5 +1,8 @@
-
-others
 __pycache__
 .ipynb_checkpoints
-cache-directory
+app/.ipynb_checkpoints
+app/__pycache__
+app/vvapp/__pycache__
+app/vvapp/.ipynb_checkpoints
+input/gan-getting-started
+notebooks/.ipynb_checkpoints
