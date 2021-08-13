@@ -23,7 +23,11 @@ badd +43 app/thresholding.py
 badd +35 app/morphology.py
 badd +1 app/vvapp/inputs.py
 badd +1 app/vvapp/outputs.py
-badd +1 ~/Códigos/grancv/app/smoothing.py
+badd +5 ~/Códigos/grancv/app/smoothing.py
+badd +1 Aptfile
+badd +1 Procfile
+badd +1 conda-requirements.txt
+badd +0 runtime.txt
 argglobal
 %argdel
 $argadd app.py
@@ -63,11 +67,11 @@ setlocal fdl=99
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 124 - ((45 * winheight(0) + 27) / 55)
+let s:l = 125 - ((46 * winheight(0) + 27) / 55)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-124
+125
 normal! 0
 wincmd w
 argglobal
@@ -129,6 +133,105 @@ exe '3resize ' . ((&lines * 27 + 29) / 58)
 exe 'vert 3resize ' . ((&columns * 75 + 113) / 227)
 exe '4resize ' . ((&lines * 27 + 29) / 58)
 exe 'vert 4resize ' . ((&columns * 75 + 113) / 227)
+tabedit runtime.txt
+set splitbelow splitright
+wincmd _ | wincmd |
+vsplit
+wincmd _ | wincmd |
+vsplit
+2wincmd h
+wincmd _ | wincmd |
+split
+1wincmd k
+wincmd w
+wincmd w
+wincmd w
+set nosplitbelow
+set nosplitright
+wincmd t
+set winminheight=0
+set winheight=1
+set winminwidth=0
+set winwidth=1
+exe '1resize ' . ((&lines * 27 + 29) / 58)
+exe 'vert 1resize ' . ((&columns * 75 + 113) / 227)
+exe '2resize ' . ((&lines * 27 + 29) / 58)
+exe 'vert 2resize ' . ((&columns * 75 + 113) / 227)
+exe 'vert 3resize ' . ((&columns * 75 + 113) / 227)
+exe 'vert 4resize ' . ((&columns * 75 + 113) / 227)
+argglobal
+setlocal fdm=indent
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=99
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+let s:l = 1 - ((0 * winheight(0) + 13) / 27)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+1
+normal! 0
+wincmd w
+argglobal
+if bufexists("Procfile") | buffer Procfile | else | edit Procfile | endif
+setlocal fdm=indent
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=99
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+let s:l = 1 - ((0 * winheight(0) + 13) / 27)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+1
+normal! 0
+wincmd w
+argglobal
+if bufexists("conda-requirements.txt") | buffer conda-requirements.txt | else | edit conda-requirements.txt | endif
+setlocal fdm=indent
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=99
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+let s:l = 1 - ((0 * winheight(0) + 27) / 55)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+1
+normal! 0
+wincmd w
+argglobal
+if bufexists("Aptfile") | buffer Aptfile | else | edit Aptfile | endif
+setlocal fdm=indent
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=99
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+let s:l = 1 - ((0 * winheight(0) + 27) / 55)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+1
+normal! 02|
+wincmd w
+exe '1resize ' . ((&lines * 27 + 29) / 58)
+exe 'vert 1resize ' . ((&columns * 75 + 113) / 227)
+exe '2resize ' . ((&lines * 27 + 29) / 58)
+exe 'vert 2resize ' . ((&columns * 75 + 113) / 227)
+exe 'vert 3resize ' . ((&columns * 75 + 113) / 227)
+exe 'vert 4resize ' . ((&columns * 75 + 113) / 227)
 tabedit app/neural_style_transfer.py
 set splitbelow splitright
 wincmd _ | wincmd |
@@ -157,12 +260,12 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 41 - ((34 * winheight(0) + 27) / 55)
+let s:l = 42 - ((35 * winheight(0) + 27) / 55)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-41
-normal! 0
+42
+normal! 01|
 wincmd w
 argglobal
 if bufexists("app/__init__.py") | buffer app/__init__.py | else | edit app/__init__.py | endif
@@ -282,7 +385,7 @@ if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
 11
-normal! 04|
+normal! 06|
 wincmd w
 argglobal
 if bufexists("app/histogram.py") | buffer app/histogram.py | else | edit app/histogram.py | endif
@@ -362,7 +465,7 @@ if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
 5
-normal! 0
+normal! 03|
 wincmd w
 argglobal
 if bufexists("app/morphology.py") | buffer app/morphology.py | else | edit app/morphology.py | endif
@@ -440,7 +543,7 @@ if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
 335
-normal! 0
+normal! 01|
 wincmd w
 argglobal
 if bufexists("app/vvapp/inputs.py") | buffer app/vvapp/inputs.py | else | edit app/vvapp/inputs.py | endif
@@ -461,7 +564,7 @@ normal! 0
 wincmd w
 exe 'vert 1resize ' . ((&columns * 113 + 113) / 227)
 exe 'vert 2resize ' . ((&columns * 113 + 113) / 227)
-tabnext 4
+tabnext 2
 set stal=1
 if exists('s:wipebuf') && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
