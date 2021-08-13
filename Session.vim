@@ -24,10 +24,11 @@ badd +35 app/morphology.py
 badd +1 app/vvapp/inputs.py
 badd +1 app/vvapp/outputs.py
 badd +5 ~/Códigos/grancv/app/smoothing.py
-badd +1 Aptfile
+badd +0 Aptfile
 badd +1 Procfile
-badd +1 conda-requirements.txt
-badd +0 runtime.txt
+badd +1 runtime.txt
+badd +0 conda-requirements.txt
+badd +0 environment.yml
 argglobal
 %argdel
 $argadd app.py
@@ -54,9 +55,9 @@ set winminwidth=0
 set winwidth=1
 exe 'vert 1resize ' . ((&columns * 75 + 113) / 227)
 exe 'vert 2resize ' . ((&columns * 75 + 113) / 227)
-exe '3resize ' . ((&lines * 27 + 29) / 58)
+exe '3resize ' . ((&lines * 27 + 28) / 56)
 exe 'vert 3resize ' . ((&columns * 75 + 113) / 227)
-exe '4resize ' . ((&lines * 27 + 29) / 58)
+exe '4resize ' . ((&lines * 25 + 28) / 56)
 exe 'vert 4resize ' . ((&columns * 75 + 113) / 227)
 argglobal
 setlocal fdm=indent
@@ -67,7 +68,7 @@ setlocal fdl=99
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 125 - ((46 * winheight(0) + 27) / 55)
+let s:l = 125 - ((44 * winheight(0) + 26) / 53)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
@@ -86,7 +87,7 @@ setlocal fdn=20
 setlocal fen
 2
 normal! zo
-let s:l = 98 - ((97 * winheight(0) + 27) / 55)
+let s:l = 98 - ((96 * winheight(0) + 26) / 53)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
@@ -120,18 +121,19 @@ setlocal fdl=99
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 1 - ((0 * winheight(0) + 13) / 27)
+let s:l = 1 - ((0 * winheight(0) + 12) / 25)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
 1
-normal! 0
+normal! 02|
 wincmd w
+4wincmd w
 exe 'vert 1resize ' . ((&columns * 75 + 113) / 227)
 exe 'vert 2resize ' . ((&columns * 75 + 113) / 227)
-exe '3resize ' . ((&lines * 27 + 29) / 58)
+exe '3resize ' . ((&lines * 27 + 28) / 56)
 exe 'vert 3resize ' . ((&columns * 75 + 113) / 227)
-exe '4resize ' . ((&lines * 27 + 29) / 58)
+exe '4resize ' . ((&lines * 25 + 28) / 56)
 exe 'vert 4resize ' . ((&columns * 75 + 113) / 227)
 tabedit runtime.txt
 set splitbelow splitright
@@ -142,7 +144,10 @@ vsplit
 2wincmd h
 wincmd _ | wincmd |
 split
-1wincmd k
+wincmd _ | wincmd |
+split
+2wincmd k
+wincmd w
 wincmd w
 wincmd w
 wincmd w
@@ -153,12 +158,14 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe '1resize ' . ((&lines * 27 + 29) / 58)
+exe '1resize ' . ((&lines * 17 + 28) / 56)
 exe 'vert 1resize ' . ((&columns * 75 + 113) / 227)
-exe '2resize ' . ((&lines * 27 + 29) / 58)
+exe '2resize ' . ((&lines * 17 + 28) / 56)
 exe 'vert 2resize ' . ((&columns * 75 + 113) / 227)
+exe '3resize ' . ((&lines * 17 + 28) / 56)
 exe 'vert 3resize ' . ((&columns * 75 + 113) / 227)
 exe 'vert 4resize ' . ((&columns * 75 + 113) / 227)
+exe 'vert 5resize ' . ((&columns * 75 + 113) / 227)
 argglobal
 setlocal fdm=indent
 setlocal fde=0
@@ -168,12 +175,29 @@ setlocal fdl=99
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 1 - ((0 * winheight(0) + 13) / 27)
+let s:l = 1 - ((0 * winheight(0) + 8) / 17)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
 1
-normal! 0
+normal! 013|
+wincmd w
+argglobal
+if bufexists("Aptfile") | buffer Aptfile | else | edit Aptfile | endif
+setlocal fdm=indent
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=99
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+let s:l = 1 - ((0 * winheight(0) + 8) / 17)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+1
+normal! 03|
 wincmd w
 argglobal
 if bufexists("Procfile") | buffer Procfile | else | edit Procfile | endif
@@ -185,7 +209,7 @@ setlocal fdl=99
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 1 - ((0 * winheight(0) + 13) / 27)
+let s:l = 1 - ((0 * winheight(0) + 8) / 17)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
@@ -202,7 +226,7 @@ setlocal fdl=99
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 1 - ((0 * winheight(0) + 27) / 55)
+let s:l = 1 - ((0 * winheight(0) + 26) / 53)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
@@ -210,7 +234,7 @@ normal! zt
 normal! 0
 wincmd w
 argglobal
-if bufexists("Aptfile") | buffer Aptfile | else | edit Aptfile | endif
+if bufexists("environment.yml") | buffer environment.yml | else | edit environment.yml | endif
 setlocal fdm=indent
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -219,19 +243,21 @@ setlocal fdl=99
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 1 - ((0 * winheight(0) + 27) / 55)
+let s:l = 1 - ((0 * winheight(0) + 26) / 53)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
 1
-normal! 02|
+normal! 0
 wincmd w
-exe '1resize ' . ((&lines * 27 + 29) / 58)
+exe '1resize ' . ((&lines * 17 + 28) / 56)
 exe 'vert 1resize ' . ((&columns * 75 + 113) / 227)
-exe '2resize ' . ((&lines * 27 + 29) / 58)
+exe '2resize ' . ((&lines * 17 + 28) / 56)
 exe 'vert 2resize ' . ((&columns * 75 + 113) / 227)
+exe '3resize ' . ((&lines * 17 + 28) / 56)
 exe 'vert 3resize ' . ((&columns * 75 + 113) / 227)
 exe 'vert 4resize ' . ((&columns * 75 + 113) / 227)
+exe 'vert 5resize ' . ((&columns * 75 + 113) / 227)
 tabedit app/neural_style_transfer.py
 set splitbelow splitright
 wincmd _ | wincmd |
@@ -260,7 +286,7 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 42 - ((35 * winheight(0) + 27) / 55)
+let s:l = 42 - ((34 * winheight(0) + 26) / 53)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
@@ -303,7 +329,7 @@ normal! zc
 normal! zo
 48
 normal! zc
-let s:l = 64 - ((47 * winheight(0) + 27) / 55)
+let s:l = 64 - ((46 * winheight(0) + 26) / 53)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
@@ -338,12 +364,12 @@ normal! zc
 normal! zc
 24
 normal! zc
-let s:l = 31 - ((7 * winheight(0) + 27) / 55)
+let s:l = 31 - ((7 * winheight(0) + 26) / 53)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
 31
-normal! 0
+normal! 01|
 wincmd w
 exe 'vert 1resize ' . ((&columns * 75 + 113) / 227)
 exe 'vert 2resize ' . ((&columns * 75 + 113) / 227)
@@ -380,7 +406,7 @@ normal! zo
 normal! zo
 22
 normal! zc
-let s:l = 11 - ((10 * winheight(0) + 27) / 55)
+let s:l = 11 - ((10 * winheight(0) + 26) / 53)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
@@ -423,12 +449,12 @@ normal! zo
 normal! zo
 74
 normal! zo
-let s:l = 76 - ((53 * winheight(0) + 27) / 55)
+let s:l = 76 - ((51 * winheight(0) + 26) / 53)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
 76
-normal! 0
+normal! 02|
 wincmd w
 exe 'vert 1resize ' . ((&columns * 113 + 113) / 227)
 exe 'vert 2resize ' . ((&columns * 113 + 113) / 227)
@@ -460,7 +486,7 @@ setlocal fdl=99
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 5 - ((4 * winheight(0) + 27) / 55)
+let s:l = 5 - ((4 * winheight(0) + 26) / 53)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
@@ -479,7 +505,7 @@ setlocal fdn=20
 setlocal fen
 26
 normal! zo
-let s:l = 38 - ((37 * winheight(0) + 27) / 55)
+let s:l = 38 - ((36 * winheight(0) + 26) / 53)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
@@ -502,12 +528,12 @@ normal! zo
 normal! zo
 32
 normal! zo
-let s:l = 19 - ((18 * winheight(0) + 27) / 55)
+let s:l = 19 - ((17 * winheight(0) + 26) / 53)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
 19
-normal! 0
+normal! 02|
 wincmd w
 exe 'vert 1resize ' . ((&columns * 75 + 113) / 227)
 exe 'vert 2resize ' . ((&columns * 75 + 113) / 227)
@@ -538,7 +564,7 @@ setlocal fdn=20
 setlocal fen
 326
 normal! zo
-let s:l = 335 - ((320 * winheight(0) + 27) / 55)
+let s:l = 335 - ((244 * winheight(0) + 26) / 53)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
@@ -555,16 +581,16 @@ setlocal fdl=99
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 1 - ((0 * winheight(0) + 27) / 55)
+let s:l = 1 - ((0 * winheight(0) + 26) / 53)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
 1
-normal! 0
+normal! 02|
 wincmd w
 exe 'vert 1resize ' . ((&columns * 113 + 113) / 227)
 exe 'vert 2resize ' . ((&columns * 113 + 113) / 227)
-tabnext 2
+tabnext 1
 set stal=1
 if exists('s:wipebuf') && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
