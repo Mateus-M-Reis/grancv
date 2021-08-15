@@ -7,19 +7,19 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +1 input_type.py
 badd +1 index.py
+badd +1 input_type.py
 badd +1 app.py
 badd +95 app/sidebar.py
 badd +92 app/__init__.py
 badd +1 app/config.json
-badd +91 app/neural_style_transfer.py
+badd +1 app/neural_style_transfer.py
 badd +1 app/paper.py
 badd +3 README.md
 badd +61 app/histogram.py
 badd +1 app/components/sidebar.py
 badd +1 app/components/paper.py
-badd +124 assets/style.css
+badd +1 assets/style.css
 badd +43 app/thresholding.py
 badd +35 app/morphology.py
 badd +1 app/vvapp/inputs.py
@@ -28,10 +28,11 @@ badd +1 ~/Códigos/grancv/app/smoothing.py
 badd +1 Aptfile
 badd +1 Procfile
 badd +1 runtime.txt
-badd +7 conda-requirements.txt
+badd +1 conda-requirements.txt
 badd +1 environment.yml
 badd +1 .gitignore
-badd +0 app.yaml
+badd +1 app.yaml
+badd +1 requirements.txt
 argglobal
 %argdel
 $argadd app.py
@@ -58,9 +59,9 @@ set winminwidth=0
 set winwidth=1
 exe 'vert 1resize ' . ((&columns * 75 + 113) / 227)
 exe 'vert 2resize ' . ((&columns * 75 + 113) / 227)
-exe '3resize ' . ((&lines * 28 + 29) / 58)
+exe '3resize ' . ((&lines * 27 + 28) / 56)
 exe 'vert 3resize ' . ((&columns * 75 + 113) / 227)
-exe '4resize ' . ((&lines * 26 + 29) / 58)
+exe '4resize ' . ((&lines * 25 + 28) / 56)
 exe 'vert 4resize ' . ((&columns * 75 + 113) / 227)
 argglobal
 setlocal fdm=indent
@@ -71,7 +72,7 @@ setlocal fdl=99
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 125 - ((46 * winheight(0) + 27) / 55)
+let s:l = 125 - ((44 * winheight(0) + 26) / 53)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
@@ -90,7 +91,7 @@ setlocal fdn=20
 setlocal fen
 2
 normal! zo
-let s:l = 98 - ((97 * winheight(0) + 27) / 55)
+let s:l = 98 - ((95 * winheight(0) + 26) / 53)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
@@ -107,7 +108,7 @@ setlocal fdl=99
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 1 - ((0 * winheight(0) + 14) / 28)
+let s:l = 1 - ((0 * winheight(0) + 13) / 27)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
@@ -124,7 +125,7 @@ setlocal fdl=99
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 2 - ((1 * winheight(0) + 13) / 26)
+let s:l = 2 - ((1 * winheight(0) + 12) / 25)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
@@ -133,9 +134,9 @@ normal! 0
 wincmd w
 exe 'vert 1resize ' . ((&columns * 75 + 113) / 227)
 exe 'vert 2resize ' . ((&columns * 75 + 113) / 227)
-exe '3resize ' . ((&lines * 28 + 29) / 58)
+exe '3resize ' . ((&lines * 27 + 28) / 56)
 exe 'vert 3resize ' . ((&columns * 75 + 113) / 227)
-exe '4resize ' . ((&lines * 26 + 29) / 58)
+exe '4resize ' . ((&lines * 25 + 28) / 56)
 exe 'vert 4resize ' . ((&columns * 75 + 113) / 227)
 tabedit .gitignore
 set splitbelow splitright
@@ -163,13 +164,13 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe '1resize ' . ((&lines * 13 + 29) / 58)
+exe '1resize ' . ((&lines * 13 + 28) / 56)
 exe 'vert 1resize ' . ((&columns * 75 + 113) / 227)
-exe '2resize ' . ((&lines * 13 + 29) / 58)
+exe '2resize ' . ((&lines * 13 + 28) / 56)
 exe 'vert 2resize ' . ((&columns * 75 + 113) / 227)
-exe '3resize ' . ((&lines * 13 + 29) / 58)
+exe '3resize ' . ((&lines * 11 + 28) / 56)
 exe 'vert 3resize ' . ((&columns * 75 + 113) / 227)
-exe '4resize ' . ((&lines * 13 + 29) / 58)
+exe '4resize ' . ((&lines * 13 + 28) / 56)
 exe 'vert 4resize ' . ((&columns * 75 + 113) / 227)
 exe 'vert 5resize ' . ((&columns * 75 + 113) / 227)
 exe 'vert 6resize ' . ((&columns * 75 + 113) / 227)
@@ -216,12 +217,12 @@ setlocal fdl=99
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 5 - ((4 * winheight(0) + 6) / 13)
+let s:l = 5 - ((0 * winheight(0) + 5) / 11)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
 5
-normal! 0124|
+normal! 01|
 wincmd w
 argglobal
 if bufexists("Procfile") | buffer Procfile | else | edit Procfile | endif
@@ -241,7 +242,7 @@ normal! zt
 normal! 012|
 wincmd w
 argglobal
-if bufexists("conda-requirements.txt") | buffer conda-requirements.txt | else | edit conda-requirements.txt | endif
+if bufexists("requirements.txt") | buffer requirements.txt | else | edit requirements.txt | endif
 setlocal fdm=indent
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -250,7 +251,7 @@ setlocal fdl=99
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 1 - ((0 * winheight(0) + 27) / 55)
+let s:l = 1 - ((0 * winheight(0) + 26) / 53)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
@@ -267,21 +268,21 @@ setlocal fdl=99
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 1 - ((0 * winheight(0) + 27) / 55)
+let s:l = 1 - ((0 * winheight(0) + 26) / 53)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
 1
 normal! 0
 wincmd w
-4wincmd w
-exe '1resize ' . ((&lines * 13 + 29) / 58)
+5wincmd w
+exe '1resize ' . ((&lines * 13 + 28) / 56)
 exe 'vert 1resize ' . ((&columns * 75 + 113) / 227)
-exe '2resize ' . ((&lines * 13 + 29) / 58)
+exe '2resize ' . ((&lines * 13 + 28) / 56)
 exe 'vert 2resize ' . ((&columns * 75 + 113) / 227)
-exe '3resize ' . ((&lines * 13 + 29) / 58)
+exe '3resize ' . ((&lines * 11 + 28) / 56)
 exe 'vert 3resize ' . ((&columns * 75 + 113) / 227)
-exe '4resize ' . ((&lines * 13 + 29) / 58)
+exe '4resize ' . ((&lines * 13 + 28) / 56)
 exe 'vert 4resize ' . ((&columns * 75 + 113) / 227)
 exe 'vert 5resize ' . ((&columns * 75 + 113) / 227)
 exe 'vert 6resize ' . ((&columns * 75 + 113) / 227)
@@ -315,7 +316,7 @@ setlocal fdn=20
 setlocal fen
 56
 normal! zo
-let s:l = 65 - ((54 * winheight(0) + 27) / 55)
+let s:l = 65 - ((52 * winheight(0) + 26) / 53)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
@@ -358,7 +359,7 @@ normal! zc
 normal! zo
 48
 normal! zc
-let s:l = 64 - ((48 * winheight(0) + 27) / 55)
+let s:l = 64 - ((46 * winheight(0) + 26) / 53)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
@@ -393,7 +394,7 @@ normal! zc
 normal! zc
 24
 normal! zc
-let s:l = 31 - ((7 * winheight(0) + 27) / 55)
+let s:l = 31 - ((7 * winheight(0) + 26) / 53)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
@@ -435,7 +436,7 @@ normal! zo
 normal! zo
 22
 normal! zc
-let s:l = 11 - ((10 * winheight(0) + 27) / 55)
+let s:l = 11 - ((10 * winheight(0) + 26) / 53)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
@@ -478,7 +479,7 @@ normal! zo
 normal! zo
 74
 normal! zo
-let s:l = 76 - ((53 * winheight(0) + 27) / 55)
+let s:l = 76 - ((51 * winheight(0) + 26) / 53)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
@@ -515,7 +516,7 @@ setlocal fdl=99
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 5 - ((4 * winheight(0) + 27) / 55)
+let s:l = 5 - ((4 * winheight(0) + 26) / 53)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
@@ -534,7 +535,7 @@ setlocal fdn=20
 setlocal fen
 26
 normal! zo
-let s:l = 38 - ((37 * winheight(0) + 27) / 55)
+let s:l = 38 - ((36 * winheight(0) + 26) / 53)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
@@ -557,7 +558,7 @@ normal! zo
 normal! zo
 32
 normal! zo
-let s:l = 19 - ((18 * winheight(0) + 27) / 55)
+let s:l = 19 - ((17 * winheight(0) + 26) / 53)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
@@ -593,7 +594,7 @@ setlocal fdn=20
 setlocal fen
 326
 normal! zo
-let s:l = 335 - ((319 * winheight(0) + 27) / 55)
+let s:l = 335 - ((319 * winheight(0) + 26) / 53)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
@@ -610,7 +611,7 @@ setlocal fdl=99
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 1 - ((0 * winheight(0) + 27) / 55)
+let s:l = 1 - ((0 * winheight(0) + 26) / 53)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
