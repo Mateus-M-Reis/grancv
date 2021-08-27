@@ -1,6 +1,6 @@
 # grancv
 
-Computer vision web application with granulometry purpouses, built on top of [ipyvuetify](https://github.com/mariobuikhuizen/ipyvuetify), [bqplot](https://github.com/bqplot/bqplot), [opencv](https://github.com/opencv/opencv-python),  [ipycanvas](https://github.com/martinRenou/ipycanvas) and [lmfit](https://github.com/lmfit).
+Computer vision web application with granulometry purpouses, built on top of [ipyvuetify](https://github.com/mariobuikhuizen/ipyvuetify), [bqplot](https://github.com/bqplot/bqplot), [opencv](https://github.com/opencv/opencv-python) and [ipycanvas](https://github.com/martinRenou/ipycanvas).
 
 ![](./demo/gifs/grancv_gif.gif)
 
