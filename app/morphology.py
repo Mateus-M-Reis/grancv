@@ -2,6 +2,7 @@ import cv2
 import numpy as np
 import json
 
+from ipywidgets import HTMLMath, HTML
 import ipyvuetify as v
 from .vvapp.inputs import slider, select
 from .vvapp.outputs import container, row, column
@@ -15,11 +16,12 @@ morpho_dropd = select(
         )
 
 morpho_slider = slider(
-        label='Iterations',
+        #label='Iterations',
         min=0,
         max=10,
         step=1,
-        v_model=3
+        v_model=3,
+        ticks=False,
         )
 
 morpho_expp = v.ExpansionPanel(children=[
@@ -30,7 +32,7 @@ morpho_expp = v.ExpansionPanel(children=[
 
         morpho_dropd,
 
-        morpho_slider
+        morpho_slider,
 
         ],
         )

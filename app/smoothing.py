@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 import json
 
-from ipywidgets import interact
+from ipywidgets import HTMLMath, HTML, Layout
 import ipyvuetify as v
 from .vvapp.inputs import slider, select
 from .vvapp.outputs import container, row, column
@@ -28,31 +28,37 @@ smooth_dropd = select(
 smooth_dropd.on_event('change', update_sigma_items)
 
 smooth_slider = slider(
-        label='Iterations',
+        #label='Iterations',
         min=1,
         max=19,
         step=2,
-        v_model=7
+        v_model=7,
+        ticks=False,
         )
 
 sigma1_slider = slider(
-        label='\sigma_1',
+        #label='\sigma_1',
         min=55,
         max=95,
         step=5,
         v_model=75,
+        ticks=False,
         )
 
 sigma2_slider = slider(
-        label='\sigma_2',
+        #label='\sigma_2',
         min=55,
         max=95,
         step=5,
         v_model=75,
+        ticks=False,
         )
 
 sigma_container = row(
-                children=[ sigma1_slider, sigma2_slider ],
+                children=[ 
+                    column([sigma1_slider], cols=12),
+                    column([sigma2_slider], cols=12),
+                    ],
                 style_='\
                         display: none; \
                         '
@@ -66,7 +72,7 @@ smooth_expp = v.ExpansionPanel(children=[
 
         smooth_dropd,
 
-        smooth_slider,
+        column([smooth_slider], cols=12),
 
         sigma_container,
 

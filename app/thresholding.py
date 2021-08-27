@@ -2,6 +2,7 @@ import cv2
 import numpy as np
 import json
 
+from ipywidgets import HTMLMath, HTML
 import ipyvuetify as v
 from .vvapp.inputs import slider, select
 from .vvapp.outputs import container, row, column
@@ -14,29 +15,35 @@ threshold_dropd = select(
         v_model='threshold-binary',
         )
 threshold_slider = slider(
-        label='Threshold Value',
+        #label='Threshold Value',
         min=0,
         max=255,
         step=1,
-        v_model=127
+        v_model=127,
+        ticks=False,
         )
 
 threshold_bs_slider = slider(
-        label='Block Size',
+        #label='Block Size',
         min=3,
         max=21,
         step=2,
         v_model=9,
+        ticks=False,
         )
 threshold_C_slider = slider(
-        label='C',
+        #label='C',
         min=-21,
         max=21,
         step=1,
-        v_model=7
+        v_model=7,
+        ticks=False,
         )
 threshold_adapt_row = row(
-                children=[ threshold_bs_slider, threshold_C_slider ],
+                children=[ 
+                    threshold_bs_slider, 
+                    threshold_C_slider 
+                    ],
                 style_='display: none;'
                 )
 

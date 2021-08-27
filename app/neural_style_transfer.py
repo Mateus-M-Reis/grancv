@@ -22,11 +22,12 @@ nst_style = select(
         )
 
 nst_quality = slider(
-        label='Transfer Quality',
+        #label='Transfer Quality',
         min=300,
         max=1000,
         step=50,
         v_model=500,
+        ticks=False,
         )
 
 nst_expp = v.ExpansionPanel(children=[
