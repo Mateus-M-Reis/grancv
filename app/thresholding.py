@@ -44,7 +44,10 @@ threshold_adapt_row = row(
                     threshold_bs_slider, 
                     threshold_C_slider 
                     ],
-                style_='display: none;'
+                style_=' \
+                        display: none; \
+                        background-color: #000000BF; \
+                        '
                 )
 
 threshold_expp = v.ExpansionPanel(children=[

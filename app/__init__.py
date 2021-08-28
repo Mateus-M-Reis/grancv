@@ -76,19 +76,23 @@ class App():
         self.is_hist_up = True
 
         self.layout = row(children= [ 
-            column(
-                children=[self.sidebar.drawer], 
-                cols=3
+            self.sidebar.drawer, 
+            row([
+                self.paper.canvas, 
+                ],
+                justify='end',
+                align_content='start',
                 ),
-            column(
-                children=[
-                    self.paper.canvas, 
-                    ], 
-                cols=9
-                ),
-            self.hist.wid
+            row([
+                self.hist.wid,
+                ],
+                justify='end',
+                )
             ],
-            justify='end',
+            #justify='start',
+            #align='center',
+            #align_content='center',
+            class_='d-flex flex-row mb12',
             style_='\
                     height: 100%; \
                     width: 100% \

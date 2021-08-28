@@ -79,7 +79,10 @@ smooth_expp = v.ExpansionPanel(children=[
         ],
         ),
     ],
-    style_='display: none;'
+    style_=' \
+            display: none; \
+            background-color: #000000BF; \
+            '
     )
 
 def smooth(img, op_type, k_size, sigma1, sigma2): 

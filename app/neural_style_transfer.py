@@ -45,6 +45,7 @@ nst_expp = v.ExpansionPanel(children=[
     ], 
     style_='\
             display: block; \
+            background-color: #000000BF; \
             '
     )
 

@@ -40,7 +40,7 @@ class Sidebar():
                 v_model='desmonte.jpg',
                 style_='height: 15px',
                 )
-        
+
         # Upload button
         self.upload_btn = button(
                 class_='ma-4',
@@ -52,7 +52,7 @@ class Sidebar():
                 outlined=True,
                 )
         self.f_input = v.FileInput(show_progress=True)
-        
+
         # Turn Histogram Up Switch
         self.flip_hist_btn = button(
                 class_='ma-4',
@@ -140,121 +140,94 @@ class Sidebar():
                     ],
                 )
 
-        
         # Sidebar Layout
-        self.drawer = v.NavigationDrawer(
-                class_='ma-2',
-                v_model=True,
-                #expand_on_hover=True,
-                #absolute=True,
-                fixed=True,
-                dark=True,
-                #permanent=True,
-                color='#111111',
-                width='400px',
-                children=[
-                    row(dense=True, children=[
+        self.drawer = v.Card(
+                children = [ 
 
-                        row(children=[
-                            column(
-                                children=[
-                                    self.upload_btn
+                    v.NavigationDrawer(
+                        width='425px',
+                        dark=True,
+                        color='#FF000000',
+                        expand_on_hover=True,
+                        mini_variant_width='75px',
+                        fixed=True, # *
+                        floating=True,
+                        permanent=True,
+                        #mini_variant=True,
+                        #app=True,
+                        #disable_route_watcher=True,
+                        #disable_resize_watcher=True,
+                        #v_model='drawer',
+                        #hide_overlay=True,
+                        #clipped=True,
+                        #absolute=True,
+                        #touchless=True,
+                        children=[
+
+                            v.List(children=[ 
+                                v.ListItem(children=[
+                                    self.upload_btn, 
+                                    self.img_selector
                                     ],
-                                cols=3,
+                                    class_='d-flex align-stretch mb-6',
+                                    style_='height: 40px;'
+                                    ),
+                                v.ListItem(children=[
+                                    self.flip_hist_btn, 
+                                    self.colorspace_sel
+                                    ], 
+                                    class_='d-flex align-stretch mb-6',
+                                    style_='height: 40px;'
+                                    ),
+                                v.ListItem(
+                                    children=[
+                                        self.save_op_btn,
+                                        self.save_img_btn,
+                                        self.save_chart_btn,
+                                        self.show_console_btn,
+                                        ],
+                                    class_='d-flex align-stretch mb-6',
+                                    style_='\
+                                            height: 40px; \
+                                            '
+                                    ),
+                                v.ListItem(
+                                    children=[
+                                        self.github_btn,
+                                        self.op_selector,
+                                        ],
+                                    class_='d-flex align-stretch mb-6',
+                                        style_='\
+                                            height: 100%; \
+                                            '
+                                    ),
+
+                                ],
+                                style_='background-color: #000000BF'
                                 ),
-                            column(
-                                children=[self.img_selector],
-                                cols=9,
-                                ),
-                            ],
-                            no_gutters=True,
-                            style_='\
-                                    height: 50px; \
-                                '
-                            ),
-                        row(children=[
-                            column(
-                                children=[self.flip_hist_btn],
-                                cols=3,
-                                ),
-                            column(
-                                children=[self.colorspace_sel],
-                                cols=9,
-                                ),
-                            ],
-                            no_gutters=True,
-                            style_='\
-                                    height: 50px; \
-                                '
-                            ),
-                        row(children=[
-                            column(
-                                children=[self.save_op_btn],
-                                cols=3,
-                                ),
-                            column(
+
+                            v.Divider(),
+                            v.List(
                                 children=[
-                                    self.save_img_btn,
-                                    self.save_chart_btn,
-                                    self.show_console_btn,
-                                    ],
-                                cols=9,
-                                )
-                            ],
-                            no_gutters=True,
-                            style_='\
-                                    height: 50px; \
-                                '
-                            ),
-                        row(children=[
-                            column(
-                                children=[self.github_btn],
-                                cols=3,
-                                ),
-                            column(
-                                children=[self.op_selector],
-                                cols=9,
-                                )
-                            ],
-                            no_gutters=True,
-                            style_='\
-                                    height: 100%; \
-                                '
-                            ),
-                        row(children=[
-                            column(
-                                children=[self.op_panel],
-                                cols=12,
-                                )
-                            ],
-                            no_gutters=True,
-                            style_='\
-                                    width: 100%; \
-                                    height: 100%; \
-                                '
-                            ),
-                        row(children=[
-                            column(
-                                children=[self.output],
-                                cols=12,
-                                )
-                            ],
-                            no_gutters=True,
-                            style_='\
-                                    width: 100%; \
-                                    height: 100%; \
-                                '
-                            ),
 
+                                    v.ListItem(
+                                        children=[
+                                            self.op_panel,
+                                            ],
+                                            class_='d-flex align-stretch mb-6',
+                                            style_='\
+                                                width: 100%; \
+                                                height: 100%; \
+                                                '
+                                        ),
 
-                        ],
-                        #style_=''
-                        )
-                    ],
-                )
+                                ])
 
-    def return_layout(self):
-        return self.layout
+                            ]) 
+
+                ], 
+                class_='d-flex flex-column mb-12',
+            ) 
 
     def update_expansion_panel(self, *args):
         """
@@ -269,32 +242,60 @@ class Sidebar():
 
                 if op=='neural-style-transfer':
                     nst_expp.style_=\
-                            f'display: block; order: {cur_opts.index(op)}'
+                            f' \
+                            display: block; \
+                            order: {cur_opts.index(op)}; \
+                            background-color: #000000BF \
+                            '
                     pass
                 elif op=='smoothing':
                     smooth_expp.style_=\
-                            f'display: block; order: {cur_opts.index(op)}'
+                            f' \
+                            display: block; \
+                            order: {cur_opts.index(op)}; \
+                            background-color: #000000BF; \
+                            '
                     pass
                 elif op=='thresholding':
                     threshold_expp.style_=\
-                            f'display: block; order: {cur_opts.index(op)}'
+                            f' \
+                            display: block; \
+                            order: {cur_opts.index(op)}; \
+                            background-color: #000000BF \
+                            '
                     pass
                 elif op=='morphologycal-operations':
                     morpho_expp.style_=\
-                            f'display: block; order: {cur_opts.index(op)}'
+                            f' \
+                            display: block; \
+                            order: {cur_opts.index(op)}; \
+                            background-color: #000000BF \
+                            '
                     pass
 
             else:
 
                 if op=='neural-style-transfer':
-                    nst_expp.style_='display: none;'
+                    nst_expp.style_=' \
+                            display: none; \
+                            background-color: #000000BF \
+                            '
                     pass
                 elif op=='smoothing':
-                    smooth_expp.style_='display: none;'
+                    smooth_expp.style_=' \
+                            display: none; \
+                            background-color: #000000BF \
+                            '
                     pass
                 elif op=='thresholding':
-                    threshold_expp.style_='display: none;'
+                    threshold_expp.style_=' \
+                            display: none; \
+                            background-color: #000000BF \
+                            '
                     pass
                 elif op=='morphologycal-operations':
-                    morpho_expp.style_='display: none;'
+                    morpho_expp.style_=' \
+                            display: none; \
+                            background-color: #000000BF \
+                            '
                     pass

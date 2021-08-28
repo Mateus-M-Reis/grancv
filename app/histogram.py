@@ -4,6 +4,7 @@ import bqplot as bq
 import bqplot.pyplot as plt
 from IPython.core.display import HTML, display
 
+import ipyvuetify as v
 from .vvapp.outputs import container, row, column
 
 class Histogram():
@@ -43,7 +44,7 @@ class Histogram():
                 padding_y=0,
                 layout={
                     'height': '400px', 
-                    'width': '700px'
+                    'width': '550px'
                     }, 
                 fig_margin={
                     'top':30,
@@ -66,10 +67,10 @@ class Histogram():
                     #interpolation=
                     )
 
-        self.wid = row(children=[
+        self.wid = v.Card(children=[
                     self.fig
                     ],
-                    justify='end',
+                    #justify='end',
                     style_='\
                             display: block; \
                             position: absolute; \
