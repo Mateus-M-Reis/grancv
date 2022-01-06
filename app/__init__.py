@@ -37,6 +37,7 @@ from .thresholding import (
         threshold_slider,
         threshold_bs_slider,
         threshold_C_slider,
+        apply_contours
         )
 from .neural_style_transfer import (
         style_transfer,
@@ -111,7 +112,6 @@ class App():
         elif self.sidebar.colorspace_sel.v_model == 'LAB':
             img = cv2.cvtColor(img, cv2.COLOR_BGR2LAB)
         elif self.sidebar.colorspace_sel.v_model == 'GRAY':
-            img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
             img = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
 
         self.img_list = [img]
@@ -169,13 +169,25 @@ class App():
 
                 elif op=='thresholding':
                     thresholded = threshold(
-                            self.img_list[-1],
+                            cv2.cvtColor(self.img_list[-1], cv2.COLOR_RGB2GRAY),
                             threshold_dropd.v_model,
                             threshold_slider.v_model,
                             threshold_bs_slider.v_model,
                             threshold_C_slider.v_model,
                             )
-                    self.img_list.append(thresholded)
+                    if apply_contours.v_model == True:
+                        contours, hierarchy= cv2.findContours(
+                                thresholded, 
+                                cv2.RETR_TREE, 
+                                cv2.CHAIN_APPROX_SIMPLE)
+                        contoured=cv2.drawContours(
+                                self.img_list[-1].copy(), 
+                                contours, 
+                                -1, 
+                                (0, 255, 0))
+                        self.img_list.append(contoured)
+                    elif apply_contours.v_model == False:
+                        self.img_list.append(thresholded)
 
                 elif op=='morphologycal-operations':
                     morpho = morphology(
@@ -217,6 +229,7 @@ threshold_dropd.on_event('input', app.operate)
 threshold_slider.on_event('input', app.operate)
 threshold_bs_slider.on_event('input', app.operate)
 threshold_C_slider.on_event('input', app.operate)
+apply_contours.on_event('inpyt', app.operate)
 # Neural Style Transfer
 nst_style.on_event('input', app.operate)
 nst_quality.on_event('input', app.operate)
