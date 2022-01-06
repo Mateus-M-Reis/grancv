@@ -54,7 +54,7 @@ class App():
         self.cfg = json.load(f)
 
         self.img_list = []
-        self.cur_img = 'desmonte.jpg'
+        self.cur_img = 'gran_1.jpeg'
 
         self.img_list.append(
                 cv2.cvtColor(
@@ -75,26 +75,22 @@ class App():
         self.hist = Histogram(self.img_list[0])
         self.is_hist_up = True
 
-        self.layout = row(children= [ 
+        self.layout = column(children= [ 
             self.sidebar.drawer, 
             row([
                 self.paper.canvas, 
+                self.hist.wid,
                 ],
                 justify='end',
                 align_content='start',
                 ),
-            row([
-                self.hist.wid,
-                ],
-                justify='end',
-                )
             ],
             #justify='start',
             #align='center',
             #align_content='center',
             class_='d-flex flex-row mb12',
             style_='\
-                    height: 100%; \
+                    height: 90%; \
                     width: 100% \
                     '
                     )
@@ -107,7 +103,16 @@ class App():
                     self.sidebar.img_selector.v_model
                     )
                 )
-        img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+
+        if self.sidebar.colorspace_sel.v_model == 'RGB':
+            img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+        elif self.sidebar.colorspace_sel.v_model == 'HSV':
+            img = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
+        elif self.sidebar.colorspace_sel.v_model == 'LAB':
+            img = cv2.cvtColor(img, cv2.COLOR_BGR2LAB)
+        elif self.sidebar.colorspace_sel.v_model == 'GRAY':
+            img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+            img = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
 
         self.img_list = [img]
         self.paper.update(self.img_list[-1], self.sidebar.output)

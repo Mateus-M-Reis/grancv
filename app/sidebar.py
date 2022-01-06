@@ -36,8 +36,8 @@ class Sidebar():
 
         # Image Selector
         self.img_selector = select(
-                items=self.cfg['images']['content_images_file'],
-                v_model='desmonte.jpg',
+                items=self.cfg['images']['images_files'],
+                v_model='gran_1.jpeg',
                 style_='height: 15px',
                 )
 
@@ -145,14 +145,14 @@ class Sidebar():
                 children = [ 
 
                     v.NavigationDrawer(
-                        width='425px',
+                        width='325px',
                         dark=True,
                         color='#FF000000',
-                        expand_on_hover=True,
+                        #expand_on_hover=True,
                         mini_variant_width='75px',
                         fixed=True, # *
                         floating=True,
-                        permanent=True,
+                        #permanent=True,
                         #mini_variant=True,
                         #app=True,
                         #disable_route_watcher=True,
@@ -179,18 +179,18 @@ class Sidebar():
                                     class_='d-flex align-stretch mb-6',
                                     style_='height: 40px;'
                                     ),
-                                v.ListItem(
-                                    children=[
-                                        self.save_op_btn,
-                                        self.save_img_btn,
-                                        self.save_chart_btn,
-                                        self.show_console_btn,
-                                        ],
-                                    class_='d-flex align-stretch mb-6',
-                                    style_='\
-                                            height: 40px; \
-                                            '
-                                    ),
+                                #v.ListItem(
+                                #    children=[
+                                #        self.save_op_btn,
+                                #        self.save_img_btn,
+                                #        self.save_chart_btn,
+                                #        self.show_console_btn,
+                                #        ],
+                                #    class_='d-flex align-stretch mb-6',
+                                #    style_='\
+                                #            height: 40px; \
+                                #            '
+                                #    ),
                                 v.ListItem(
                                     children=[
                                         self.github_btn,

@@ -53,18 +53,30 @@ class Histogram():
                     'right':30
                     },
                  )
-        for i, color in enumerate(self.colors):
-            histr = cv2.calcHist([img],[i],None,[256],[0,256])
+
+        if len(img.shape) == 3:
+            for i, color in enumerate(self.colors):
+                histr = cv2.calcHist([img],[i],None,[256],[0,256])
+                plt.plot(
+                        x=np.arange(0, 257, 1), 
+                        y=histr.flatten(), 
+                        colors=[color],
+                        stroke_width=1.2,
+                        axes_options=self.ax_options,
+                        fill='bottom',
+                        fill_opacities=[0.2],
+                        )
+
+        elif len(img.shape) == 2:
+            hist = cv2.calcHist([img], None, [256], [0, 256])
             plt.plot(
-                    x=np.arange(0, 257, 1), 
-                    y=histr.flatten(), 
-                    colors=[color],
+                    x=np.arange(0, 257, 1),
+                    y=hist,
+                    color='white',
                     stroke_width=1.2,
                     axes_options=self.ax_options,
                     fill='bottom',
-                    fill_opacities=[0.2],
-                    #scales=
-                    #interpolation=
+                    fill_opacities=[0.2]
                     )
 
         self.wid = v.Card(children=[
@@ -78,11 +90,18 @@ class Histogram():
                             '
                     )
 
+
     def update(self, img):
         """
         Check image shape and update histogram accordingly.
         """
+
         if len(img.shape) == 3:
             for i, color in enumerate(self.colors):
                 histr = cv2.calcHist([img],[i],None,[256],[0,256])
                 self.fig.marks[i].y = histr 
+
+        elif len(img.shape) == 2:
+            hist = cv2.calcHist([img], [0], None, [256], [0, 256])
+            for i in range(3):
+                self.fig.marks[i].y = hist

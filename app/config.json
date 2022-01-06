@@ -40,7 +40,7 @@
 		},
 
 		"images": {
-				"path": "input/images",
+				"path": "input/granulometry",
 
 				"content_images_file": {
 						"Blue Moon Lake": "blue-moon-lake.jpg", 
@@ -58,6 +58,14 @@
 						"Sagano Bamboo Forest": "sagano_bamboo_forest.jpg", 
 						"Sunlit Mountains": "Sunlit Mountains.jpg", 
 						"Tubingen": "tubingen.jpg"
+				},
+
+				"images_files": {
+						"gran_1": "gran_1.jpeg",
+						"gran_2": "gran_2.jpeg",
+						"gran_3": "gran_3.jpeg",
+						"gran_4": "gran_4.jpeg",
+						"gran_5": "gran_5.jpeg"
 				}
 		},
 
