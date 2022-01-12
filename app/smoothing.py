@@ -4,7 +4,7 @@ import json
 
 from ipywidgets import HTMLMath, HTML, Layout
 import ipyvuetify as v
-from .vvapp.inputs import slider, select
+from .vvapp.inputs import slider, select, checkbox
 from .vvapp.outputs import container, row, column
 
 f = open('app/config.json')
@@ -18,6 +18,15 @@ def update_sigma_items(*args):
                 '
     else:
         sigma_container.style_='\
+                display: block; \
+                '
+
+    if sharp_cb.v_model == False:
+        sharp_row.style_='\
+                display: none; \
+                '
+    else:
+        sharp_row.style_='\
                 display: block; \
                 '
 
@@ -64,6 +73,48 @@ sigma_container = row(
                         '
                 )
 
+sharp_cb = checkbox(label='Sharp / Unsharp')
+
+sharp_cb.on_event('change', update_sigma_items)
+
+alpha_slider = slider(
+        #label='\alpha',
+        min=-2,
+        max=2,
+        step=0.1,
+        v_model=0.5,
+        ticks=False,
+        )
+
+beta_slider = slider(
+        #label='\alpha',
+        min=-2,
+        max=2,
+        step=0.1,
+        v_model=0.5,
+        ticks=False,
+        )
+
+gamma_slider = slider(
+        #label='\gamma',
+        min=-2,
+        max=2,
+        step=0.1,
+        v_model=0.0,
+        ticks=False,
+        )
+
+sharp_row = row(
+        children=[
+            column([alpha_slider], cols=12),
+            column([beta_slider], cols=12),
+            column([gamma_slider], cols=12),
+            ],
+        style_='\
+                display: none; \
+                '
+        )
+
 smooth_expp = v.ExpansionPanel(children=[
     v.ExpansionPanelHeader(
         children=['Smoothing']
@@ -76,6 +127,10 @@ smooth_expp = v.ExpansionPanel(children=[
 
         sigma_container,
 
+        sharp_cb,
+
+        sharp_row,
+
         ],
         ),
     ],
@@ -85,23 +140,26 @@ smooth_expp = v.ExpansionPanel(children=[
             '
     )
 
-def smooth(img, op_type, k_size, sigma1, sigma2): 
+def smooth(img, op_type, k_size, sigma1, sigma2, \
+        apply_sharp=False, alpha=0.5, beta=0.5, gamma=0.0): 
 
     k_size=np.intc(k_size)
 
     if op_type == 'filter':
         kernel = np.ones((k_size, k_size), np.float32)/25
-        dst = cv2.filter2D(img,-1,kernel)
-        return dst
+        smoothed = cv2.filter2D(img,-1,kernel)
     elif op_type == 'blur':
-        blur = cv2.blur(img,(k_size,k_size))
-        return blur
+        smoothed = cv2.blur(img,(k_size,k_size))
     elif op_type == 'gaussian-blur':
-        blur = cv2.GaussianBlur(img,(k_size,k_size),0)
-        return blur
+        smoothed = cv2.GaussianBlur(img,(k_size,k_size),0)
     elif op_type == 'median-blur':
-        median = cv2.medianBlur(img,k_size)
-        return median
+        smoothed = cv2.medianBlur(img,k_size)
     elif op_type == 'bilateral-filter':
-        blur = cv2.bilateralFilter(img,k_size,sigma1,sigma1)
-        return blur
+        smoothed = cv2.bilateralFilter(img,k_size,sigma1,sigma1)
+
+    if apply_sharp == False:
+        return smoothed
+    else:
+        img = cv2.addWeighted(img, alpha, smoothed, beta, gamma)
+        return img
+

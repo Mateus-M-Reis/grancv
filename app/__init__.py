@@ -25,6 +25,10 @@ from .smoothing import (
         smooth_slider,
         sigma1_slider,
         sigma2_slider,
+        sharp_cb,
+        alpha_slider,
+        beta_slider,
+        gamma_slider
         )
 from .morphology import (
         morphology,
@@ -55,7 +59,7 @@ class App():
         self.cfg = json.load(f)
 
         self.img_list = []
-        self.cur_img = 'gran_1.jpeg'
+        self.cur_img = 'img_1.jpeg'
 
         self.img_list.append(
                 cv2.cvtColor(
@@ -164,6 +168,10 @@ class App():
                             smooth_slider.v_model,
                             sigma1_slider.v_model,
                             sigma2_slider.v_model,
+                            sharp_cb.v_model,
+                            alpha_slider.v_model,
+                            beta_slider.v_model,
+                            gamma_slider.v_model
                             )
                     self.img_list.append(smoothed)
 
@@ -221,6 +229,10 @@ smooth_dropd.on_event('input', app.operate)
 smooth_slider.on_event('input', app.operate)
 sigma1_slider.on_event('input', app.operate)
 sigma2_slider.on_event('input', app.operate)
+sharp_cb.on_event('input', app.operate)
+alpha_slider.on_event('input', app.operate)
+beta_slider.on_event('input', app.operate)
+gamma_slider.on_event('input', app.operate)
 # Morphology
 morpho_dropd.on_event('input', app.operate)
 morpho_slider.on_event('input', app.operate)
@@ -229,7 +241,7 @@ threshold_dropd.on_event('input', app.operate)
 threshold_slider.on_event('input', app.operate)
 threshold_bs_slider.on_event('input', app.operate)
 threshold_C_slider.on_event('input', app.operate)
-apply_contours.on_event('inpyt', app.operate)
+apply_contours.on_event('input', app.operate)
 # Neural Style Transfer
 nst_style.on_event('input', app.operate)
 nst_quality.on_event('input', app.operate)

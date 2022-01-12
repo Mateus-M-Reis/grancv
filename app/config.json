@@ -40,7 +40,7 @@
 		},
 
 		"images": {
-				"path": "input/granulometry",
+				"path": "input/gran",
 
 				"content_images_file": {
 						"Blue Moon Lake": "blue-moon-lake.jpg", 
@@ -61,11 +61,14 @@
 				},
 
 				"images_files": {
-						"gran_1": "gran_1.jpeg",
-						"gran_2": "gran_2.jpeg",
-						"gran_3": "gran_3.jpeg",
-						"gran_4": "gran_4.jpeg",
-						"gran_5": "gran_5.jpeg"
+						"img_1": "img_1.jpeg",
+						"img_2": "img_2.jpeg",
+						"img_3": "img_3.jpeg",
+						"img_4": "img_4.jpeg",
+						"img_6": "img_6.jpeg",
+						"img_7": "img_7.jpeg",
+						"img_8": "img_8.jpeg",
+						"img_9": "img_9.jpeg"
 				}
 		},
 

@@ -37,7 +37,7 @@ class Sidebar():
         # Image Selector
         self.img_selector = select(
                 items=self.cfg['images']['images_files'],
-                v_model='gran_1.jpeg',
+                v_model='img_1.jpeg',
                 style_='height: 15px',
                 )
 
