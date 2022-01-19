@@ -24,7 +24,7 @@ badd +43 app/thresholding.py
 badd +35 app/morphology.py
 badd +1 app/vvapp/inputs.py
 badd +1 app/vvapp/outputs.py
-badd +1 ~/Códigos/grancv/app/smoothing.py
+badd +5 ~/Códigos/grancv/app/smoothing.py
 badd +1 Aptfile
 badd +1 Procfile
 badd +1 runtime.txt
@@ -33,6 +33,7 @@ badd +1 environment.yml
 badd +1 .gitignore
 badd +1 app.yaml
 badd +1 requirements.txt
+badd +0 app/watershed.py
 argglobal
 %argdel
 $argadd app.py
@@ -59,9 +60,9 @@ set winminwidth=0
 set winwidth=1
 exe 'vert 1resize ' . ((&columns * 75 + 113) / 227)
 exe 'vert 2resize ' . ((&columns * 75 + 113) / 227)
-exe '3resize ' . ((&lines * 27 + 28) / 56)
+exe '3resize ' . ((&lines * 27 + 29) / 58)
 exe 'vert 3resize ' . ((&columns * 75 + 113) / 227)
-exe '4resize ' . ((&lines * 25 + 28) / 56)
+exe '4resize ' . ((&lines * 27 + 29) / 58)
 exe 'vert 4resize ' . ((&columns * 75 + 113) / 227)
 argglobal
 setlocal fdm=indent
@@ -72,12 +73,12 @@ setlocal fdl=99
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 125 - ((44 * winheight(0) + 26) / 53)
+let s:l = 125 - ((46 * winheight(0) + 27) / 55)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
 125
-normal! 02|
+normal! 03|
 wincmd w
 argglobal
 if bufexists("app/config.json") | buffer app/config.json | else | edit app/config.json | endif
@@ -91,7 +92,7 @@ setlocal fdn=20
 setlocal fen
 2
 normal! zo
-let s:l = 98 - ((95 * winheight(0) + 26) / 53)
+let s:l = 98 - ((16 * winheight(0) + 27) / 55)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
@@ -125,7 +126,7 @@ setlocal fdl=99
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 2 - ((1 * winheight(0) + 12) / 25)
+let s:l = 2 - ((0 * winheight(0) + 13) / 27)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
@@ -134,9 +135,9 @@ normal! 0
 wincmd w
 exe 'vert 1resize ' . ((&columns * 75 + 113) / 227)
 exe 'vert 2resize ' . ((&columns * 75 + 113) / 227)
-exe '3resize ' . ((&lines * 27 + 28) / 56)
+exe '3resize ' . ((&lines * 27 + 29) / 58)
 exe 'vert 3resize ' . ((&columns * 75 + 113) / 227)
-exe '4resize ' . ((&lines * 25 + 28) / 56)
+exe '4resize ' . ((&lines * 27 + 29) / 58)
 exe 'vert 4resize ' . ((&columns * 75 + 113) / 227)
 tabedit .gitignore
 set splitbelow splitright
@@ -164,13 +165,13 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe '1resize ' . ((&lines * 13 + 28) / 56)
+exe '1resize ' . ((&lines * 13 + 29) / 58)
 exe 'vert 1resize ' . ((&columns * 75 + 113) / 227)
-exe '2resize ' . ((&lines * 13 + 28) / 56)
+exe '2resize ' . ((&lines * 13 + 29) / 58)
 exe 'vert 2resize ' . ((&columns * 75 + 113) / 227)
-exe '3resize ' . ((&lines * 11 + 28) / 56)
+exe '3resize ' . ((&lines * 11 + 29) / 58)
 exe 'vert 3resize ' . ((&columns * 75 + 113) / 227)
-exe '4resize ' . ((&lines * 13 + 28) / 56)
+exe '4resize ' . ((&lines * 15 + 29) / 58)
 exe 'vert 4resize ' . ((&columns * 75 + 113) / 227)
 exe 'vert 5resize ' . ((&columns * 75 + 113) / 227)
 exe 'vert 6resize ' . ((&columns * 75 + 113) / 227)
@@ -234,7 +235,7 @@ setlocal fdl=99
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 1 - ((0 * winheight(0) + 6) / 13)
+let s:l = 1 - ((0 * winheight(0) + 7) / 15)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
@@ -251,7 +252,7 @@ setlocal fdl=99
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 5 - ((4 * winheight(0) + 26) / 53)
+let s:l = 5 - ((4 * winheight(0) + 27) / 55)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
@@ -268,21 +269,20 @@ setlocal fdl=99
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 1 - ((0 * winheight(0) + 26) / 53)
+let s:l = 1 - ((0 * winheight(0) + 27) / 55)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
 1
 normal! 0
 wincmd w
-5wincmd w
-exe '1resize ' . ((&lines * 13 + 28) / 56)
+exe '1resize ' . ((&lines * 13 + 29) / 58)
 exe 'vert 1resize ' . ((&columns * 75 + 113) / 227)
-exe '2resize ' . ((&lines * 13 + 28) / 56)
+exe '2resize ' . ((&lines * 13 + 29) / 58)
 exe 'vert 2resize ' . ((&columns * 75 + 113) / 227)
-exe '3resize ' . ((&lines * 11 + 28) / 56)
+exe '3resize ' . ((&lines * 11 + 29) / 58)
 exe 'vert 3resize ' . ((&columns * 75 + 113) / 227)
-exe '4resize ' . ((&lines * 13 + 28) / 56)
+exe '4resize ' . ((&lines * 15 + 29) / 58)
 exe 'vert 4resize ' . ((&columns * 75 + 113) / 227)
 exe 'vert 5resize ' . ((&columns * 75 + 113) / 227)
 exe 'vert 6resize ' . ((&columns * 75 + 113) / 227)
@@ -314,12 +314,12 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 65 - ((52 * winheight(0) + 26) / 53)
+let s:l = 65 - ((53 * winheight(0) + 27) / 55)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
 65
-normal! 0
+normal! 01|
 wincmd w
 argglobal
 if bufexists("app/__init__.py") | buffer app/__init__.py | else | edit app/__init__.py | endif
@@ -333,21 +333,19 @@ setlocal fdn=20
 setlocal fen
 23
 normal! zo
-30
+23
+normal! zc
+23
+normal! zc
+47
 normal! zo
-30
+47
 normal! zc
-30
-normal! zc
-49
+53
 normal! zo
-54
-normal! zo
-54
+53
 normal! zc
-49
-normal! zc
-let s:l = 64 - ((46 * winheight(0) + 26) / 53)
+let s:l = 64 - ((11 * winheight(0) + 27) / 55)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
@@ -382,7 +380,7 @@ normal! zc
 normal! zc
 24
 normal! zc
-let s:l = 31 - ((7 * winheight(0) + 26) / 53)
+let s:l = 31 - ((7 * winheight(0) + 27) / 55)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
@@ -424,12 +422,12 @@ normal! zo
 normal! zo
 22
 normal! zc
-let s:l = 11 - ((10 * winheight(0) + 26) / 53)
+let s:l = 11 - ((10 * winheight(0) + 27) / 55)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
 11
-normal! 06|
+normal! 07|
 wincmd w
 argglobal
 if bufexists("app/histogram.py") | buffer app/histogram.py | else | edit app/histogram.py | endif
@@ -453,7 +451,7 @@ normal! zo
 normal! zc
 71
 normal! zo
-let s:l = 76 - ((51 * winheight(0) + 26) / 53)
+let s:l = 76 - ((0 * winheight(0) + 27) / 55)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
@@ -490,12 +488,12 @@ setlocal fdl=99
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 5 - ((4 * winheight(0) + 26) / 53)
+let s:l = 5 - ((4 * winheight(0) + 27) / 55)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
 5
-normal! 03|
+normal! 04|
 wincmd w
 argglobal
 if bufexists("app/morphology.py") | buffer app/morphology.py | else | edit app/morphology.py | endif
@@ -507,7 +505,7 @@ setlocal fdl=99
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 38 - ((36 * winheight(0) + 26) / 53)
+let s:l = 38 - ((0 * winheight(0) + 27) / 55)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
@@ -524,7 +522,7 @@ setlocal fdl=99
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 19 - ((17 * winheight(0) + 26) / 53)
+let s:l = 19 - ((0 * winheight(0) + 27) / 55)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
@@ -534,6 +532,30 @@ wincmd w
 exe 'vert 1resize ' . ((&columns * 75 + 113) / 227)
 exe 'vert 2resize ' . ((&columns * 75 + 113) / 227)
 exe 'vert 3resize ' . ((&columns * 75 + 113) / 227)
+tabedit app/watershed.py
+set splitbelow splitright
+set nosplitbelow
+set nosplitright
+wincmd t
+set winminheight=0
+set winheight=1
+set winminwidth=0
+set winwidth=1
+argglobal
+setlocal fdm=indent
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=99
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+let s:l = 1 - ((0 * winheight(0) + 27) / 55)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+1
+normal! 02|
 tabedit app/vvapp/outputs.py
 set splitbelow splitright
 wincmd _ | wincmd |
@@ -560,12 +582,12 @@ setlocal fdn=20
 setlocal fen
 326
 normal! zo
-let s:l = 335 - ((319 * winheight(0) + 26) / 53)
+let s:l = 335 - ((321 * winheight(0) + 27) / 55)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
 335
-normal! 0
+normal! 01|
 wincmd w
 argglobal
 if bufexists("app/vvapp/inputs.py") | buffer app/vvapp/inputs.py | else | edit app/vvapp/inputs.py | endif
@@ -577,7 +599,7 @@ setlocal fdl=99
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 1 - ((0 * winheight(0) + 26) / 53)
+let s:l = 1 - ((0 * winheight(0) + 27) / 55)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
@@ -586,7 +608,7 @@ normal! 02|
 wincmd w
 exe 'vert 1resize ' . ((&columns * 113 + 113) / 227)
 exe 'vert 2resize ' . ((&columns * 113 + 113) / 227)
-tabnext 2
+tabnext 1
 set stal=1
 if exists('s:wipebuf') && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf

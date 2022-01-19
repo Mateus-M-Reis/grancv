@@ -48,6 +48,12 @@ from .neural_style_transfer import (
         nst_style,
         nst_quality,
         )
+from .watershed import (
+        op_iter_slider,
+        dl_iter_slider,
+        sf_factor_slider,
+        watershed_seg
+        )
 
 class App():
     """
@@ -204,6 +210,14 @@ class App():
                             morpho_slider.v_model,
                             )
                     self.img_list.append(morpho)
+                elif op=='watershed':
+                    watersheded = watershed_seg(
+                            self.img_list[-1],
+                            op_iter_slider.v_model,
+                            dl_iter_slider.v_model,
+                            sf_factor_slider.v_model
+                            )
+                    self.img_list.append(watersheded)
 
             else:
                 if op=='neural-style-transfer':
@@ -213,6 +227,8 @@ class App():
                 elif op=='thresholding':
                     pass
                 elif op=='morphologycal-operations':
+                    pass
+                elif op=='watershed':
                     pass
         
         self.paper.update(self.img_list[-1], self.sidebar.output)
@@ -245,3 +261,7 @@ apply_contours.on_event('input', app.operate)
 # Neural Style Transfer
 nst_style.on_event('input', app.operate)
 nst_quality.on_event('input', app.operate)
+# Watershed
+op_iter_slider.on_event('input', app.operate)
+dl_iter_slider.on_event('input', app.operate)
+sf_factor_slider.on_event('input', app.operate)

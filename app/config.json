@@ -76,7 +76,8 @@
 				"Neural Style Transfer": "neural-style-transfer",
 				"Smoothing": "smoothing",
 				"Thresholding": "thresholding",
-				"Morphological Operations": "morphologycal-operations"
+				"Morphological Operations": "morphologycal-operations",
+				"Watershed Segmentation": "watershed"
 		}, 
 		"options": {
 				"Thresholding": {

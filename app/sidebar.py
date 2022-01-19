@@ -18,6 +18,7 @@ from .neural_style_transfer import nst_expp
 from .smoothing import smooth_expp
 from .thresholding import threshold_expp
 from .morphology import morpho_expp
+from .watershed import watershed_expp
 
 class Sidebar():
 
@@ -137,6 +138,7 @@ class Sidebar():
                     morpho_expp,
                     threshold_expp,
                     nst_expp,
+                    watershed_expp
                     ],
                 )
 
@@ -272,6 +274,14 @@ class Sidebar():
                             background-color: #000000BF \
                             '
                     pass
+                elif op=='watershed':
+                    watershed_expp.style_=\
+                            f' \
+                            display: block; \
+                            order: {cur_opts.index(op)}; \
+                            background-color: #000000BF \
+                            '
+                    pass
 
             else:
 
@@ -295,6 +305,12 @@ class Sidebar():
                     pass
                 elif op=='morphologycal-operations':
                     morpho_expp.style_=' \
+                            display: none; \
+                            background-color: #000000BF \
+                            '
+                    pass
+                elif op=='watershed':
+                    watershed_expp.style_=' \
                             display: none; \
                             background-color: #000000BF \
                             '
