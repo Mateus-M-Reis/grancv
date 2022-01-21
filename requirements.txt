@@ -22,7 +22,7 @@ importlib-metadata==4.6.4
 imutils==0.5.4
 ipycanvas==0.9.0
 ipykernel==5.5.5
-ipython==7.16.1
+ipython==7.16.3
 ipython-genutils==0.2.0
 ipyvue==1.5.0
 ipyvuetify==1.8.1
