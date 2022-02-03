@@ -47,7 +47,7 @@ def watershed_seg(img, op_iter, dl_iter, sf_factor):
     # Now, mark the region of unknown with zero
     markers[unknown==255] = 0
 
-    markers = cv.watershed(img, markers)
+    markers = cv.watershed(img,markers)
     img[markers == -1] = [255,0,0]
 
     return img

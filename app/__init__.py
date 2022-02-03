@@ -212,7 +212,7 @@ class App():
                     self.img_list.append(morpho)
                 elif op=='watershed':
                     watersheded = watershed_seg(
-                            self.img_list[-1],
+                            self.img_list[-1].copy(),
                             op_iter_slider.v_model,
                             dl_iter_slider.v_model,
                             sf_factor_slider.v_model
