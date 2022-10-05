@@ -1,19 +1,19 @@
 import os
 import json
 import cv2
-import imutils
-import time
+# import imutils
+# import time
 
-from IPython.core.display import HTML, display
-from ipywidgets import AppLayout, Layout, Output, Box, HBox, VBox
-from ipycanvas import Canvas, hold_canvas
-import ipyvuetify as v
-v.theme.dark = True
-v.theme.themes.dark.primary = 'colors.cyan.accent2'
-v.theme.themes.dark.secondary = 'colors.red.accent3'
-v.theme.themes.dark.success = 'colors.green.accent3'
-from .vvapp.inputs import button
-from .vvapp.outputs import container, row, column
+# from IPython.core.display import HTML, display
+# from ipywidgets import AppLayout, Layout, Output, Box, HBox, VBox
+# from ipycanvas import Canvas, hold_canvas
+# import ipyvuetify as v
+# v.theme.dark = True
+# v.theme.themes.dark.primary = 'colors.cyan.accent2'
+# v.theme.themes.dark.secondary = 'colors.red.accent3'
+# v.theme.themes.dark.success = 'colors.green.accent3'
+# from .vvapp.inputs import button
+from .vvapp.outputs import row, column
 
 from .sidebar import Sidebar
 from .paper import Paper
@@ -28,37 +28,34 @@ from .smoothing import (
         sharp_cb,
         alpha_slider,
         beta_slider,
-        gamma_slider
-        )
+        gamma_slider)
 from .morphology import (
         morphology,
         morpho_dropd,
-        morpho_slider,
-        )
+        morpho_slider)
 from .thresholding import (
         threshold,
         threshold_dropd,
         threshold_slider,
         threshold_bs_slider,
         threshold_C_slider,
-        apply_contours
-        )
+        apply_contours)
 from .neural_style_transfer import (
         style_transfer,
         nst_style,
-        nst_quality,
-        )
+        nst_quality)
 from .watershed import (
         op_iter_slider,
         dl_iter_slider,
         sf_factor_slider,
-        watershed_seg
-        )
+        watershed_seg)
+
 
 class App():
     """
     Base Operation Class.
     """
+
     def __init__(self):
 
         f = open('app/config.json')
@@ -86,10 +83,10 @@ class App():
         self.hist = Histogram(self.img_list[0])
         self.is_hist_up = True
 
-        self.layout = column(children= [ 
-            self.sidebar.drawer, 
+        self.layout = column(children=[
+            self.sidebar.drawer,
             row([
-                self.paper.canvas, 
+                self.paper.canvas,
                 self.hist.wid,
                 ],
                 justify='end',
@@ -129,22 +126,22 @@ class App():
         self.hist.update(self.img_list[-1])
 
     def flip_hist(self, *args):
-        if self.is_hist_up==True:
-            self.hist.wid.style_='\
+        if self.is_hist_up:
+            self.hist.wid.style_ = '\
                             display: none; \
                             position: absolute; \
                             background-color: #00000066; \
                             '
-            self.is_hist_up=False
+            self.is_hist_up = False
             self.sidebar.flip_hist_btn.color = 'grey'
         else:
-            self.hist.wid.style_='\
+            self.hist.wid.style_ = '\
                             display: block; \
                             position: absolute; \
                             background-color: #000000BF; \
                             '
 
-            self.is_hist_up=True
+            self.is_hist_up = True
             self.sidebar.flip_hist_btn.color = 'primary'
 
     def operate(self, *args):
@@ -158,7 +155,7 @@ class App():
         for op in op_opts:
 
             if op in cur_ops:
-                if op=='neural-style-transfer':
+                if op == 'neural-style-transfer':
                     stylized = style_transfer(
                             self.img_list[-1],
                             nst_style.v_model,
@@ -167,7 +164,7 @@ class App():
                             )
                     self.img_list.append(stylized)
 
-                elif op=='smoothing':
+                elif op == 'smoothing':
                     smoothed = smooth(
                             self.img_list[-1],
                             smooth_dropd.v_model,
@@ -181,7 +178,7 @@ class App():
                             )
                     self.img_list.append(smoothed)
 
-                elif op=='thresholding':
+                elif op == 'thresholding':
                     thresholded = threshold(
                             cv2.cvtColor(self.img_list[-1], cv2.COLOR_RGB2GRAY),
                             threshold_dropd.v_model,
@@ -203,14 +200,14 @@ class App():
                     elif apply_contours.v_model == False:
                         self.img_list.append(thresholded)
 
-                elif op=='morphologycal-operations':
+                elif op == 'morphologycal-operations':
                     morpho = morphology(
                             self.img_list[-1],
                             morpho_dropd.v_model,
                             morpho_slider.v_model,
                             )
                     self.img_list.append(morpho)
-                elif op=='watershed':
+                elif op == 'watershed':
                     watersheded = watershed_seg(
                             self.img_list[-1].copy(),
                             op_iter_slider.v_model,
@@ -230,9 +227,10 @@ class App():
                     pass
                 elif op=='watershed':
                     pass
-        
+
         self.paper.update(self.img_list[-1], self.sidebar.output)
         self.hist.update(self.img_list[-1])
+
 
 app = App()
 

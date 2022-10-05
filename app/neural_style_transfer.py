@@ -1,34 +1,26 @@
+from .vvapp.inputs import select, slider
+# from .vvapp.outputs import container, row, column
 import cv2
-import bqplot.pyplot as plt
 import imutils
 import numpy as np
 import json
 import os
-
-from IPython.core.display import HTML, display, Image
-from ipywidgets import AppLayout, Layout
-from ipycanvas import Canvas, hold_canvas
 import ipyvuetify as v
-v.theme.dark = True
-from .vvapp.inputs import button, select, slider
-from .vvapp.outputs import container, row, column
 
+v.theme.dark = True
 f = open('app/config.json')
 cfg = json.load(f)
 
 nst_style = select(
         items=cfg['neural_style_transfer']['models'],
-        v_model='candy.t7',
-        )
+        v_model='candy.t7')
 
 nst_quality = slider(
-        #label='Transfer Quality',
         min=300,
         max=1000,
         step=50,
         v_model=500,
-        ticks=False,
-        )
+        ticks=False)
 
 nst_expp = v.ExpansionPanel(children=[
     v.ExpansionPanelHeader(
@@ -40,18 +32,19 @@ nst_expp = v.ExpansionPanel(children=[
 
         nst_quality
 
-        ],
-        )
-    ], 
+        ])
+    ],
     style_='\
             display: block; \
             background-color: #000000BF; \
             '
     )
 
+
 def get_model_from_path(style_model_path):
     model = cv2.dnn.readNetFromTorch(style_model_path)
     return model
+
 
 def style_transfer(img, model, quality, out):
 
@@ -62,12 +55,14 @@ def style_transfer(img, model, quality, out):
 
     model = get_model_from_path(
             os.path.join(
-                cfg['neural_style_transfer']['path'], 
+                cfg['neural_style_transfer']['path'],
                 model
                 )
             )
-            
-    blob = cv2.dnn.blobFromImage(img, 1.0, (w, h), (103.939, 116.779, 123.680), swapRB=False, crop=False)
+
+    blob = cv2.dnn.blobFromImage(
+            img, 1.0, (w, h), (103.939, 116.779, 123.680),
+            swapRB=False, crop=False)
     model.setInput(blob)
     output = model.forward()
 
@@ -76,18 +71,12 @@ def style_transfer(img, model, quality, out):
     output[0] += 103.939
     output[1] += 116.779
     output[2] += 123.680
-    #output /= 255.0
-
-    #output[1]=np.sum(output[1], 103.939)
-    #output[2]=np.sum(output[2], 103.939)
-    #output[3]=np.sum(output[3], 103.939)
-    #output=np.divide(output, 255.0)
 
     output = output.transpose(1, 2, 0)
-    output = np.clip(output, 0, 255) 
+    output = np.clip(output, 0, 255)
 
-    #output = imutils.resize(output, width=1900) 
+    # output = imutils.resize(output, width=1900)
 
-    output=cv2.cvtColor(output, cv2.COLOR_BGR2RGB)
+    output = cv2.cvtColor(output, cv2.COLOR_BGR2RGB)
 
     return output

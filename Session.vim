@@ -1,12 +1,18 @@
 let SessionLoad = 1
-let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
+let s:so_save = &g:so | let s:siso_save = &g:siso | setg so=0 siso=0 | setl so=-1 siso=-1
 let v:this_session=expand("<sfile>:p")
 silent only
+silent tabonly
 cd ~/Códigos/grancv
 if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
-set shortmess=aoO
+let s:shortmess_save = &shortmess
+if &shortmess =~ 'A'
+  set shortmess=aoOA
+else
+  set shortmess=aoO
+endif
 badd +1 index.py
 badd +1 input_type.py
 badd +1 app.py
@@ -24,7 +30,7 @@ badd +43 app/thresholding.py
 badd +35 app/morphology.py
 badd +1 app/vvapp/inputs.py
 badd +1 app/vvapp/outputs.py
-badd +5 ~/Códigos/grancv/app/smoothing.py
+badd +1 ~/Códigos/grancv/app/smoothing.py
 badd +1 Aptfile
 badd +1 Procfile
 badd +1 runtime.txt
@@ -33,12 +39,21 @@ badd +1 environment.yml
 badd +1 .gitignore
 badd +1 app.yaml
 badd +1 requirements.txt
-badd +0 app/watershed.py
+badd +1 app/watershed.py
 argglobal
 %argdel
 $argadd app.py
 set stal=2
+tabnew +setlocal\ bufhidden=wipe
+tabnew +setlocal\ bufhidden=wipe
+tabnew +setlocal\ bufhidden=wipe
+tabnew +setlocal\ bufhidden=wipe
+tabnew +setlocal\ bufhidden=wipe
+tabnew +setlocal\ bufhidden=wipe
+tabrewind
 edit assets/style.css
+let s:save_splitbelow = &splitbelow
+let s:save_splitright = &splitright
 set splitbelow splitright
 wincmd _ | wincmd |
 vsplit
@@ -51,20 +66,23 @@ wincmd _ | wincmd |
 split
 1wincmd k
 wincmd w
-set nosplitbelow
-set nosplitright
+let &splitbelow = s:save_splitbelow
+let &splitright = s:save_splitright
 wincmd t
+let s:save_winminheight = &winminheight
+let s:save_winminwidth = &winminwidth
 set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe 'vert 1resize ' . ((&columns * 75 + 113) / 227)
-exe 'vert 2resize ' . ((&columns * 75 + 113) / 227)
-exe '3resize ' . ((&lines * 27 + 29) / 58)
-exe 'vert 3resize ' . ((&columns * 75 + 113) / 227)
-exe '4resize ' . ((&lines * 27 + 29) / 58)
-exe 'vert 4resize ' . ((&columns * 75 + 113) / 227)
+exe 'vert 1resize ' . ((&columns * 64 + 97) / 194)
+exe 'vert 2resize ' . ((&columns * 64 + 97) / 194)
+exe '3resize ' . ((&lines * 26 + 28) / 56)
+exe 'vert 3resize ' . ((&columns * 64 + 97) / 194)
+exe '4resize ' . ((&lines * 26 + 28) / 56)
+exe 'vert 4resize ' . ((&columns * 64 + 97) / 194)
 argglobal
+balt index.py
 setlocal fdm=indent
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -73,15 +91,19 @@ setlocal fdl=99
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 125 - ((46 * winheight(0) + 27) / 55)
+let s:l = 126 - ((45 * winheight(0) + 26) / 53)
 if s:l < 1 | let s:l = 1 | endif
-exe s:l
+keepjumps exe s:l
 normal! zt
-125
-normal! 03|
+keepjumps 126
+normal! 04|
 wincmd w
 argglobal
-if bufexists("app/config.json") | buffer app/config.json | else | edit app/config.json | endif
+if bufexists(fnamemodify("app/config.json", ":p")) | buffer app/config.json | else | edit app/config.json | endif
+if &buftype ==# 'terminal'
+  silent file app/config.json
+endif
+balt assets/style.css
 setlocal fdm=indent
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -92,54 +114,68 @@ setlocal fdn=20
 setlocal fen
 2
 normal! zo
-let s:l = 98 - ((16 * winheight(0) + 27) / 55)
-if s:l < 1 | let s:l = 1 | endif
-exe s:l
-normal! zt
-98
-normal! 0
-wincmd w
-argglobal
-if bufexists("README.md") | buffer README.md | else | edit README.md | endif
-setlocal fdm=indent
-setlocal fde=0
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=99
-setlocal fml=1
-setlocal fdn=20
-setlocal fen
-let s:l = 1 - ((0 * winheight(0) + 13) / 27)
-if s:l < 1 | let s:l = 1 | endif
-exe s:l
-normal! zt
-1
-normal! 0
-wincmd w
-argglobal
-if bufexists("index.py") | buffer index.py | else | edit index.py | endif
-setlocal fdm=indent
-setlocal fde=0
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=99
-setlocal fml=1
-setlocal fdn=20
-setlocal fen
-let s:l = 2 - ((0 * winheight(0) + 13) / 27)
-if s:l < 1 | let s:l = 1 | endif
-exe s:l
-normal! zt
 2
+normal! zo
+let s:l = 2 - ((1 * winheight(0) + 26) / 53)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 2
 normal! 0
 wincmd w
-exe 'vert 1resize ' . ((&columns * 75 + 113) / 227)
-exe 'vert 2resize ' . ((&columns * 75 + 113) / 227)
-exe '3resize ' . ((&lines * 27 + 29) / 58)
-exe 'vert 3resize ' . ((&columns * 75 + 113) / 227)
-exe '4resize ' . ((&lines * 27 + 29) / 58)
-exe 'vert 4resize ' . ((&columns * 75 + 113) / 227)
-tabedit .gitignore
+argglobal
+if bufexists(fnamemodify("README.md", ":p")) | buffer README.md | else | edit README.md | endif
+if &buftype ==# 'terminal'
+  silent file README.md
+endif
+balt assets/style.css
+setlocal fdm=indent
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=99
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+let s:l = 1 - ((0 * winheight(0) + 13) / 26)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 1
+normal! 0
+wincmd w
+argglobal
+if bufexists(fnamemodify("index.py", ":p")) | buffer index.py | else | edit index.py | endif
+if &buftype ==# 'terminal'
+  silent file index.py
+endif
+balt assets/style.css
+setlocal fdm=indent
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=99
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+let s:l = 1 - ((0 * winheight(0) + 13) / 26)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 1
+normal! 0
+wincmd w
+2wincmd w
+exe 'vert 1resize ' . ((&columns * 64 + 97) / 194)
+exe 'vert 2resize ' . ((&columns * 64 + 97) / 194)
+exe '3resize ' . ((&lines * 26 + 28) / 56)
+exe 'vert 3resize ' . ((&columns * 64 + 97) / 194)
+exe '4resize ' . ((&lines * 26 + 28) / 56)
+exe 'vert 4resize ' . ((&columns * 64 + 97) / 194)
+tabnext
+edit .gitignore
+let s:save_splitbelow = &splitbelow
+let s:save_splitright = &splitright
 set splitbelow splitright
 wincmd _ | wincmd |
 vsplit
@@ -158,24 +194,27 @@ wincmd w
 wincmd w
 wincmd w
 wincmd w
-set nosplitbelow
-set nosplitright
+let &splitbelow = s:save_splitbelow
+let &splitright = s:save_splitright
 wincmd t
+let s:save_winminheight = &winminheight
+let s:save_winminwidth = &winminwidth
 set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe '1resize ' . ((&lines * 13 + 29) / 58)
-exe 'vert 1resize ' . ((&columns * 75 + 113) / 227)
-exe '2resize ' . ((&lines * 13 + 29) / 58)
-exe 'vert 2resize ' . ((&columns * 75 + 113) / 227)
-exe '3resize ' . ((&lines * 11 + 29) / 58)
-exe 'vert 3resize ' . ((&columns * 75 + 113) / 227)
-exe '4resize ' . ((&lines * 15 + 29) / 58)
-exe 'vert 4resize ' . ((&columns * 75 + 113) / 227)
-exe 'vert 5resize ' . ((&columns * 75 + 113) / 227)
-exe 'vert 6resize ' . ((&columns * 75 + 113) / 227)
+exe '1resize ' . ((&lines * 13 + 28) / 56)
+exe 'vert 1resize ' . ((&columns * 64 + 97) / 194)
+exe '2resize ' . ((&lines * 13 + 28) / 56)
+exe 'vert 2resize ' . ((&columns * 64 + 97) / 194)
+exe '3resize ' . ((&lines * 10 + 28) / 56)
+exe 'vert 3resize ' . ((&columns * 64 + 97) / 194)
+exe '4resize ' . ((&lines * 14 + 28) / 56)
+exe 'vert 4resize ' . ((&columns * 64 + 97) / 194)
+exe 'vert 5resize ' . ((&columns * 64 + 97) / 194)
+exe 'vert 6resize ' . ((&columns * 64 + 97) / 194)
 argglobal
+balt assets/style.css
 setlocal fdm=indent
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -186,13 +225,17 @@ setlocal fdn=20
 setlocal fen
 let s:l = 6 - ((3 * winheight(0) + 6) / 13)
 if s:l < 1 | let s:l = 1 | endif
-exe s:l
+keepjumps exe s:l
 normal! zt
-6
+keepjumps 6
 normal! 0
 wincmd w
 argglobal
-if bufexists("runtime.txt") | buffer runtime.txt | else | edit runtime.txt | endif
+if bufexists(fnamemodify("runtime.txt", ":p")) | buffer runtime.txt | else | edit runtime.txt | endif
+if &buftype ==# 'terminal'
+  silent file runtime.txt
+endif
+balt .gitignore
 setlocal fdm=indent
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -203,13 +246,17 @@ setlocal fdn=20
 setlocal fen
 let s:l = 1 - ((0 * winheight(0) + 6) / 13)
 if s:l < 1 | let s:l = 1 | endif
-exe s:l
+keepjumps exe s:l
 normal! zt
-1
+keepjumps 1
 normal! 013|
 wincmd w
 argglobal
-if bufexists("app.yaml") | buffer app.yaml | else | edit app.yaml | endif
+if bufexists(fnamemodify("app.yaml", ":p")) | buffer app.yaml | else | edit app.yaml | endif
+if &buftype ==# 'terminal'
+  silent file app.yaml
+endif
+balt .gitignore
 setlocal fdm=indent
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -218,15 +265,19 @@ setlocal fdl=99
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 5 - ((0 * winheight(0) + 5) / 11)
+let s:l = 5 - ((0 * winheight(0) + 5) / 10)
 if s:l < 1 | let s:l = 1 | endif
-exe s:l
+keepjumps exe s:l
 normal! zt
-5
+keepjumps 5
 normal! 0
 wincmd w
 argglobal
-if bufexists("Procfile") | buffer Procfile | else | edit Procfile | endif
+if bufexists(fnamemodify("Procfile", ":p")) | buffer Procfile | else | edit Procfile | endif
+if &buftype ==# 'terminal'
+  silent file Procfile
+endif
+balt .gitignore
 setlocal fdm=indent
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -235,15 +286,19 @@ setlocal fdl=99
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 1 - ((0 * winheight(0) + 7) / 15)
+let s:l = 1 - ((0 * winheight(0) + 7) / 14)
 if s:l < 1 | let s:l = 1 | endif
-exe s:l
+keepjumps exe s:l
 normal! zt
-1
+keepjumps 1
 normal! 012|
 wincmd w
 argglobal
-if bufexists("requirements.txt") | buffer requirements.txt | else | edit requirements.txt | endif
+if bufexists(fnamemodify("requirements.txt", ":p")) | buffer requirements.txt | else | edit requirements.txt | endif
+if &buftype ==# 'terminal'
+  silent file requirements.txt
+endif
+balt .gitignore
 setlocal fdm=indent
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -252,15 +307,19 @@ setlocal fdl=99
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 5 - ((4 * winheight(0) + 27) / 55)
+let s:l = 5 - ((4 * winheight(0) + 26) / 53)
 if s:l < 1 | let s:l = 1 | endif
-exe s:l
+keepjumps exe s:l
 normal! zt
-5
+keepjumps 5
 normal! 0
 wincmd w
 argglobal
-if bufexists("environment.yml") | buffer environment.yml | else | edit environment.yml | endif
+if bufexists(fnamemodify("environment.yml", ":p")) | buffer environment.yml | else | edit environment.yml | endif
+if &buftype ==# 'terminal'
+  silent file environment.yml
+endif
+balt .gitignore
 setlocal fdm=indent
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -269,24 +328,27 @@ setlocal fdl=99
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 1 - ((0 * winheight(0) + 27) / 55)
+let s:l = 1 - ((0 * winheight(0) + 26) / 53)
 if s:l < 1 | let s:l = 1 | endif
-exe s:l
+keepjumps exe s:l
 normal! zt
-1
+keepjumps 1
 normal! 0
 wincmd w
-exe '1resize ' . ((&lines * 13 + 29) / 58)
-exe 'vert 1resize ' . ((&columns * 75 + 113) / 227)
-exe '2resize ' . ((&lines * 13 + 29) / 58)
-exe 'vert 2resize ' . ((&columns * 75 + 113) / 227)
-exe '3resize ' . ((&lines * 11 + 29) / 58)
-exe 'vert 3resize ' . ((&columns * 75 + 113) / 227)
-exe '4resize ' . ((&lines * 15 + 29) / 58)
-exe 'vert 4resize ' . ((&columns * 75 + 113) / 227)
-exe 'vert 5resize ' . ((&columns * 75 + 113) / 227)
-exe 'vert 6resize ' . ((&columns * 75 + 113) / 227)
-tabedit app/neural_style_transfer.py
+exe '1resize ' . ((&lines * 13 + 28) / 56)
+exe 'vert 1resize ' . ((&columns * 64 + 97) / 194)
+exe '2resize ' . ((&lines * 13 + 28) / 56)
+exe 'vert 2resize ' . ((&columns * 64 + 97) / 194)
+exe '3resize ' . ((&lines * 10 + 28) / 56)
+exe 'vert 3resize ' . ((&columns * 64 + 97) / 194)
+exe '4resize ' . ((&lines * 14 + 28) / 56)
+exe 'vert 4resize ' . ((&columns * 64 + 97) / 194)
+exe 'vert 5resize ' . ((&columns * 64 + 97) / 194)
+exe 'vert 6resize ' . ((&columns * 64 + 97) / 194)
+tabnext
+edit app/neural_style_transfer.py
+let s:save_splitbelow = &splitbelow
+let s:save_splitright = &splitright
 set splitbelow splitright
 wincmd _ | wincmd |
 vsplit
@@ -295,17 +357,20 @@ vsplit
 2wincmd h
 wincmd w
 wincmd w
-set nosplitbelow
-set nosplitright
+let &splitbelow = s:save_splitbelow
+let &splitright = s:save_splitright
 wincmd t
+let s:save_winminheight = &winminheight
+let s:save_winminwidth = &winminwidth
 set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe 'vert 1resize ' . ((&columns * 75 + 113) / 227)
-exe 'vert 2resize ' . ((&columns * 75 + 113) / 227)
-exe 'vert 3resize ' . ((&columns * 75 + 113) / 227)
+exe 'vert 1resize ' . ((&columns * 64 + 97) / 194)
+exe 'vert 2resize ' . ((&columns * 64 + 97) / 194)
+exe 'vert 3resize ' . ((&columns * 64 + 97) / 194)
 argglobal
+balt .gitignore
 setlocal fdm=indent
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -314,15 +379,19 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 65 - ((53 * winheight(0) + 27) / 55)
+let s:l = 93 - ((79 * winheight(0) + 26) / 53)
 if s:l < 1 | let s:l = 1 | endif
-exe s:l
+keepjumps exe s:l
 normal! zt
-65
-normal! 01|
+keepjumps 93
+normal! 0
 wincmd w
 argglobal
-if bufexists("app/__init__.py") | buffer app/__init__.py | else | edit app/__init__.py | endif
+if bufexists(fnamemodify("app/__init__.py", ":p")) | buffer app/__init__.py | else | edit app/__init__.py | endif
+if &buftype ==# 'terminal'
+  silent file app/__init__.py
+endif
+balt app/neural_style_transfer.py
 setlocal fdm=indent
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -341,19 +410,23 @@ normal! zc
 normal! zo
 47
 normal! zc
-53
+52
 normal! zo
-53
+52
 normal! zc
-let s:l = 64 - ((11 * winheight(0) + 27) / 55)
+let s:l = 64 - ((12 * winheight(0) + 26) / 53)
 if s:l < 1 | let s:l = 1 | endif
-exe s:l
+keepjumps exe s:l
 normal! zt
-64
+keepjumps 64
 normal! 0
 wincmd w
 argglobal
-if bufexists("app/sidebar.py") | buffer app/sidebar.py | else | edit app/sidebar.py | endif
+if bufexists(fnamemodify("app/sidebar.py", ":p")) | buffer app/sidebar.py | else | edit app/sidebar.py | endif
+if &buftype ==# 'terminal'
+  silent file app/sidebar.py
+endif
+balt app/neural_style_transfer.py
 setlocal fdm=indent
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -362,50 +435,46 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-24
+25
 normal! zo
-26
+27
 normal! zo
-112
-normal! zo
-145
-normal! zo
-145
-normal! zo
-145
+27
 normal! zc
-145
+25
 normal! zc
-26
-normal! zc
-24
-normal! zc
-let s:l = 31 - ((7 * winheight(0) + 27) / 55)
+let s:l = 1 - ((0 * winheight(0) + 26) / 53)
 if s:l < 1 | let s:l = 1 | endif
-exe s:l
+keepjumps exe s:l
 normal! zt
-31
+keepjumps 1
 normal! 0
 wincmd w
-exe 'vert 1resize ' . ((&columns * 75 + 113) / 227)
-exe 'vert 2resize ' . ((&columns * 75 + 113) / 227)
-exe 'vert 3resize ' . ((&columns * 75 + 113) / 227)
-tabedit app/paper.py
+exe 'vert 1resize ' . ((&columns * 64 + 97) / 194)
+exe 'vert 2resize ' . ((&columns * 64 + 97) / 194)
+exe 'vert 3resize ' . ((&columns * 64 + 97) / 194)
+tabnext
+edit app/paper.py
+let s:save_splitbelow = &splitbelow
+let s:save_splitright = &splitright
 set splitbelow splitright
 wincmd _ | wincmd |
 vsplit
 1wincmd h
 wincmd w
-set nosplitbelow
-set nosplitright
+let &splitbelow = s:save_splitbelow
+let &splitright = s:save_splitright
 wincmd t
+let s:save_winminheight = &winminheight
+let s:save_winminwidth = &winminwidth
 set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe 'vert 1resize ' . ((&columns * 113 + 113) / 227)
-exe 'vert 2resize ' . ((&columns * 113 + 113) / 227)
+exe 'vert 1resize ' . ((&columns * 96 + 97) / 194)
+exe 'vert 2resize ' . ((&columns * 97 + 97) / 194)
 argglobal
+balt app/neural_style_transfer.py
 setlocal fdm=indent
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -422,15 +491,19 @@ normal! zo
 normal! zo
 22
 normal! zc
-let s:l = 11 - ((10 * winheight(0) + 27) / 55)
+let s:l = 12 - ((11 * winheight(0) + 26) / 53)
 if s:l < 1 | let s:l = 1 | endif
-exe s:l
+keepjumps exe s:l
 normal! zt
-11
+keepjumps 12
 normal! 07|
 wincmd w
 argglobal
-if bufexists("app/histogram.py") | buffer app/histogram.py | else | edit app/histogram.py | endif
+if bufexists(fnamemodify("app/histogram.py", ":p")) | buffer app/histogram.py | else | edit app/histogram.py | endif
+if &buftype ==# 'terminal'
+  silent file app/histogram.py
+endif
+balt app/paper.py
 setlocal fdm=indent
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -451,16 +524,19 @@ normal! zo
 normal! zc
 71
 normal! zo
-let s:l = 76 - ((0 * winheight(0) + 27) / 55)
+let s:l = 76 - ((0 * winheight(0) + 26) / 53)
 if s:l < 1 | let s:l = 1 | endif
-exe s:l
+keepjumps exe s:l
 normal! zt
-76
+keepjumps 76
 normal! 02|
 wincmd w
-exe 'vert 1resize ' . ((&columns * 113 + 113) / 227)
-exe 'vert 2resize ' . ((&columns * 113 + 113) / 227)
-tabedit ~/Códigos/grancv/app/smoothing.py
+exe 'vert 1resize ' . ((&columns * 96 + 97) / 194)
+exe 'vert 2resize ' . ((&columns * 97 + 97) / 194)
+tabnext
+edit ~/Códigos/grancv/app/smoothing.py
+let s:save_splitbelow = &splitbelow
+let s:save_splitright = &splitright
 set splitbelow splitright
 wincmd _ | wincmd |
 vsplit
@@ -469,17 +545,20 @@ vsplit
 2wincmd h
 wincmd w
 wincmd w
-set nosplitbelow
-set nosplitright
+let &splitbelow = s:save_splitbelow
+let &splitright = s:save_splitright
 wincmd t
+let s:save_winminheight = &winminheight
+let s:save_winminwidth = &winminwidth
 set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe 'vert 1resize ' . ((&columns * 75 + 113) / 227)
-exe 'vert 2resize ' . ((&columns * 75 + 113) / 227)
-exe 'vert 3resize ' . ((&columns * 75 + 113) / 227)
+exe 'vert 1resize ' . ((&columns * 64 + 97) / 194)
+exe 'vert 2resize ' . ((&columns * 64 + 97) / 194)
+exe 'vert 3resize ' . ((&columns * 64 + 97) / 194)
 argglobal
+balt app/paper.py
 setlocal fdm=indent
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -488,15 +567,19 @@ setlocal fdl=99
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 5 - ((4 * winheight(0) + 27) / 55)
+let s:l = 6 - ((5 * winheight(0) + 26) / 53)
 if s:l < 1 | let s:l = 1 | endif
-exe s:l
+keepjumps exe s:l
 normal! zt
-5
+keepjumps 6
 normal! 04|
 wincmd w
 argglobal
-if bufexists("app/morphology.py") | buffer app/morphology.py | else | edit app/morphology.py | endif
+if bufexists(fnamemodify("app/morphology.py", ":p")) | buffer app/morphology.py | else | edit app/morphology.py | endif
+if &buftype ==# 'terminal'
+  silent file app/morphology.py
+endif
+balt ~/Códigos/grancv/app/smoothing.py
 setlocal fdm=indent
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -505,15 +588,19 @@ setlocal fdl=99
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 38 - ((0 * winheight(0) + 27) / 55)
+let s:l = 38 - ((0 * winheight(0) + 26) / 53)
 if s:l < 1 | let s:l = 1 | endif
-exe s:l
+keepjumps exe s:l
 normal! zt
-38
+keepjumps 38
 normal! 0
 wincmd w
 argglobal
-if bufexists("app/thresholding.py") | buffer app/thresholding.py | else | edit app/thresholding.py | endif
+if bufexists(fnamemodify("app/thresholding.py", ":p")) | buffer app/thresholding.py | else | edit app/thresholding.py | endif
+if &buftype ==# 'terminal'
+  silent file app/thresholding.py
+endif
+balt ~/Códigos/grancv/app/smoothing.py
 setlocal fdm=indent
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -522,26 +609,20 @@ setlocal fdl=99
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 19 - ((0 * winheight(0) + 27) / 55)
+let s:l = 19 - ((0 * winheight(0) + 26) / 53)
 if s:l < 1 | let s:l = 1 | endif
-exe s:l
+keepjumps exe s:l
 normal! zt
-19
+keepjumps 19
 normal! 02|
 wincmd w
-exe 'vert 1resize ' . ((&columns * 75 + 113) / 227)
-exe 'vert 2resize ' . ((&columns * 75 + 113) / 227)
-exe 'vert 3resize ' . ((&columns * 75 + 113) / 227)
-tabedit app/watershed.py
-set splitbelow splitright
-set nosplitbelow
-set nosplitright
-wincmd t
-set winminheight=0
-set winheight=1
-set winminwidth=0
-set winwidth=1
+exe 'vert 1resize ' . ((&columns * 64 + 97) / 194)
+exe 'vert 2resize ' . ((&columns * 64 + 97) / 194)
+exe 'vert 3resize ' . ((&columns * 64 + 97) / 194)
+tabnext
+edit app/watershed.py
 argglobal
+balt ~/Códigos/grancv/app/smoothing.py
 setlocal fdm=indent
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -550,28 +631,34 @@ setlocal fdl=99
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 1 - ((0 * winheight(0) + 27) / 55)
+let s:l = 2 - ((1 * winheight(0) + 26) / 53)
 if s:l < 1 | let s:l = 1 | endif
-exe s:l
+keepjumps exe s:l
 normal! zt
-1
+keepjumps 2
 normal! 02|
-tabedit app/vvapp/outputs.py
+tabnext
+edit app/vvapp/outputs.py
+let s:save_splitbelow = &splitbelow
+let s:save_splitright = &splitright
 set splitbelow splitright
 wincmd _ | wincmd |
 vsplit
 1wincmd h
 wincmd w
-set nosplitbelow
-set nosplitright
+let &splitbelow = s:save_splitbelow
+let &splitright = s:save_splitright
 wincmd t
+let s:save_winminheight = &winminheight
+let s:save_winminwidth = &winminwidth
 set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe 'vert 1resize ' . ((&columns * 113 + 113) / 227)
-exe 'vert 2resize ' . ((&columns * 113 + 113) / 227)
+exe 'vert 1resize ' . ((&columns * 96 + 97) / 194)
+exe 'vert 2resize ' . ((&columns * 97 + 97) / 194)
 argglobal
+balt app/watershed.py
 setlocal fdm=indent
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -582,15 +669,19 @@ setlocal fdn=20
 setlocal fen
 326
 normal! zo
-let s:l = 335 - ((321 * winheight(0) + 27) / 55)
+let s:l = 372 - ((356 * winheight(0) + 26) / 53)
 if s:l < 1 | let s:l = 1 | endif
-exe s:l
+keepjumps exe s:l
 normal! zt
-335
-normal! 01|
+keepjumps 372
+normal! 0
 wincmd w
 argglobal
-if bufexists("app/vvapp/inputs.py") | buffer app/vvapp/inputs.py | else | edit app/vvapp/inputs.py | endif
+if bufexists(fnamemodify("app/vvapp/inputs.py", ":p")) | buffer app/vvapp/inputs.py | else | edit app/vvapp/inputs.py | endif
+if &buftype ==# 'terminal'
+  silent file app/vvapp/inputs.py
+endif
+balt app/vvapp/outputs.py
 setlocal fdm=indent
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -599,27 +690,32 @@ setlocal fdl=99
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 1 - ((0 * winheight(0) + 27) / 55)
+let s:l = 2 - ((1 * winheight(0) + 26) / 53)
 if s:l < 1 | let s:l = 1 | endif
-exe s:l
+keepjumps exe s:l
 normal! zt
-1
-normal! 02|
+keepjumps 2
+normal! 0
 wincmd w
-exe 'vert 1resize ' . ((&columns * 113 + 113) / 227)
-exe 'vert 2resize ' . ((&columns * 113 + 113) / 227)
+exe 'vert 1resize ' . ((&columns * 96 + 97) / 194)
+exe 'vert 2resize ' . ((&columns * 97 + 97) / 194)
 tabnext 1
 set stal=1
-if exists('s:wipebuf') && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
+if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
 endif
 unlet! s:wipebuf
-set winheight=1 winwidth=20 winminheight=1 winminwidth=1 shortmess=filnxtToOF
+set winheight=1 winwidth=20
+let &shortmess = s:shortmess_save
+let &winminheight = s:save_winminheight
+let &winminwidth = s:save_winminwidth
 let s:sx = expand("<sfile>:p:r")."x.vim"
-if file_readable(s:sx)
+if filereadable(s:sx)
   exe "source " . fnameescape(s:sx)
 endif
-let &so = s:so_save | let &siso = s:siso_save
+let &g:so = s:so_save | let &g:siso = s:siso_save
+set hlsearch
+nohlsearch
 doautoall SessionLoadPost
 unlet SessionLoad
 " vim: set ft=vim :
