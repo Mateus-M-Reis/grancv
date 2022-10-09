@@ -4,8 +4,6 @@ Computer vision web application with granulometry purpouses, built on top of [ip
 
 ![](./demo/gifs/grancv_gif.gif)
 
-
-
 ## Install
 
 Create new conda environment:
