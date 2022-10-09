@@ -42,8 +42,6 @@ Now, you can run the application with:
 `v index.py`
 
 ## Operations Available
-![](./demo/gifs/operations.gif)
-
 
 You can use and tune combinations of the following operations:
 
