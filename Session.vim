@@ -16,13 +16,13 @@ endif
 badd +1 index.py
 badd +1 input_type.py
 badd +1 app.py
-badd +95 app/sidebar.py
+badd +2 app/sidebar.py
 badd +92 app/__init__.py
 badd +1 app/config.json
 badd +1 app/neural_style_transfer.py
 badd +1 app/paper.py
 badd +3 README.md
-badd +61 app/histogram.py
+badd +79 app/histogram.py
 badd +1 app/components/sidebar.py
 badd +1 app/components/paper.py
 badd +1 assets/style.css
@@ -30,7 +30,7 @@ badd +43 app/thresholding.py
 badd +35 app/morphology.py
 badd +1 app/vvapp/inputs.py
 badd +1 app/vvapp/outputs.py
-badd +1 ~/Códigos/grancv/app/smoothing.py
+badd +1 app/smoothing.py
 badd +1 Aptfile
 badd +1 Procfile
 badd +1 runtime.txt
@@ -77,9 +77,9 @@ set winminwidth=0
 set winwidth=1
 exe 'vert 1resize ' . ((&columns * 64 + 97) / 194)
 exe 'vert 2resize ' . ((&columns * 64 + 97) / 194)
-exe '3resize ' . ((&lines * 25 + 27) / 54)
+exe '3resize ' . ((&lines * 27 + 29) / 58)
 exe 'vert 3resize ' . ((&columns * 64 + 97) / 194)
-exe '4resize ' . ((&lines * 25 + 27) / 54)
+exe '4resize ' . ((&lines * 27 + 29) / 58)
 exe 'vert 4resize ' . ((&columns * 64 + 97) / 194)
 argglobal
 balt index.py
@@ -91,12 +91,12 @@ setlocal fdl=99
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 126 - ((43 * winheight(0) + 25) / 51)
+let s:l = 126 - ((46 * winheight(0) + 27) / 55)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
 keepjumps 126
-normal! 02|
+normal! 0
 wincmd w
 argglobal
 if bufexists(fnamemodify("app/config.json", ":p")) | buffer app/config.json | else | edit app/config.json | endif
@@ -116,11 +116,11 @@ setlocal fen
 normal! zo
 2
 normal! zo
-let s:l = 3 - ((2 * winheight(0) + 25) / 51)
+let s:l = 41 - ((40 * winheight(0) + 27) / 55)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 3
+keepjumps 41
 normal! 0
 wincmd w
 argglobal
@@ -137,7 +137,7 @@ setlocal fdl=99
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 1 - ((0 * winheight(0) + 12) / 25)
+let s:l = 1 - ((0 * winheight(0) + 13) / 27)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
@@ -158,19 +158,18 @@ setlocal fdl=99
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 1 - ((0 * winheight(0) + 12) / 25)
+let s:l = 1 - ((0 * winheight(0) + 13) / 27)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
 keepjumps 1
 normal! 0
 wincmd w
-2wincmd w
 exe 'vert 1resize ' . ((&columns * 64 + 97) / 194)
 exe 'vert 2resize ' . ((&columns * 64 + 97) / 194)
-exe '3resize ' . ((&lines * 25 + 27) / 54)
+exe '3resize ' . ((&lines * 27 + 29) / 58)
 exe 'vert 3resize ' . ((&columns * 64 + 97) / 194)
-exe '4resize ' . ((&lines * 25 + 27) / 54)
+exe '4resize ' . ((&lines * 27 + 29) / 58)
 exe 'vert 4resize ' . ((&columns * 64 + 97) / 194)
 tabnext
 edit .gitignore
@@ -179,9 +178,7 @@ let s:save_splitright = &splitright
 set splitbelow splitright
 wincmd _ | wincmd |
 vsplit
-wincmd _ | wincmd |
-vsplit
-2wincmd h
+1wincmd h
 wincmd _ | wincmd |
 split
 wincmd _ | wincmd |
@@ -189,7 +186,6 @@ split
 wincmd _ | wincmd |
 split
 3wincmd k
-wincmd w
 wincmd w
 wincmd w
 wincmd w
@@ -203,16 +199,15 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe '1resize ' . ((&lines * 13 + 27) / 54)
-exe 'vert 1resize ' . ((&columns * 64 + 97) / 194)
-exe '2resize ' . ((&lines * 13 + 27) / 54)
-exe 'vert 2resize ' . ((&columns * 64 + 97) / 194)
-exe '3resize ' . ((&lines * 8 + 27) / 54)
-exe 'vert 3resize ' . ((&columns * 64 + 97) / 194)
-exe '4resize ' . ((&lines * 14 + 27) / 54)
-exe 'vert 4resize ' . ((&columns * 64 + 97) / 194)
-exe 'vert 5resize ' . ((&columns * 64 + 97) / 194)
-exe 'vert 6resize ' . ((&columns * 64 + 97) / 194)
+exe '1resize ' . ((&lines * 14 + 29) / 58)
+exe 'vert 1resize ' . ((&columns * 96 + 97) / 194)
+exe '2resize ' . ((&lines * 14 + 29) / 58)
+exe 'vert 2resize ' . ((&columns * 96 + 97) / 194)
+exe '3resize ' . ((&lines * 9 + 29) / 58)
+exe 'vert 3resize ' . ((&columns * 96 + 97) / 194)
+exe '4resize ' . ((&lines * 15 + 29) / 58)
+exe 'vert 4resize ' . ((&columns * 96 + 97) / 194)
+exe 'vert 5resize ' . ((&columns * 97 + 97) / 194)
 argglobal
 balt assets/style.css
 setlocal fdm=indent
@@ -223,7 +218,7 @@ setlocal fdl=99
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 6 - ((3 * winheight(0) + 6) / 13)
+let s:l = 6 - ((3 * winheight(0) + 7) / 14)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
@@ -244,7 +239,7 @@ setlocal fdl=99
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 1 - ((0 * winheight(0) + 6) / 13)
+let s:l = 1 - ((0 * winheight(0) + 7) / 14)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
@@ -265,7 +260,7 @@ setlocal fdl=99
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 5 - ((0 * winheight(0) + 4) / 8)
+let s:l = 5 - ((0 * winheight(0) + 4) / 9)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
@@ -286,7 +281,7 @@ setlocal fdl=99
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 1 - ((0 * winheight(0) + 7) / 14)
+let s:l = 1 - ((0 * winheight(0) + 7) / 15)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
@@ -307,44 +302,22 @@ setlocal fdl=99
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 5 - ((4 * winheight(0) + 25) / 51)
+let s:l = 6 - ((5 * winheight(0) + 27) / 55)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 5
+keepjumps 6
 normal! 0
 wincmd w
-argglobal
-if bufexists(fnamemodify("environment.yml", ":p")) | buffer environment.yml | else | edit environment.yml | endif
-if &buftype ==# 'terminal'
-  silent file environment.yml
-endif
-balt .gitignore
-setlocal fdm=indent
-setlocal fde=0
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=99
-setlocal fml=1
-setlocal fdn=20
-setlocal fen
-let s:l = 1 - ((0 * winheight(0) + 25) / 51)
-if s:l < 1 | let s:l = 1 | endif
-keepjumps exe s:l
-normal! zt
-keepjumps 1
-normal! 0
-wincmd w
-exe '1resize ' . ((&lines * 13 + 27) / 54)
-exe 'vert 1resize ' . ((&columns * 64 + 97) / 194)
-exe '2resize ' . ((&lines * 13 + 27) / 54)
-exe 'vert 2resize ' . ((&columns * 64 + 97) / 194)
-exe '3resize ' . ((&lines * 8 + 27) / 54)
-exe 'vert 3resize ' . ((&columns * 64 + 97) / 194)
-exe '4resize ' . ((&lines * 14 + 27) / 54)
-exe 'vert 4resize ' . ((&columns * 64 + 97) / 194)
-exe 'vert 5resize ' . ((&columns * 64 + 97) / 194)
-exe 'vert 6resize ' . ((&columns * 64 + 97) / 194)
+exe '1resize ' . ((&lines * 14 + 29) / 58)
+exe 'vert 1resize ' . ((&columns * 96 + 97) / 194)
+exe '2resize ' . ((&lines * 14 + 29) / 58)
+exe 'vert 2resize ' . ((&columns * 96 + 97) / 194)
+exe '3resize ' . ((&lines * 9 + 29) / 58)
+exe 'vert 3resize ' . ((&columns * 96 + 97) / 194)
+exe '4resize ' . ((&lines * 15 + 29) / 58)
+exe 'vert 4resize ' . ((&columns * 96 + 97) / 194)
+exe 'vert 5resize ' . ((&columns * 97 + 97) / 194)
 tabnext
 edit app/neural_style_transfer.py
 let s:save_splitbelow = &splitbelow
@@ -379,7 +352,7 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 82 - ((65 * winheight(0) + 25) / 51)
+let s:l = 82 - ((70 * winheight(0) + 27) / 55)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
@@ -406,7 +379,7 @@ normal! zo
 normal! zc
 23
 normal! zc
-let s:l = 64 - ((12 * winheight(0) + 25) / 51)
+let s:l = 64 - ((13 * winheight(0) + 27) / 55)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
@@ -427,19 +400,19 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-25
+17
 normal! zo
-27
+19
 normal! zo
-27
+19
 normal! zc
-25
+17
 normal! zc
-let s:l = 1 - ((0 * winheight(0) + 25) / 51)
+let s:l = 4 - ((3 * winheight(0) + 27) / 55)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 1
+keepjumps 4
 normal! 0
 wincmd w
 exe 'vert 1resize ' . ((&columns * 64 + 97) / 194)
@@ -452,7 +425,10 @@ let s:save_splitright = &splitright
 set splitbelow splitright
 wincmd _ | wincmd |
 vsplit
-1wincmd h
+wincmd _ | wincmd |
+vsplit
+2wincmd h
+wincmd w
 wincmd w
 let &splitbelow = s:save_splitbelow
 let &splitright = s:save_splitright
@@ -463,8 +439,9 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe 'vert 1resize ' . ((&columns * 96 + 97) / 194)
-exe 'vert 2resize ' . ((&columns * 97 + 97) / 194)
+exe 'vert 1resize ' . ((&columns * 64 + 97) / 194)
+exe 'vert 2resize ' . ((&columns * 64 + 97) / 194)
+exe 'vert 3resize ' . ((&columns * 64 + 97) / 194)
 argglobal
 balt app/neural_style_transfer.py
 setlocal fdm=indent
@@ -483,19 +460,19 @@ normal! zo
 normal! zo
 22
 normal! zc
-let s:l = 12 - ((11 * winheight(0) + 25) / 51)
+let s:l = 13 - ((12 * winheight(0) + 27) / 55)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 12
-normal! 07|
+keepjumps 13
+normal! 0
 wincmd w
 argglobal
 if bufexists(fnamemodify("app/histogram.py", ":p")) | buffer app/histogram.py | else | edit app/histogram.py | endif
 if &buftype ==# 'terminal'
   silent file app/histogram.py
 endif
-balt app/paper.py
+balt app/sidebar.py
 setlocal fdm=indent
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -516,17 +493,52 @@ normal! zo
 normal! zc
 71
 normal! zo
-let s:l = 76 - ((0 * winheight(0) + 25) / 51)
+let s:l = 79 - ((3 * winheight(0) + 27) / 55)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 76
+keepjumps 79
 normal! 02|
 wincmd w
-exe 'vert 1resize ' . ((&columns * 96 + 97) / 194)
-exe 'vert 2resize ' . ((&columns * 97 + 97) / 194)
+argglobal
+if bufexists(fnamemodify("app/sidebar.py", ":p")) | buffer app/sidebar.py | else | edit app/sidebar.py | endif
+if &buftype ==# 'terminal'
+  silent file app/sidebar.py
+endif
+balt app/histogram.py
+setlocal fdm=indent
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+4
+normal! zo
+4
+normal! zo
+17
+normal! zo
+19
+normal! zo
+19
+normal! zc
+17
+normal! zc
+let s:l = 14 - ((13 * winheight(0) + 27) / 55)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 14
+normal! 0
+wincmd w
+3wincmd w
+exe 'vert 1resize ' . ((&columns * 64 + 97) / 194)
+exe 'vert 2resize ' . ((&columns * 64 + 97) / 194)
+exe 'vert 3resize ' . ((&columns * 64 + 97) / 194)
 tabnext
-edit ~/Códigos/grancv/app/smoothing.py
+edit app/smoothing.py
 let s:save_splitbelow = &splitbelow
 let s:save_splitright = &splitright
 set splitbelow splitright
@@ -559,7 +571,7 @@ setlocal fdl=99
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 6 - ((5 * winheight(0) + 25) / 51)
+let s:l = 6 - ((5 * winheight(0) + 27) / 55)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
@@ -571,7 +583,7 @@ if bufexists(fnamemodify("app/morphology.py", ":p")) | buffer app/morphology.py 
 if &buftype ==# 'terminal'
   silent file app/morphology.py
 endif
-balt ~/Códigos/grancv/app/smoothing.py
+balt app/smoothing.py
 setlocal fdm=indent
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -580,7 +592,7 @@ setlocal fdl=99
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 38 - ((0 * winheight(0) + 25) / 51)
+let s:l = 38 - ((0 * winheight(0) + 27) / 55)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
@@ -592,7 +604,7 @@ if bufexists(fnamemodify("app/thresholding.py", ":p")) | buffer app/thresholding
 if &buftype ==# 'terminal'
   silent file app/thresholding.py
 endif
-balt ~/Códigos/grancv/app/smoothing.py
+balt app/smoothing.py
 setlocal fdm=indent
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -601,7 +613,7 @@ setlocal fdl=99
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 19 - ((0 * winheight(0) + 25) / 51)
+let s:l = 19 - ((0 * winheight(0) + 27) / 55)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
@@ -614,7 +626,7 @@ exe 'vert 3resize ' . ((&columns * 64 + 97) / 194)
 tabnext
 edit app/watershed.py
 argglobal
-balt ~/Códigos/grancv/app/smoothing.py
+balt app/smoothing.py
 setlocal fdm=indent
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -623,7 +635,7 @@ setlocal fdl=99
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 2 - ((1 * winheight(0) + 25) / 51)
+let s:l = 2 - ((1 * winheight(0) + 27) / 55)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
@@ -661,7 +673,7 @@ setlocal fdn=20
 setlocal fen
 326
 normal! zo
-let s:l = 372 - ((356 * winheight(0) + 25) / 51)
+let s:l = 372 - ((364 * winheight(0) + 27) / 55)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
@@ -682,7 +694,7 @@ setlocal fdl=99
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 2 - ((1 * winheight(0) + 25) / 51)
+let s:l = 2 - ((1 * winheight(0) + 27) / 55)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
@@ -691,7 +703,7 @@ normal! 0
 wincmd w
 exe 'vert 1resize ' . ((&columns * 96 + 97) / 194)
 exe 'vert 2resize ' . ((&columns * 97 + 97) / 194)
-tabnext 1
+tabnext 4
 set stal=1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
@@ -707,6 +719,7 @@ if filereadable(s:sx)
 endif
 let &g:so = s:so_save | let &g:siso = s:siso_save
 set hlsearch
+nohlsearch
 doautoall SessionLoadPost
 unlet SessionLoad
 " vim: set ft=vim :

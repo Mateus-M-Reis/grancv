@@ -1,24 +1,17 @@
-#import cv2
-import os
 import json
-
-from IPython.core.display import HTML, display
 import ipyvuetify as v
-from ipywidgets import Output, Layout
 from .vvapp.inputs import (
-        button, 
-        select_or_create, 
+        button,
+        select_or_create,
         select,
-        radio_buttons,
         )
-from .vvapp.outputs import container, row, column
-
-#from . import app
 from .neural_style_transfer import nst_expp
 from .smoothing import smooth_expp
 from .thresholding import threshold_expp
 from .morphology import morpho_expp
 from .watershed import watershed_expp
+from ipywidgets import Output
+
 
 class Sidebar():
 
@@ -37,8 +30,8 @@ class Sidebar():
 
         # Image Selector
         self.img_selector = select(
-                items=self.cfg['images']['images_files'],
-                v_model='img_1.jpeg',
+                items=self.cfg['images']['content_images_file'],
+                v_model='Deeping-Sun.jpg',
                 style_='height: 15px',
                 )
 

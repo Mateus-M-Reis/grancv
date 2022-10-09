@@ -62,7 +62,7 @@ class App():
         self.cfg = json.load(f)
 
         self.img_list = []
-        self.cur_img = 'img_1.jpeg'
+        self.cur_img = 'Dipping-Sun.jpg'
 
         self.img_list.append(
                 cv2.cvtColor(

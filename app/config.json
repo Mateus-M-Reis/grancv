@@ -40,7 +40,7 @@
 		},
 
 		"images": {
-				"path": "input/gran",
+				"path": "input/images",
 
 				"content_images_file": {
 						"Blue Moon Lake": "blue-moon-lake.jpg", 

@@ -1,11 +1,8 @@
 import cv2
-import numpy as np
 import json
-
-from ipywidgets import HTMLMath, HTML
 import ipyvuetify as v
 from .vvapp.inputs import slider, select, checkbox
-from .vvapp.outputs import container, row, column
+from .vvapp.outputs import row
 
 f = open('app/config.json')
 cfg = json.load(f)

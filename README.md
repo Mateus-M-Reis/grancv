@@ -4,6 +4,8 @@ Computer vision web application with granulometry purpouses, built on top of [ip
 
 ![](./demo/gifs/grancv_gif.gif)
 
+
+
 ## Install
 
 Create new conda environment:
@@ -20,11 +22,12 @@ Install some packages:
 
 Run the app:
 
-`voila --VoilaConfiguration.extension_language_mapping='{".py": "python"}' $1 --debug`
+`voila --VoilaConfiguration.extension_language_mapping='{".py": "python"}' $1 --debug --enable_nbextensions=True`
 
 Or, if you prefer the dark theme:
 
-`voila --VoilaConfiguration.extension_language_mapping='{".py": "python"}' $1 --theme=dark --debug`
+`voila --VoilaConfiguration.extension_language_mapping='{".py": "python"}' $1 --theme=dark --debug --enable_nbextensions=True`
+
 
 You may want to paste this into your .bash_aliases file:
 
@@ -39,6 +42,8 @@ Now, you can run the application with:
 `v index.py`
 
 ## Operations Available
+![](./demo/gifs/operations.gif)
+
 
 You can use and tune combinations of the following operations:
 
@@ -111,5 +116,4 @@ This application is is very initial stage. More operations will be added to the 
   [1,1,1],
   [1,1,1]]
   ```
-
-- Scripts to build the application.
+  
