@@ -12,17 +12,21 @@ class Histogram():
 
     def __init__(self, img):
 
-        self.colors = ['#ED2445', 'green', '#6EFDFF']
+        self.colors = ['red', 'green', 'blue']
 
         self.ax_options = {
                 'x': {
                     'label': 'Intensity',
+                    'label_color': 'white',
+                    'label_offset': '5ex',
                     'orientation': 'horizontal',
                     'color': 'white',
                     'grid_lines': 'none',
                     },
                 'y': {
                     'label': 'Frequency',
+                    'label_color': 'white',
+                    'label_offset': '8ex',
                     'orientation': 'vertical',
                     'color': 'white',
                     'grid_lines': 'none',
@@ -43,10 +47,10 @@ class Histogram():
                     'width': '550px'
                     },
                 fig_margin={
-                    'top': 30,
-                    'bottom': 40,
-                    'left': 60,
-                    'right': 30
+                    'top': 25,
+                    'bottom': 50,
+                    'left': 75,
+                    'right': 25
                     },
                  )
 
@@ -74,7 +78,6 @@ class Histogram():
                     fill='bottom',
                     fill_opacities=[0.2]
                     )
-
         self.wid = v.Card(children=[
                     self.fig],
                     style_='\
