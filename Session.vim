@@ -13,6 +13,7 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
+badd +1 README.md
 badd +1 index.py
 badd +1 input_type.py
 badd +1 app.py
@@ -21,7 +22,6 @@ badd +92 app/__init__.py
 badd +1 app/config.json
 badd +1 app/neural_style_transfer.py
 badd +1 app/paper.py
-badd +3 README.md
 badd +79 app/histogram.py
 badd +1 app/components/sidebar.py
 badd +1 app/components/paper.py
@@ -77,9 +77,9 @@ set winminwidth=0
 set winwidth=1
 exe 'vert 1resize ' . ((&columns * 64 + 97) / 194)
 exe 'vert 2resize ' . ((&columns * 64 + 97) / 194)
-exe '3resize ' . ((&lines * 27 + 29) / 58)
+exe '3resize ' . ((&lines * 26 + 28) / 57)
 exe 'vert 3resize ' . ((&columns * 64 + 97) / 194)
-exe '4resize ' . ((&lines * 27 + 29) / 58)
+exe '4resize ' . ((&lines * 27 + 28) / 57)
 exe 'vert 4resize ' . ((&columns * 64 + 97) / 194)
 argglobal
 balt index.py
@@ -91,11 +91,11 @@ setlocal fdl=99
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 126 - ((46 * winheight(0) + 27) / 55)
+let s:l = 129 - ((48 * winheight(0) + 27) / 54)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 126
+keepjumps 129
 normal! 0
 wincmd w
 argglobal
@@ -116,11 +116,11 @@ setlocal fen
 normal! zo
 2
 normal! zo
-let s:l = 41 - ((40 * winheight(0) + 27) / 55)
+let s:l = 42 - ((40 * winheight(0) + 27) / 54)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 41
+keepjumps 42
 normal! 0
 wincmd w
 argglobal
@@ -137,12 +137,12 @@ setlocal fdl=99
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 1 - ((0 * winheight(0) + 13) / 27)
+let s:l = 1 - ((0 * winheight(0) + 13) / 26)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
 keepjumps 1
-normal! 0
+normal! 08|
 wincmd w
 argglobal
 if bufexists(fnamemodify("index.py", ":p")) | buffer index.py | else | edit index.py | endif
@@ -165,11 +165,12 @@ normal! zt
 keepjumps 1
 normal! 0
 wincmd w
+3wincmd w
 exe 'vert 1resize ' . ((&columns * 64 + 97) / 194)
 exe 'vert 2resize ' . ((&columns * 64 + 97) / 194)
-exe '3resize ' . ((&lines * 27 + 29) / 58)
+exe '3resize ' . ((&lines * 26 + 28) / 57)
 exe 'vert 3resize ' . ((&columns * 64 + 97) / 194)
-exe '4resize ' . ((&lines * 27 + 29) / 58)
+exe '4resize ' . ((&lines * 27 + 28) / 57)
 exe 'vert 4resize ' . ((&columns * 64 + 97) / 194)
 tabnext
 edit .gitignore
@@ -199,13 +200,13 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe '1resize ' . ((&lines * 14 + 29) / 58)
+exe '1resize ' . ((&lines * 14 + 28) / 57)
 exe 'vert 1resize ' . ((&columns * 96 + 97) / 194)
-exe '2resize ' . ((&lines * 14 + 29) / 58)
+exe '2resize ' . ((&lines * 14 + 28) / 57)
 exe 'vert 2resize ' . ((&columns * 96 + 97) / 194)
-exe '3resize ' . ((&lines * 9 + 29) / 58)
+exe '3resize ' . ((&lines * 8 + 28) / 57)
 exe 'vert 3resize ' . ((&columns * 96 + 97) / 194)
-exe '4resize ' . ((&lines * 15 + 29) / 58)
+exe '4resize ' . ((&lines * 15 + 28) / 57)
 exe 'vert 4resize ' . ((&columns * 96 + 97) / 194)
 exe 'vert 5resize ' . ((&columns * 97 + 97) / 194)
 argglobal
@@ -218,11 +219,11 @@ setlocal fdl=99
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 6 - ((3 * winheight(0) + 7) / 14)
+let s:l = 8 - ((5 * winheight(0) + 7) / 14)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 6
+keepjumps 8
 normal! 0
 wincmd w
 argglobal
@@ -260,7 +261,7 @@ setlocal fdl=99
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 5 - ((0 * winheight(0) + 4) / 9)
+let s:l = 5 - ((0 * winheight(0) + 4) / 8)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
@@ -302,20 +303,20 @@ setlocal fdl=99
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 6 - ((5 * winheight(0) + 27) / 55)
+let s:l = 6 - ((5 * winheight(0) + 27) / 54)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
 keepjumps 6
 normal! 0
 wincmd w
-exe '1resize ' . ((&lines * 14 + 29) / 58)
+exe '1resize ' . ((&lines * 14 + 28) / 57)
 exe 'vert 1resize ' . ((&columns * 96 + 97) / 194)
-exe '2resize ' . ((&lines * 14 + 29) / 58)
+exe '2resize ' . ((&lines * 14 + 28) / 57)
 exe 'vert 2resize ' . ((&columns * 96 + 97) / 194)
-exe '3resize ' . ((&lines * 9 + 29) / 58)
+exe '3resize ' . ((&lines * 8 + 28) / 57)
 exe 'vert 3resize ' . ((&columns * 96 + 97) / 194)
-exe '4resize ' . ((&lines * 15 + 29) / 58)
+exe '4resize ' . ((&lines * 15 + 28) / 57)
 exe 'vert 4resize ' . ((&columns * 96 + 97) / 194)
 exe 'vert 5resize ' . ((&columns * 97 + 97) / 194)
 tabnext
@@ -352,11 +353,11 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 82 - ((70 * winheight(0) + 27) / 55)
+let s:l = 50 - ((37 * winheight(0) + 27) / 54)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 82
+keepjumps 50
 normal! 0
 wincmd w
 argglobal
@@ -379,7 +380,7 @@ normal! zo
 normal! zc
 23
 normal! zc
-let s:l = 64 - ((13 * winheight(0) + 27) / 55)
+let s:l = 64 - ((13 * winheight(0) + 27) / 54)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
@@ -400,15 +401,11 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-17
+18
 normal! zo
-19
-normal! zo
-19
+18
 normal! zc
-17
-normal! zc
-let s:l = 4 - ((3 * winheight(0) + 27) / 55)
+let s:l = 4 - ((3 * winheight(0) + 27) / 54)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
@@ -460,7 +457,7 @@ normal! zo
 normal! zo
 22
 normal! zc
-let s:l = 13 - ((12 * winheight(0) + 27) / 55)
+let s:l = 13 - ((12 * winheight(0) + 27) / 54)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
@@ -493,7 +490,7 @@ normal! zo
 normal! zc
 71
 normal! zo
-let s:l = 79 - ((3 * winheight(0) + 27) / 55)
+let s:l = 79 - ((3 * winheight(0) + 27) / 54)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
@@ -518,22 +515,17 @@ setlocal fen
 normal! zo
 4
 normal! zo
-17
+18
 normal! zo
-19
-normal! zo
-19
+18
 normal! zc
-17
-normal! zc
-let s:l = 14 - ((13 * winheight(0) + 27) / 55)
+let s:l = 18 - ((17 * winheight(0) + 27) / 54)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 14
+keepjumps 18
 normal! 0
 wincmd w
-3wincmd w
 exe 'vert 1resize ' . ((&columns * 64 + 97) / 194)
 exe 'vert 2resize ' . ((&columns * 64 + 97) / 194)
 exe 'vert 3resize ' . ((&columns * 64 + 97) / 194)
@@ -571,11 +563,11 @@ setlocal fdl=99
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 6 - ((5 * winheight(0) + 27) / 55)
+let s:l = 7 - ((6 * winheight(0) + 27) / 54)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 6
+keepjumps 7
 normal! 04|
 wincmd w
 argglobal
@@ -592,7 +584,7 @@ setlocal fdl=99
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 38 - ((0 * winheight(0) + 27) / 55)
+let s:l = 38 - ((0 * winheight(0) + 27) / 54)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
@@ -613,7 +605,7 @@ setlocal fdl=99
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 19 - ((0 * winheight(0) + 27) / 55)
+let s:l = 19 - ((0 * winheight(0) + 27) / 54)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
@@ -635,7 +627,7 @@ setlocal fdl=99
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 2 - ((1 * winheight(0) + 27) / 55)
+let s:l = 2 - ((1 * winheight(0) + 27) / 54)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
@@ -673,11 +665,11 @@ setlocal fdn=20
 setlocal fen
 326
 normal! zo
-let s:l = 372 - ((364 * winheight(0) + 27) / 55)
+let s:l = 374 - ((359 * winheight(0) + 27) / 54)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 372
+keepjumps 374
 normal! 0
 wincmd w
 argglobal
@@ -694,7 +686,7 @@ setlocal fdl=99
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 2 - ((1 * winheight(0) + 27) / 55)
+let s:l = 2 - ((1 * winheight(0) + 27) / 54)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
@@ -703,7 +695,7 @@ normal! 0
 wincmd w
 exe 'vert 1resize ' . ((&columns * 96 + 97) / 194)
 exe 'vert 2resize ' . ((&columns * 97 + 97) / 194)
-tabnext 4
+tabnext 1
 set stal=1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf

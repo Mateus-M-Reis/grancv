@@ -1,11 +1,8 @@
 import cv2
 import numpy as np
 import json
-
-from ipywidgets import HTMLMath, HTML
 import ipyvuetify as v
 from .vvapp.inputs import slider, select
-from .vvapp.outputs import container, row, column
 
 f = open('app/config.json')
 cfg = json.load(f)
@@ -16,7 +13,6 @@ morpho_dropd = select(
         )
 
 morpho_slider = slider(
-        #label='Iterations',
         min=0,
         max=10,
         step=1,
@@ -43,9 +39,10 @@ morpho_expp = v.ExpansionPanel(children=[
             '
     )
 
+
 def morphology(img, op_type, number):
 
-    kernel = np.ones((5,5),np.uint8)
+    kernel = np.ones((5, 5), np.uint8)
 
     if op_type == 'erosion':
         morpho = cv2.erode(img, kernel, iterations=number)
@@ -54,17 +51,22 @@ def morphology(img, op_type, number):
         morpho = cv2.dilate(img, kernel, iterations=number)
         return morpho
     elif op_type == 'opening':
-        morpho = cv2.morphologyEx(img, cv2.MORPH_OPEN, kernel,iterations=number)
+        morpho = cv2.morphologyEx(
+                img, cv2.MORPH_OPEN, kernel, iterations=number)
         return morpho
     elif op_type == 'closing':
-        morpho = cv2.morphologyEx(img, cv2.MORPH_CLOSE, kernel,iterations=number)
+        morpho = cv2.morphologyEx(
+                img, cv2.MORPH_CLOSE, kernel, iterations=number)
         return morpho
     elif op_type == 'gradient':
-        morpho = cv2.morphologyEx(img, cv2.MORPH_GRADIENT, kernel, iterations=number)
+        morpho = cv2.morphologyEx(
+                img, cv2.MORPH_GRADIENT, kernel, iterations=number)
         return morpho
     elif op_type == 'top-hat':
-        morpho = cv2.morphologyEx(img, cv2.MORPH_TOPHAT, kernel, iterations=number)
+        morpho = cv2.morphologyEx(
+                img, cv2.MORPH_TOPHAT, kernel, iterations=number)
         return morpho
     elif op_type == 'black-hat':
-        morpho = cv2.morphologyEx(img, cv2.MORPH_BLACKHAT, kernel, iterations=number)
+        morpho = cv2.morphologyEx(
+                img, cv2.MORPH_BLACKHAT, kernel, iterations=number)
         return morpho
